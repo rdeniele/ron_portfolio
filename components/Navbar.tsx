@@ -4,10 +4,11 @@ import { useState } from "react";
 import { siteConfig } from "@/lib/site";
 
 const links = [
-  { label: "services", href: "#services" },
-  { label: "works", href: "#works" },
-  { label: "about", href: "#about" },
-  { label: "contact", href: "#contact" },
+  { label: "services", href: "/#services" },
+  { label: "works", href: "/#works" },
+  { label: "about", href: "/#about" },
+  { label: "blog", href: "/blog" },
+  { label: "contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
