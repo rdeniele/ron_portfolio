@@ -8,7 +8,7 @@ import { blogPosts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "blog",
   description:
-    "articles on digital marketing, web development, and the ai tools i build and use, written by ron deniele d. paragoso.",
+    "articles on building ai products like wisker, tools for studying smarter, and my journey across web development, ai, and marketing, written by ron deniele d. paragoso.",
   alternates: {
     canonical: "/blog",
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/blog`,
     title: `blog | ${siteConfig.name}`,
     description:
-      "articles on digital marketing, web development, and the ai tools i build and use.",
+      "articles on building ai products like wisker, tools for studying smarter, and my journey across web development, ai, and marketing.",
     images: [
       {
         url: siteConfig.ogImage,
@@ -61,8 +61,9 @@ export default function BlogsPage() {
           blog
         </h1>
         <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
-          thoughts and write-ups on digital marketing, web development, and
-          the ai tools i build and use.
+          notes on building ai products like wisker, tools for studying
+          smarter, and my journey across web development, ai, and
+          marketing.
         </p>
       </Reveal>
 

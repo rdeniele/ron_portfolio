@@ -85,6 +85,33 @@ export const blogPosts: BlogPost[] = [
       "next.js ai app",
     ],
   },
+  {
+    slug: "computer-science-to-web-development-ai-marketing",
+    title:
+      "How I Went From a Computer Science Student to Working in Web Development, AI, and Marketing",
+    shortTitle: "From CS Student to Web Dev, AI & Marketing",
+    description:
+      "My career path from a computer science student to working in web development, AI, design, video editing, and marketing, plus the lessons burnout and rejection taught me along the way.",
+    date: "2026-08-11",
+    image:
+      "https://images.unsplash.com/photo-1536420123832-cd5867531583?auto=format&fit=crop&w=1600&q=80",
+    imageAlt: "aerial view of a winding road through a forest",
+    imageCredit: {
+      name: "Taneli Lahtinen",
+      url: "https://unsplash.com/@tanelah",
+    },
+    keywords: [
+      "computer science career path",
+      "how i became a web developer",
+      "self-taught developer",
+      "career change tips",
+      "ai assisted development",
+      "tech career journey",
+      "dealing with rejection in tech",
+      "burnout in software development",
+      "wisker app",
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
