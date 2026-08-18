@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 import SocialLinks from "@/components/SocialLinks";
 import Typewriter from "@/components/Typewriter";
 import WorksGallery from "@/components/WorksGallery";
-import { services, skillGroups } from "@/lib/site";
+import { experience, services, skillGroups } from "@/lib/site";
 
 const roles = [
   "digital marketer",
@@ -217,6 +217,67 @@ export default function Home() {
               project.
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      {/* career */}
+      <section id="career" className="scroll-mt-24 border-t border-line py-24">
+        <Reveal>
+          <h2 className="text-sm tracking-widest text-muted">career</h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
+            the roles that shaped how i work today, from interning on
+            backend systems to building web apps, running marketing
+            analytics, and now working across development and marketing at
+            once.
+          </p>
+        </Reveal>
+
+        <div className="mt-10 space-y-6">
+          {experience.map((company, i) => (
+            <Reveal key={company.company} delay={i * 80}>
+              <div className="rounded-lg border border-line bg-card p-6">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 className="text-base font-medium">{company.company}</h3>
+                  <span className="text-xs text-muted">
+                    {company.location}
+                  </span>
+                </div>
+
+                <div className="mt-5 space-y-5 border-l border-line pl-5">
+                  {company.roles.map((role) => (
+                    <div
+                      key={`${company.company}-${role.title}-${role.period}`}
+                      className="relative"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`absolute -left-6 top-1.5 h-2 w-2 rounded-full ${
+                          role.current ? "bg-foreground" : "bg-line"
+                        }`}
+                      />
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="text-sm font-medium">{role.title}</p>
+                        {role.current && (
+                          <span className="rounded-full border border-foreground px-2 py-0.5 text-[10px] tracking-wide text-foreground">
+                            current
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-1 text-xs text-muted">
+                        {role.period}
+                        {role.type ? ` · ${role.type}` : ""}
+                      </p>
+                      <ul className="mt-2 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-muted">
+                        {role.bullets.map((bullet) => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 

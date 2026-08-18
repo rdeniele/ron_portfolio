@@ -456,6 +456,116 @@ export const works: Work[] = [
   },
 ];
 
+export type ExperienceRole = {
+  title: string;
+  period: string;
+  type?: string;
+  current?: boolean;
+  bullets: string[];
+};
+
+export type Experience = {
+  company: string;
+  location: string;
+  roles: ExperienceRole[];
+};
+
+export const experience: Experience[] = [
+  {
+    company: "holistic seo digital",
+    location: "remote",
+    roles: [
+      {
+        title: "web developer",
+        period: "jul 2026 - present",
+        type: "full-time",
+        current: true,
+        bullets: [
+          "build landing pages and handle the technical side of web projects, including domains, dns, and nameserver configuration.",
+          "work across figma, figma-to-code, codepen, claude, and website builders to move quickly from design to a finished page.",
+        ],
+      },
+    ],
+  },
+  {
+    company: "gintex.ai",
+    location: "remote",
+    roles: [
+      {
+        title: "video editor, marketing & automations",
+        period: "jun 2026 - present",
+        type: "part-time",
+        current: true,
+        bullets: [
+          "edit ads, reels, and carousels, and write scripts for video and social content.",
+          "plan marketing campaigns, build landing pages and static graphics, and automate marketing workflows using the company's own app.",
+        ],
+      },
+    ],
+  },
+  {
+    company: "the rise collective",
+    location: "florida, usa - remote",
+    roles: [
+      {
+        title: "technical marketing & web systems specialist",
+        period: "jan 2026 - mar 2026",
+        bullets: [
+          "built and optimized responsive web applications and landing pages, translating figma and canva designs into high-quality ui with strong ux consistency across devices.",
+          "developed 5+ responsive websites from figma and canva designs, contributing to a 30–40% improvement in engagement.",
+        ],
+      },
+      {
+        title: "marketing data & analytics specialist",
+        period: "dec 2025 - jan 2026",
+        type: "contract",
+        bullets: [
+          "implemented google analytics and google tag manager for full tracking coverage across key user events, building reporting dashboards that cut manual reporting time by 50%.",
+          "analyzed performance data to identify bottlenecks, driving a 20% improvement in conversion-related metrics.",
+        ],
+      },
+      {
+        title: "technical marketing & web systems specialist",
+        period: "jan 2024 - feb 2025",
+        bullets: [
+          "designed and developed 10+ responsive websites with user-focused ui, improving load times by 30%+ and core web vitals.",
+          "managed ongoing maintenance, including bug fixes, updates, and performance improvements.",
+        ],
+      },
+    ],
+  },
+  {
+    company: "outrank strategy",
+    location: "centerville, ut - remote",
+    roles: [
+      {
+        title: "front-end and ai developer",
+        period: "jun 2025",
+        type: "full-time",
+        bullets: [
+          "developed and maintained responsive front-end interfaces for ai-powered saas platforms using next.js and tailwind css, as part of a 3-person front-end team within a 6-developer team.",
+          "ensured ui quality through front-end testing, debugging, and git-based version control, working closely with back-end developers for smooth integration and deployment.",
+        ],
+      },
+    ],
+  },
+  {
+    company: "green module systems",
+    location: "bacolod city, philippines",
+    roles: [
+      {
+        title: "software developer",
+        period: "jun 2024 - aug 2024",
+        type: "intern",
+        bullets: [
+          "developed and deployed finance and hr systems using laravel and codeigniter, improving operational efficiency by 60%.",
+          "managed application deployment and server environments, handling maintenance and debugging for internal tools.",
+        ],
+      },
+    ],
+  },
+];
+
 export const skillGroups = [
   {
     group: "development",
