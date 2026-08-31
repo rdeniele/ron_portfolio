@@ -6,16 +6,6 @@ import { workCategories, works, type Work, type WorkCategory } from "@/lib/site"
 
 const INITIAL_VISIBLE = 6;
 
-// bento pattern: [grid span classes, whether this tile is "small" (hides description)]
-const TILE_PATTERN: [string, boolean][] = [
-  ["col-span-2 row-span-2", false], // feature
-  ["col-span-1 row-span-1", true],
-  ["col-span-1 row-span-1", true],
-  ["col-span-1 row-span-2", false], // tall
-  ["col-span-1 row-span-1", true],
-  ["col-span-2 row-span-1", false], // wide
-];
-
 function getInitials(title: string) {
   return title
     .split(/\s+/)
@@ -65,16 +55,15 @@ function WorksResults({
 
   return (
     <>
-      <ul className="mt-8 grid grid-flow-dense grid-cols-2 gap-4 auto-rows-[9rem] sm:grid-cols-4 sm:auto-rows-[10rem]">
+      <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
         {visible.map((work, i) => {
-          const [span, small] = TILE_PATTERN[i % TILE_PATTERN.length];
           return (
             <li
               key={`${category}-${work.title}`}
               style={{ animationDelay: `${i * 60}ms` }}
-              className={`animate-fade-up group flex flex-col overflow-hidden rounded-lg border border-line bg-card transition-transform duration-300 hover:-translate-y-1 ${span}`}
+              className="animate-fade-up group flex flex-col overflow-hidden rounded-lg border border-line bg-card transition-transform duration-300 hover:-translate-y-1"
             >
-              <div className="relative min-h-0 flex-1 overflow-hidden bg-line/50">
+              <div className="relative aspect-[4/3] overflow-hidden bg-line/50">
                 {work.images && work.images.length > 0 ? (
                   <div className="grid h-full grid-cols-2">
                     {work.images.map((src) => (
@@ -94,7 +83,7 @@ function WorksResults({
                     src={work.image}
                     alt={`${work.title} — ${work.category} project by ron deniele d. paragoso`}
                     fill
-                    sizes="(min-width: 640px) 50vw, 100vw"
+                    sizes="(min-width: 640px) 33vw, 50vw"
                     className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
                       work.blurImage ? "blur-md" : ""
                     }`}
@@ -118,11 +107,9 @@ function WorksResults({
               </div>
               <div className="shrink-0 p-4">
                 <h3 className="truncate text-sm font-medium">{work.title}</h3>
-                {!small && (
-                  <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted">
-                    {work.description}
-                  </p>
-                )}
+                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted">
+                  {work.description}
+                </p>
                 {work.links && work.links.length > 0 && (
                   <div className="mt-2 flex flex-wrap gap-1.5">
                     {work.links.map((link) => (
