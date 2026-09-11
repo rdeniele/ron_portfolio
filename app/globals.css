@@ -1,26 +1,385 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ---------------------------------------------------------------------------
+ * editorial mono workspace — warm paper ground, ink text, hairline borders.
+ * depth comes from type scale + hairlines; shadows are reserved for drag lift.
+ * ------------------------------------------------------------------------- */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --paper: #f7f6f3;
+  --surface: #fffefc;
+  --surface-sunk: #f1efea;
+  --ink: #1a1917;
+  --ink-muted: #5c5951;
+  --ink-faint: #78746c;
+  --line: #e2dfd8;
+  --line-strong: #c7c2b8;
+  --accent: #9c3d26;
+  --accent-soft: #f0e3de;
+  --lift: 0 1px 2px rgb(26 25 23 / 0.04), 0 12px 32px -8px rgb(26 25 23 / 0.18);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --paper: #121110;
+    --surface: #1a1917;
+    --surface-sunk: #0e0d0c;
+    --ink: #edebe6;
+    --ink-muted: #97938b;
+    --ink-faint: #868279;
+    --line: #2b2926;
+    --line-strong: #413d37;
+    --accent: #e0714b;
+    --accent-soft: #2e211c;
+    --lift: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -8px rgb(0 0 0 / 0.6);
   }
 }
 
+:root[data-theme="dark"] {
+  --paper: #121110;
+  --surface: #1a1917;
+  --surface-sunk: #0e0d0c;
+  --ink: #edebe6;
+  --ink-muted: #97938b;
+  --ink-faint: #868279;
+  --line: #2b2926;
+  --line-strong: #413d37;
+  --accent: #e0714b;
+  --accent-soft: #2e211c;
+  --lift: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -8px rgb(0 0 0 / 0.6);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunk: var(--surface-sunk);
+  --color-ink: var(--ink);
+  --color-muted: var(--ink-muted);
+  --color-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* 1.25× editorial scale */
+  --text-micro: 0.625rem;
+  --text-label: 0.6875rem;
+  --text-fine: 0.75rem;
+  --text-body: 0.875rem;
+  --text-lead: 1.0625rem;
+  --text-title: 1.375rem;
+  --text-display: 2.25rem;
+}
+
+/* the dashboard owns the viewport — the page itself never scrolls */
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* mono label treatment used on every card header and sidebar control */
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* visible focus ring, consistent everywhere */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* scrollable regions inside modals keep a restrained bar */
+.scroll-area {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+  overscroll-behavior: contain;
+}
+.scroll-area::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll-area::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 99px;
+}
+
+/* compact nav strip scrolls without showing a bar */
+nav[aria-label="dashboard panels"] {
+  scrollbar-width: none;
+}
+nav[aria-label="dashboard panels"]::-webkit-scrollbar {
+  display: none;
+}
+
+/* horizontal carousel track — snap, no visible bar */
+.rail {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* typewriter caret on the identity card */
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.caret {
+  animation: caret-blink 1.1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * bento cards
+ * ------------------------------------------------------------------------- */
+
+.bento-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  overflow: hidden;
+  /* cards move between differently sized slots, so their content adapts to the
+     card's own width rather than the viewport's */
+  container-type: inline-size;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition:
+    opacity 220ms ease-out,
+    border-color 200ms ease-out,
+    box-shadow 200ms ease-out,
+    scale 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+  .bento-card {
+    padding: 1.125rem 1.25rem;
+  }
+}
+
+/* the header meta would clip in a narrow tile — drop it there */
+@media (max-width: 1023px) {
+  .card-meta {
+    display: none;
+  }
+}
+
+.bento-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: 0 1px 2px rgb(26 25 23 / 0.04), 0 6px 16px -10px rgb(26 25 23 / 0.3);
+  scale: 1.006;
+}
+
+.bento-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* focus mode — the focused card steps forward, the rest recede */
+.bento-card[data-focused] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), var(--lift);
+  scale: 1.018;
+}
+
+.bento-card[data-receded] {
+  opacity: 0.42;
+  scale: 0.988;
+}
+
+/* the gap left behind while a card is being dragged — this is the drop zone */
+.bento-card[data-placeholder] {
+  border-style: dashed;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: none;
+  scale: 1;
+}
+.bento-card[data-placeholder] > * {
+  opacity: 0.18;
+}
+
+/* the floating copy that follows the pointer */
+.bento-card[data-overlay] {
+  cursor: grabbing;
+  border-color: var(--accent);
+  box-shadow: var(--lift);
+  scale: 1.03;
+  rotate: -0.4deg;
+}
+
+.bento-card:active {
+  cursor: grabbing;
+}
+
+/* while a drag is in progress the other cards quiet down */
+.grid-dragging .bento-card:not([data-placeholder]) {
+  opacity: 0.75;
+}
+.grid-dragging .bento-card:hover {
+  scale: 1;
+  box-shadow: none;
+}
+
+/* content tiers by intrinsic height: a 1-row card only has room for a header */
+.bento-card[data-rows="1"] .card-blurb {
+  display: none;
+}
+.bento-card[data-rows="1"] .card-body {
+  margin-top: 0.4rem;
+}
+.bento-card[data-rows="2"] .card-body {
+  margin-top: 0.5rem;
+}
+
+/* very short viewports (landscape phones): headers only, nothing overflows */
+@media (max-height: 560px) and (max-width: 1023px) {
+  .bento-card .card-body {
+    display: none;
+  }
+}
+
+/* below the full dashboard breakpoint every card is a uniform compact tile */
+@media (max-width: 1023px) {
+  .bento-card {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
+  .bento-card .card-blurb {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento-card,
+  .bento-card:hover,
+  .bento-card[data-focused],
+  .bento-card[data-receded],
+  .bento-card[data-overlay] {
+    scale: 1;
+    rotate: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * theme toggle icon — mirrors the palette rules above so no JS state is needed
+ * ------------------------------------------------------------------------- */
+
+.icon-sun {
+  display: none;
+}
+.icon-moon {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icon-sun {
+    display: block;
+  }
+  :root:not([data-theme="light"]) .icon-moon {
+    display: none;
+  }
+}
+
+:root[data-theme="dark"] .icon-sun {
+  display: block;
+}
+:root[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+ * modal enter/exit — keyframes rather than transitions, so the animation runs
+ * from the moment the node mounts without needing a paint frame first
+ * ------------------------------------------------------------------------- */
+
+@keyframes modal-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modal-backdrop-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes modal-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes modal-panel-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+}
+
+.modal-backdrop-in {
+  animation: modal-backdrop-in 200ms ease-out both;
+}
+.modal-backdrop-out {
+  animation: modal-backdrop-out 220ms ease-in both;
+}
+.modal-panel-in {
+  animation: modal-panel-in 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.modal-panel-out {
+  animation: modal-panel-out 220ms cubic-bezier(0.7, 0, 0.84, 0) both;
 }
