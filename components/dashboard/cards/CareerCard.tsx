@@ -17,7 +17,7 @@ export default function CareerCard() {
             <p className="truncate text-fine text-ink">{role.company}</p>
             <p className="truncate text-micro text-muted">{role.title}</p>
           </div>
-          <span className="label ml-auto shrink-0 text-accent">now</span>
+          <span className="label ml-auto shrink-0 text-accent-ink">now</span>
         </div>
       ))}
     </div>

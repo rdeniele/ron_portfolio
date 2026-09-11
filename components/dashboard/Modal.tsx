@@ -146,7 +146,7 @@ export default function Modal({
         <header className="flex shrink-0 items-start justify-between gap-4 border-b border-line px-5 py-4 sm:px-7 sm:py-5">
           <div className="min-w-0">
             <p className="label text-faint">
-              <span className="text-accent">{index}</span>
+              <span className="text-accent-ink">{index}</span>
               <span className="mx-2 text-line-strong">/</span>
               <span id={titleId}>{label}</span>
             </p>

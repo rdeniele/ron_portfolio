@@ -7,7 +7,7 @@ export default function SkillsModal() {
         {skillGroups.map((group) => (
           <section key={group.group}>
             <div className="flex items-baseline justify-between gap-3 border-b border-line pb-2">
-              <h3 className="label text-accent">{group.group}</h3>
+              <h3 className="label text-accent-ink">{group.group}</h3>
               <span className="label text-faint tabular-nums">
                 {String(group.skills.length).padStart(2, "0")}
               </span>

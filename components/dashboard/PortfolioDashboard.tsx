@@ -23,12 +23,14 @@ import BentoCard, { CardContent } from "@/components/dashboard/BentoCard";
 import Modal from "@/components/dashboard/Modal";
 import Sidebar from "@/components/dashboard/Sidebar";
 import AboutCard from "@/components/dashboard/cards/AboutCard";
+import BlogCard from "@/components/dashboard/cards/BlogCard";
 import CareerCard from "@/components/dashboard/cards/CareerCard";
 import ContactCard from "@/components/dashboard/cards/ContactCard";
 import ServicesCard from "@/components/dashboard/cards/ServicesCard";
 import SkillsCard from "@/components/dashboard/cards/SkillsCard";
 import WorksCard from "@/components/dashboard/cards/WorksCard";
 import AboutModal from "@/components/dashboard/modals/AboutModal";
+import BlogModal from "@/components/dashboard/modals/BlogModal";
 import CareerModal from "@/components/dashboard/modals/CareerModal";
 import ContactModal from "@/components/dashboard/modals/ContactModal";
 import ServicesModal from "@/components/dashboard/modals/ServicesModal";
@@ -43,6 +45,7 @@ const CARDS: Record<PanelId, React.ReactNode> = {
   career: <CareerCard />,
   skills: <SkillsCard />,
   contact: <ContactCard />,
+  blog: <BlogCard />,
 };
 
 const MODALS: Record<
@@ -55,6 +58,7 @@ const MODALS: Record<
   career: { node: <CareerModal />, size: "xl" },
   skills: { node: <SkillsModal />, size: "lg" },
   contact: { node: <ContactModal />, size: "md" },
+  blog: { node: <BlogModal />, size: "lg" },
 };
 
 export default function PortfolioDashboard() {
@@ -141,7 +145,8 @@ export default function PortfolioDashboard() {
   const activePanel = panelById[lastOpen];
 
   return (
-    <main className="flex h-dvh w-full flex-col gap-3 overflow-hidden p-3 lg:flex-row lg:gap-5 lg:p-5">
+    <main data-dashboard
+      className="flex h-dvh w-full flex-col gap-3 overflow-hidden p-3 lg:flex-row lg:gap-5 lg:p-5">
       <Sidebar
         focused={focused}
         onSelect={handleSelect}
@@ -164,7 +169,7 @@ export default function PortfolioDashboard() {
           <section
             aria-label="portfolio panels"
             data-dragging={dragging || undefined}
-            className={`grid min-h-0 flex-1 grid-cols-2 grid-rows-3 gap-2.5 lg:grid-cols-12 lg:grid-rows-6 lg:gap-3 ${
+            className={`grid min-h-0 flex-1 grid-cols-2 grid-rows-4 gap-2.5 lg:grid-cols-12 lg:grid-rows-6 lg:gap-3 ${
               dragging ? "grid-dragging" : ""
             }`}
             style={{ gridAutoFlow: "row dense" }}
@@ -174,7 +179,6 @@ export default function PortfolioDashboard() {
                 key={id}
                 panel={panelById[id]}
                 focused={focused === id}
-                receded={focused !== null && focused !== id}
                 onOpen={() => {
                   setLastOpen(id);
                   setOpen(id);

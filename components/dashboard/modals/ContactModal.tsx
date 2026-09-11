@@ -16,7 +16,7 @@ export default function ContactModal() {
         className="mt-4 flex items-center justify-between gap-3 rounded-lg border border-line px-4 py-3 transition-[border-color,background-color,transform] duration-150 hover:border-accent hover:bg-accent-soft active:scale-[0.99]"
       >
         <span className="truncate text-body text-ink">{contact.email}</span>
-        <span aria-hidden="true" className="shrink-0 text-accent">
+        <span aria-hidden="true" className="shrink-0 text-accent-ink">
           &#8599;
         </span>
       </a>

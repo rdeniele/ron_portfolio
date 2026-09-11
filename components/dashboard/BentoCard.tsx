@@ -7,8 +7,6 @@ import type { Panel } from "@/lib/dashboard";
 type BentoCardProps = {
   panel: Panel;
   focused: boolean;
-  /** true when another card holds focus — this one recedes */
-  receded: boolean;
   onOpen: () => void;
   onFocus: () => void;
   children: React.ReactNode;
@@ -23,7 +21,6 @@ type BentoCardProps = {
 export default function BentoCard({
   panel,
   focused,
-  receded,
   onOpen,
   onFocus,
   children,
@@ -64,7 +61,6 @@ export default function BentoCard({
       data-rows={panel.span.row}
       data-placeholder={isDragging || undefined}
       data-focused={focused && !isDragging ? true : undefined}
-      data-receded={receded || undefined}
       className="group/card bento-card"
       {...attributes}
       {...dragListeners}
@@ -99,7 +95,7 @@ export function CardContent({
     <>
       <header className="flex shrink-0 items-baseline justify-between gap-3">
         <p className="label text-faint">
-          <span className="text-accent">{panel.index}</span>
+          <span className="text-accent-ink">{panel.index}</span>
           <span className="mx-1.5 text-line-strong">/</span>
           <span className="text-muted transition-colors duration-200 group-hover/card:text-ink">
             {panel.label}

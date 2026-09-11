@@ -72,7 +72,7 @@ export default function WorksModal() {
               onClick={() => selectCategory(cat)}
               className={`label rounded-md px-2.5 py-1.5 transition-[color,background-color] duration-150 active:scale-[0.97] ${
                 active
-                  ? "bg-accent-soft text-accent"
+                  ? "bg-accent-soft text-accent-ink"
                   : "text-faint hover:text-ink"
               }`}
             >

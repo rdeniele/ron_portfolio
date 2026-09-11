@@ -67,7 +67,7 @@ export default function Typewriter({
   return (
     <span className={className}>
       {reduce ? word : text}
-      <span className="caret ml-0.5 text-accent" aria-hidden="true">
+      <span className="caret ml-0.5 text-accent-ink" aria-hidden="true">
         |
       </span>
     </span>

@@ -6,7 +6,7 @@ export default function ContactCard() {
       <p className="truncate text-fine text-muted">{contact.email}</p>
       <span
         aria-hidden="true"
-        className="shrink-0 text-accent transition-transform duration-200 group-hover/card:translate-x-0.5"
+        className="shrink-0 text-accent-ink transition-transform duration-200 group-hover/card:translate-x-0.5"
       >
         &#8599;
       </span>

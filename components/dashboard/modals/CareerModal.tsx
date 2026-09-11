@@ -58,7 +58,7 @@ export default function CareerModal() {
                       {role.company}
                     </span>
                     {role.current && (
-                      <span className="label shrink-0 text-accent">now</span>
+                      <span className="label shrink-0 text-accent-ink">now</span>
                     )}
                   </span>
                   <span className="label mt-0.5 block truncate text-faint">
@@ -73,7 +73,7 @@ export default function CareerModal() {
 
       {/* detail panel */}
       <div className="bg-surface px-5 py-5 sm:px-7 sm:py-6">
-        <p className="label text-accent">{active.period}</p>
+        <p className="label text-accent-ink">{active.period}</p>
         <h3 className="mt-2 font-serif text-title leading-tight text-ink">
           {active.title}
         </h3>

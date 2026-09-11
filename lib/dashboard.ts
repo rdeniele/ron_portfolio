@@ -1,3 +1,4 @@
+import { blogPosts } from "@/lib/blog";
 import { experience, services, skillGroups, works } from "@/lib/site";
 
 export type PanelId =
@@ -6,7 +7,8 @@ export type PanelId =
   | "services"
   | "career"
   | "skills"
-  | "contact";
+  | "contact"
+  | "blog";
 
 export type Panel = {
   id: PanelId;
@@ -67,7 +69,7 @@ export const panels: Panel[] = [
     label: "skills",
     blurb: "development, marketing, analytics, design & video.",
     meta: `${skillGroups.reduce((n, g) => n + g.skills.length, 0)} skills`,
-    span: { col: 4, row: 3 },
+    span: { col: 4, row: 2 },
   },
   {
     id: "contact",
@@ -77,6 +79,14 @@ export const panels: Panel[] = [
     meta: "open",
     span: { col: 4, row: 1 },
   },
+  {
+    id: "blog",
+    index: "07",
+    label: "blog",
+    blurb: "writing on ai products, studying, and the work.",
+    meta: `${blogPosts.length} posts`,
+    span: { col: 4, row: 1 },
+  },
 ];
 
 export const panelById = Object.fromEntries(
@@ -84,6 +94,10 @@ export const panelById = Object.fromEntries(
 ) as Record<PanelId, Panel>;
 
 /** default left-to-right reading order of the bento grid */
+/**
+ * Reading order of the grid. With dense auto-flow this packs to:
+ * about|works across the top, then services / career+contact / skills+blog.
+ */
 export const defaultOrder: PanelId[] = [
   "about",
   "works",
@@ -91,6 +105,7 @@ export const defaultOrder: PanelId[] = [
   "career",
   "skills",
   "contact",
+  "blog",
 ];
 
 export const webWorkCount = webWorks.length;

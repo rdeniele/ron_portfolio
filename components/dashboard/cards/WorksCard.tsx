@@ -35,7 +35,7 @@ export default function WorksCard() {
         {workCategories.map((cat) => (
           <li key={cat} className="label text-faint">
             {cat.replace(" and content creation", "").replace(" & design", "")}
-            <span className="ml-1.5 text-accent tabular-nums">
+            <span className="ml-1.5 text-accent-ink tabular-nums">
               {works.filter((w) => w.category === cat).length}
             </span>
           </li>

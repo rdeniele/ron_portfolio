@@ -22,7 +22,7 @@ export default function AboutModal() {
       <dl className="mt-7 grid gap-x-7 gap-y-5 sm:grid-cols-2">
         {about.sections.map((section) => (
           <div key={section.label} className="border-t border-line pt-3">
-            <dt className="label text-accent">{section.label}</dt>
+            <dt className="label text-accent-ink">{section.label}</dt>
             <dd className="mt-1.5 text-fine leading-relaxed text-muted">
               {section.body}
             </dd>

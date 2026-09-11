@@ -63,14 +63,14 @@ export default function Sidebar({
               aria-pressed={active}
               className={`group/nav flex shrink-0 items-center gap-2 rounded-md px-2.5 py-2 text-left transition-[background-color,color] duration-150 active:scale-[0.98] lg:w-full lg:shrink ${
                 active
-                  ? "bg-accent-soft text-accent"
+                  ? "bg-accent-soft text-accent-ink"
                   : "text-muted hover:bg-sunk hover:text-ink"
               }`}
             >
               <span
                 aria-hidden="true"
                 className={`label hidden tabular-nums transition-colors duration-150 lg:inline ${
-                  active ? "text-accent" : "text-faint"
+                  active ? "text-accent-ink" : "text-faint"
                 }`}
               >
                 {panel.index}
