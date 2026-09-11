@@ -1,13 +1,30 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { workCategories, works, type WorkCategory } from "@/lib/site";
+
+type Lightbox = { src: string; alt: string; blurred: boolean };
 
 export default function WorksModal() {
   const [category, setCategory] = useState<WorkCategory>(workCategories[0]);
   const [index, setIndex] = useState(0);
+  const [lightbox, setLightbox] = useState<Lightbox | null>(null);
   const railRef = useRef<HTMLDivElement>(null);
+
+  // Escape has to close the lightbox before the surrounding modal sees it, so
+  // this listens on the capture phase and stops the event there.
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      e.preventDefault();
+      e.stopPropagation();
+      setLightbox(null);
+    };
+    document.addEventListener("keydown", onKey, true);
+    return () => document.removeEventListener("keydown", onKey, true);
+  }, [lightbox]);
 
   const items = works.filter((w) => w.category === category);
 
@@ -109,27 +126,55 @@ export default function WorksModal() {
                 {work.images ? (
                   <div className="grid h-full grid-cols-2 gap-px bg-line">
                     {work.images.map((src) => (
-                      <div key={src} className="relative bg-sunk">
+                      <button
+                        type="button"
+                        key={src}
+                        onClick={() =>
+                          setLightbox({
+                            src,
+                            alt: `${work.title} — ${work.category}`,
+                            blurred: Boolean(work.blurImage),
+                          })
+                        }
+                        aria-label={`view ${work.title} full size`}
+                        className="group/shot relative cursor-zoom-in bg-sunk"
+                      >
                         <Image
                           src={src}
                           alt={`${work.title} — ${work.category}`}
                           fill
                           sizes="(max-width: 768px) 50vw, 400px"
-                          className="object-cover object-top"
+                          className="object-cover object-top transition-transform duration-300 group-hover/shot:scale-[1.02]"
                         />
-                      </div>
+                      </button>
                     ))}
                   </div>
                 ) : work.image ? (
-                  <Image
-                    src={work.image}
-                    alt={`${work.title} — ${work.category}`}
-                    fill
-                    sizes="(max-width: 768px) 92vw, 820px"
-                    className={`object-cover object-top ${
-                      work.blurImage ? "blur-md scale-105" : ""
-                    }`}
-                  />
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setLightbox({
+                        src: work.image as string,
+                        alt: `${work.title} — ${work.category}`,
+                        blurred: Boolean(work.blurImage),
+                      })
+                    }
+                    aria-label={`view ${work.title} full size`}
+                    className="group/shot absolute inset-0 cursor-zoom-in"
+                  >
+                    <Image
+                      src={work.image}
+                      alt={`${work.title} — ${work.category}`}
+                      fill
+                      sizes="(max-width: 768px) 92vw, 820px"
+                      className={`object-cover object-top transition-transform duration-300 group-hover/shot:scale-[1.02] ${
+                        work.blurImage ? "blur-md scale-105" : ""
+                      }`}
+                    />
+                    <span className="label absolute right-2 bottom-2 rounded-md border border-line bg-surface/90 px-2 py-1 text-muted opacity-0 transition-opacity duration-200 group-hover/shot:opacity-100">
+                      view full size
+                    </span>
+                  </button>
                 ) : (
                   <div className="grid h-full place-items-center">
                     <p className="label text-faint">{work.category}</p>
@@ -203,6 +248,44 @@ export default function WorksModal() {
           </div>
         </div>
       </div>
+
+      {lightbox && (
+        <div
+          className="modal-backdrop-in fixed inset-0 z-[60] flex items-center justify-center bg-paper/90 p-4 backdrop-blur-md sm:p-10"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.alt}
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            aria-label="close image"
+            className="absolute top-4 right-4 grid h-10 w-10 place-items-center rounded-md border border-line bg-surface text-muted transition-[color,border-color,transform] duration-150 hover:border-accent hover:text-ink active:scale-95"
+          >
+            <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden="true">
+              <path
+                d="M2 2l12 12M14 2L2 14"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+
+          <div className="modal-panel-in relative max-h-full w-full max-w-5xl overflow-hidden rounded-lg border border-line-strong bg-surface">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              onClick={(e) => e.stopPropagation()}
+              className={`max-h-[82dvh] w-full object-contain ${
+                lightbox.blurred ? "blur-lg" : ""
+              }`}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

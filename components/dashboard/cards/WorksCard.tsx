@@ -1,35 +1,40 @@
 import Image from "next/image";
 import { workCategories, works } from "@/lib/site";
 
-const PREVIEW = [
-  "/works/web development and design/wisker_landingpage.png",
-  "/works/web development and design/simplabots.png",
-  "/works/web development and design/artbliss_about_page.png",
-  "/works/graphics/wiskerpubmat.png",
-];
+/** every project image, in the order the works appear */
+const THUMBS = works.flatMap((work) =>
+  work.images ?? (work.image ? [work.image] : []),
+);
 
 export default function WorksCard() {
   return (
-    <div className="flex h-full flex-col gap-3">
-      <div className="grid min-h-0 flex-1 grid-cols-2 gap-2 @min-[22rem]:grid-cols-4">
-        {PREVIEW.map((src, i) => (
-          <div
-            key={src}
-            className={`thumb-duotone relative min-h-0 overflow-hidden rounded-md border border-line bg-sunk ${
-              i > 1 ? "hidden @min-[22rem]:block" : ""
-            }`}
-          >
-            <Image
-              src={src}
-              alt=""
-              fill
-              sizes="(max-width: 1023px) 24vw, 160px"
-              className="object-cover object-top transition-transform duration-300 group-hover/card:scale-[1.03]"
-              priority={i < 2}
-            />
-          </div>
-        ))}
+    <div className="flex h-full flex-col gap-2.5">
+      {/* A marquee rather than a static grid: it shows far more of the work in
+          the same space. The track is the list rendered twice and shifted by
+          exactly half its width, which is what makes the loop seamless. */}
+      <div className="marquee min-h-0 flex-1">
+        <div className="marquee-track">
+          {[0, 1].map((copy) => (
+            <div className="marquee-run" key={copy} aria-hidden={copy === 1}>
+              {THUMBS.map((src) => (
+                <div
+                  key={`${copy}-${src}`}
+                  className="thumb-duotone relative h-full w-[7.5rem] shrink-0 overflow-hidden rounded-md border border-line bg-sunk @min-[22rem]:w-[9.5rem]"
+                >
+                  <Image
+                    src={src}
+                    alt=""
+                    fill
+                    sizes="152px"
+                    className="object-cover object-top"
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
+
       {/* the full category breakdown only fits once the card is wide enough */}
       <ul className="hidden shrink-0 flex-wrap gap-x-4 gap-y-1 @min-[22rem]:flex">
         {workCategories.map((cat) => (

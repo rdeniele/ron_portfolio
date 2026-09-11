@@ -519,3 +519,94 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
     white-space: nowrap;
   }
 }
+
+/* ---------------------------------------------------------------------------
+ * ambient background
+ * ------------------------------------------------------------------------- */
+
+/* Static stand-in for the WebGL wash: shown whenever the canvas is not there
+   (no WebGL, reduced motion, or before the chunk loads) so the page is never
+   flatly grey while it waits. The canvas removes it once it is live. */
+html[data-ambient="gl"] body::before {
+  display: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      60% 55% at 22% 18%,
+      color-mix(in oklab, var(--accent) 16%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      55% 50% at 82% 86%,
+      color-mix(in oklab, var(--accent) 11%, transparent),
+      transparent 72%
+    );
+}
+
+/* ---------------------------------------------------------------------------
+ * works marquee
+ * ------------------------------------------------------------------------- */
+
+.marquee {
+  overflow: hidden;
+  /* fade the ends so thumbnails enter and leave rather than being chopped */
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 2.5rem,
+    #000 calc(100% - 2.5rem),
+    transparent 100%
+  );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  /* the resting position shows the work, so a stalled animation degrades to a
+     static strip rather than to an empty card */
+  transform: translateX(0);
+  animation: marquee-scroll 90s linear infinite;
+}
+
+.marquee-run {
+  display: flex;
+  gap: 0.5rem;
+  height: 100%;
+  padding-right: 0.5rem;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* let visitors stop the strip to look at something */
+.bento-card:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  .marquee {
+    overflow-x: auto;
+  }
+}
+
+/* react-three-fiber sets pointer-events:auto on its own canvas so it can
+   raycast. This layer is decorative and must never intercept a click, so the
+   whole subtree is forced back to none. */
+[data-ambient-canvas],
+[data-ambient-canvas] * {
+  pointer-events: none !important;
+}

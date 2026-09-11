@@ -18,6 +18,7 @@ import {
   rectSortingStrategy,
   sortableKeyboardCoordinates,
 } from "@dnd-kit/sortable";
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import BentoCard, { CardContent } from "@/components/dashboard/BentoCard";
 import Modal from "@/components/dashboard/Modal";
@@ -37,6 +38,12 @@ import ServicesModal from "@/components/dashboard/modals/ServicesModal";
 import SkillsModal from "@/components/dashboard/modals/SkillsModal";
 import WorksModal from "@/components/dashboard/modals/WorksModal";
 import { defaultOrder, panelById, type PanelId } from "@/lib/dashboard";
+
+// WebGL only, and only worth paying for once the page is interactive
+const DashboardBackground = dynamic(
+  () => import("@/components/three/DashboardBackground"),
+  { ssr: false },
+);
 
 const CARDS: Record<PanelId, React.ReactNode> = {
   about: <AboutCard />,
@@ -145,97 +152,106 @@ export default function PortfolioDashboard() {
   const activePanel = panelById[lastOpen];
 
   return (
-    <main data-dashboard
-      className="flex h-dvh w-full flex-col gap-3 overflow-hidden p-3 lg:flex-row lg:gap-5 lg:p-5">
-      <Sidebar
-        focused={focused}
-        onSelect={handleSelect}
-        onReset={() => setOrder(defaultOrder)}
-        rearranged={rearranged}
-      />
+    <>
+      {/* rendered as a sibling, not a child: inside <main> it is a positioned
+          element and would paint over the unpositioned sidebar, swallowing its
+          clicks. Behind <main> it cannot reach anything. */}
+      <DashboardBackground />
 
-      <DndContext
-        // a stable id keeps dnd-kit's generated aria-describedby ids identical
-        // on the server and the client, avoiding a hydration mismatch
-        id="bento-grid"
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragStart={handleDragStart}
-        onDragOver={handleDragOver}
-        onDragEnd={handleDragEnd}
-        onDragCancel={() => setDragging(null)}
+      <main
+        data-dashboard
+        className="relative z-10 flex h-dvh w-full flex-col gap-3 overflow-hidden p-3 lg:flex-row lg:gap-5 lg:p-5"
       >
-        <SortableContext items={order} strategy={rectSortingStrategy}>
-          <section
-            aria-label="portfolio panels"
-            data-dragging={dragging || undefined}
-            className={`grid min-h-0 flex-1 grid-cols-2 grid-rows-4 gap-2.5 lg:grid-cols-12 lg:grid-rows-6 lg:gap-3 ${
-              dragging ? "grid-dragging" : ""
-            }`}
-            style={{ gridAutoFlow: "row dense" }}
-          >
-            {order.map((id) => (
-              <BentoCard
-                key={id}
-                panel={panelById[id]}
-                focused={focused === id}
-                onOpen={() => {
-                  setLastOpen(id);
-                  setOpen(id);
-                }}
-                onFocus={() => setFocused(id)}
-              >
-                {CARDS[id]}
-              </BentoCard>
-            ))}
-          </section>
-        </SortableContext>
+        <Sidebar
+          focused={focused}
+          onSelect={handleSelect}
+          onReset={() => setOrder(defaultOrder)}
+          rearranged={rearranged}
+        />
 
-        {/* The overlay is removed the moment the card is dropped rather than
+        <DndContext
+          // a stable id keeps dnd-kit's generated aria-describedby ids identical
+          // on the server and the client, avoiding a hydration mismatch
+          id="bento-grid"
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
+          onDragEnd={handleDragEnd}
+          onDragCancel={() => setDragging(null)}
+        >
+          <SortableContext items={order} strategy={rectSortingStrategy}>
+            <section
+              aria-label="portfolio panels"
+              data-dragging={dragging || undefined}
+              className={`grid min-h-0 flex-1 grid-cols-2 grid-rows-4 gap-2.5 lg:grid-cols-12 lg:grid-rows-6 lg:gap-3 ${
+                dragging ? "grid-dragging" : ""
+              }`}
+              style={{ gridAutoFlow: "row dense" }}
+            >
+              {order.map((id) => (
+                <BentoCard
+                  key={id}
+                  panel={panelById[id]}
+                  focused={focused === id}
+                  onOpen={() => {
+                    setLastOpen(id);
+                    setOpen(id);
+                  }}
+                  onFocus={() => setFocused(id)}
+                >
+                  {CARDS[id]}
+                </BentoCard>
+              ))}
+            </section>
+          </SortableContext>
+
+          {/* The overlay is removed the moment the card is dropped rather than
             after a drop animation: the grid has already re-packed live during
             the drag, so there is nothing left to animate towards — and tying
             the overlay's removal to an animation completing risks stranding a
             floating card on top of the dashboard. */}
-        <DragOverlay dropAnimation={null}>
-          {dragging ? (
-            <article
-              data-overlay
-              data-rows={panelById[dragging].span.row}
-              className="bento-card group/card h-full w-full"
+          <DragOverlay dropAnimation={null}>
+            {dragging ? (
+              <article
+                data-overlay
+                data-rows={panelById[dragging].span.row}
+                className="bento-card group/card h-full w-full"
+              >
+                <CardContent panel={panelById[dragging]}>
+                  {CARDS[dragging]}
+                </CardContent>
+              </article>
+            ) : null}
+          </DragOverlay>
+        </DndContext>
+
+        {/* compact footer strip — the sidebar footer only exists on large screens */}
+        <div className="flex shrink-0 items-center justify-center gap-3 lg:hidden">
+          {rearranged && (
+            <button
+              type="button"
+              onClick={() => setOrder(defaultOrder)}
+              className="label rounded-md border border-line px-2 py-1 text-muted transition-colors duration-150 hover:text-ink"
             >
-              <CardContent panel={panelById[dragging]}>
-                {CARDS[dragging]}
-              </CardContent>
-            </article>
-          ) : null}
-        </DragOverlay>
-      </DndContext>
+              reset layout
+            </button>
+          )}
+          <p className="label text-faint">© 2026 ron deniele d. paragoso</p>
+        </div>
 
-      {/* compact footer strip — the sidebar footer only exists on large screens */}
-      <div className="flex shrink-0 items-center justify-center gap-3 lg:hidden">
-        {rearranged && (
-          <button
-            type="button"
-            onClick={() => setOrder(defaultOrder)}
-            className="label rounded-md border border-line px-2 py-1 text-muted transition-colors duration-150 hover:text-ink"
-          >
-            reset layout
-          </button>
-        )}
-        <p className="label text-faint">© 2026 ron deniele d. paragoso</p>
-      </div>
-
-      <Modal
-        open={open !== null}
-        onClose={() => setOpen(null)}
-        index={activePanel.index}
-        label={activePanel.label}
-        blurb={activePanel.blurb}
-        size={MODALS[activePanel.id].size}
-        tall={MODALS[activePanel.id].tall}
-      >
-        {MODALS[activePanel.id].node}
-      </Modal>
-    </main>
+        <Modal
+          open={open !== null}
+          onClose={() => setOpen(null)}
+          index={activePanel.index}
+          label={activePanel.label}
+          blurb={activePanel.blurb}
+          size={MODALS[activePanel.id].size}
+          tall={MODALS[activePanel.id].tall}
+        >
+          {MODALS[activePanel.id].node}
+        </Modal>
+      </main>
+    </>
   );
 }

@@ -6,54 +6,39 @@ import * as THREE from "three";
 
 const STAR_COUNT = 150;
 
-/** reads the live --accent token so the effect follows the theme */
-function useAccentColor() {
-  const [color, setColor] = useState(() => new THREE.Color("#ff6a00"));
+/**
+ * Star field, built once at module load. Deliberately not generated during
+ * render — randomness in a render pass is impure and would also reshuffle the
+ * field on every re-render.
+ */
+const STARS = (() => {
+  const positions = new Float32Array(STAR_COUNT * 3);
+  const sizes = new Float32Array(STAR_COUNT);
+  const phases = new Float32Array(STAR_COUNT);
+  for (let i = 0; i < STAR_COUNT; i++) {
+    positions[i * 3] = Math.random() * 2 - 1;
+    positions[i * 3 + 1] = Math.random() * 2 - 1;
+    // most stars barely react; a few follow the pointer closely
+    positions[i * 3 + 2] = Math.pow(Math.random(), 2.2) * 0.42;
+    sizes[i] = 1.4 + Math.random() * 3.6;
+    phases[i] = Math.random() * Math.PI * 2;
+  }
+  return { positions, sizes, phases };
+})();
 
-  useEffect(() => {
-    const read = () => {
-      const value = getComputedStyle(document.documentElement)
-        .getPropertyValue("--accent")
-        .trim();
-      if (value) setColor(new THREE.Color(value));
-    };
-    read();
+const readAccent = () => {
+  const value = getComputedStyle(document.documentElement)
+    .getPropertyValue("--accent")
+    .trim();
+  return value || "#ff6a00";
+};
 
-    const observer = new MutationObserver(read);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    media.addEventListener("change", read);
-
-    return () => {
-      observer.disconnect();
-      media.removeEventListener("change", read);
-    };
-  }, []);
-
-  return color;
-}
-
-/** pointer position in clip space (-1..1), eased so the effect trails the cursor */
-function usePointer() {
-  const target = useRef(new THREE.Vector2(0, 0));
-  const current = useRef(new THREE.Vector2(0, 0));
-
-  useEffect(() => {
-    const onMove = (e: PointerEvent) => {
-      target.current.set(
-        (e.clientX / window.innerWidth) * 2 - 1,
-        -((e.clientY / window.innerHeight) * 2 - 1),
-      );
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onMove);
-  }, []);
-
-  return { target, current };
-}
+const readDark = () => {
+  const attr = document.documentElement.getAttribute("data-theme");
+  if (attr === "dark") return true;
+  if (attr === "light") return false;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+};
 
 const gradientVertex = /* glsl */ `
   varying vec2 vUv;
@@ -141,29 +126,12 @@ const starFragment = /* glsl */ `
   }
 `;
 
-function Scene({ dark }: { dark: boolean }) {
-  const accent = useAccentColor();
+function Scene() {
   const { size, viewport } = useThree();
-  const { target, current } = usePointer();
 
-  const gradientRef = useRef<THREE.ShaderMaterial>(null);
-  const starRef = useRef<THREE.ShaderMaterial>(null);
-
-  const stars = useMemo(() => {
-    const positions = new Float32Array(STAR_COUNT * 3);
-    const sizes = new Float32Array(STAR_COUNT);
-    const phases = new Float32Array(STAR_COUNT);
-    for (let i = 0; i < STAR_COUNT; i++) {
-      positions[i * 3] = Math.random() * 2 - 1;
-      positions[i * 3 + 1] = Math.random() * 2 - 1;
-      // most stars barely react; a few follow the pointer closely
-      positions[i * 3 + 2] = Math.pow(Math.random(), 2.2) * 0.42;
-      sizes[i] = 1.4 + Math.random() * 3.6;
-      phases[i] = Math.random() * Math.PI * 2;
-    }
-    return { positions, sizes, phases };
-  }, []);
-
+  // Uniform objects are created pure (no DOM reads, no randomness) so they are
+  // safe to build during render; everything that mutates them afterwards goes
+  // through the material refs inside effects and the frame loop.
   const gradientUniforms = useMemo(
     () => ({
       uMouse: { value: new THREE.Vector2(0, 0) },
@@ -186,25 +154,70 @@ function Scene({ dark }: { dark: boolean }) {
     [],
   );
 
+  const gradientMat = useRef<THREE.ShaderMaterial>(null);
+  const starMat = useRef<THREE.ShaderMaterial>(null);
+  const pointerTarget = useRef(new THREE.Vector2(0, 0));
+  const pointerCurrent = useRef(new THREE.Vector2(0, 0));
+
   useEffect(() => {
-    gradientUniforms.uColor.value.copy(accent);
-    starUniforms.uColor.value.copy(accent);
-    // the wash has to work over near-white as well as over black
-    gradientUniforms.uStrength.value = dark ? 0.3 : 0.16;
-    starUniforms.uOpacity.value = dark ? 0.72 : 0.5;
-  }, [accent, dark, gradientUniforms, starUniforms]);
+    const onMove = (e: PointerEvent) => {
+      pointerTarget.current.set(
+        (e.clientX / window.innerWidth) * 2 - 1,
+        -((e.clientY / window.innerHeight) * 2 - 1),
+      );
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, []);
+
+  // follow the live theme: colour from --accent, and a different strength
+  // because the wash has to work over near-white as well as over black
+  useEffect(() => {
+    const sync = () => {
+      const accent = new THREE.Color(readAccent());
+      const dark = readDark();
+      const g = gradientMat.current;
+      const st = starMat.current;
+      if (g) {
+        g.uniforms.uColor.value.copy(accent);
+        g.uniforms.uStrength.value = dark ? 0.3 : 0.16;
+      }
+      if (st) {
+        st.uniforms.uColor.value.copy(accent);
+        st.uniforms.uOpacity.value = dark ? 0.72 : 0.5;
+      }
+    };
+    sync();
+
+    const observer = new MutationObserver(sync);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    media.addEventListener("change", sync);
+    return () => {
+      observer.disconnect();
+      media.removeEventListener("change", sync);
+    };
+  }, []);
 
   useFrame((_, delta) => {
     // ease towards the pointer so the field trails rather than snaps
-    const ease = Math.min(1, delta * 3.2);
-    current.current.lerp(target.current, ease);
+    pointerCurrent.current.lerp(pointerTarget.current, Math.min(1, delta * 3.2));
 
-    gradientUniforms.uMouse.value.copy(current.current);
-    starUniforms.uMouse.value.copy(current.current);
-    gradientUniforms.uRes.value.set(size.width, size.height);
-    gradientUniforms.uTime.value += delta;
-    starUniforms.uTime.value += delta;
-    starUniforms.uScale.value = Math.min(viewport.dpr, 2);
+    const g = gradientMat.current;
+    const st = starMat.current;
+    if (g) {
+      g.uniforms.uMouse.value.copy(pointerCurrent.current);
+      g.uniforms.uRes.value.set(size.width, size.height);
+      g.uniforms.uTime.value += delta;
+    }
+    if (st) {
+      st.uniforms.uMouse.value.copy(pointerCurrent.current);
+      st.uniforms.uTime.value += delta;
+      st.uniforms.uScale.value = Math.min(viewport.dpr, 2);
+    }
   });
 
   return (
@@ -212,7 +225,7 @@ function Scene({ dark }: { dark: boolean }) {
       <mesh frustumCulled={false}>
         <planeGeometry args={[2, 2]} />
         <shaderMaterial
-          ref={gradientRef}
+          ref={gradientMat}
           vertexShader={gradientVertex}
           fragmentShader={gradientFragment}
           uniforms={gradientUniforms}
@@ -226,16 +239,16 @@ function Scene({ dark }: { dark: boolean }) {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            args={[stars.positions, 3]}
+            args={[STARS.positions, 3]}
           />
-          <bufferAttribute attach="attributes-aSize" args={[stars.sizes, 1]} />
+          <bufferAttribute attach="attributes-aSize" args={[STARS.sizes, 1]} />
           <bufferAttribute
             attach="attributes-aPhase"
-            args={[stars.phases, 1]}
+            args={[STARS.phases, 1]}
           />
         </bufferGeometry>
         <shaderMaterial
-          ref={starRef}
+          ref={starMat}
           vertexShader={starVertex}
           fragmentShader={starFragment}
           uniforms={starUniforms}
@@ -248,61 +261,46 @@ function Scene({ dark }: { dark: boolean }) {
   );
 }
 
+/** true when the browser can actually give us a WebGL context */
+const hasWebGL = () => {
+  try {
+    const probe = document.createElement("canvas");
+    return Boolean(probe.getContext("webgl2") ?? probe.getContext("webgl"));
+  } catch {
+    return false;
+  }
+};
+
 /**
  * Ambient layer behind the dashboard: an orange wash that follows the pointer
  * plus a field of stars that lean towards it. Purely decorative — it sits
  * behind everything, never takes pointer events, and is skipped entirely when
- * the visitor prefers reduced motion or the browser has no WebGL.
+ * the visitor prefers reduced motion or the browser has no WebGL, in which
+ * case the static CSS wash in globals.css carries the look instead.
  */
 export default function DashboardBackground() {
-  const [enabled, setEnabled] = useState(false);
-  const [dark, setDark] = useState(false);
+  // this component is client-only, so the check can settle before first paint
+  const [enabled] = useState(
+    () =>
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      hasWebGL(),
+  );
 
+  // tells the stylesheet to drop the static CSS wash, so the two ambient
+  // layers never stack on top of each other
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduced.matches) return;
-
-    // some browsers/GPUs have no usable WebGL — fall back to the CSS wash
-    let ok = false;
-    try {
-      const probe = document.createElement("canvas");
-      ok = Boolean(
-        probe.getContext("webgl2") ?? probe.getContext("webgl"),
-      );
-    } catch {
-      ok = false;
-    }
-    if (!ok) return;
-
-    const readTheme = () => {
-      const attr = document.documentElement.getAttribute("data-theme");
-      setDark(
-        attr === "dark" ||
-          (attr !== "light" &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches),
-      );
-    };
-    readTheme();
-    setEnabled(true);
-
-    const observer = new MutationObserver(readTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    media.addEventListener("change", readTheme);
-    return () => {
-      observer.disconnect();
-      media.removeEventListener("change", readTheme);
-    };
-  }, []);
+    if (!enabled) return;
+    const root = document.documentElement;
+    root.setAttribute("data-ambient", "gl");
+    return () => root.removeAttribute("data-ambient");
+  }, [enabled]);
 
   if (!enabled) return null;
 
   return (
     <div
       aria-hidden="true"
+      data-ambient-canvas
       className="pointer-events-none fixed inset-0 z-0"
     >
       <Canvas
@@ -310,7 +308,7 @@ export default function DashboardBackground() {
         gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
         style={{ background: "transparent" }}
       >
-        <Scene dark={dark} />
+        <Scene />
       </Canvas>
     </div>
   );
