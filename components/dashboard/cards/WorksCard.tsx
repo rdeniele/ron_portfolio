@@ -15,7 +15,7 @@ export default function WorksCard() {
         {PREVIEW.map((src, i) => (
           <div
             key={src}
-            className={`relative min-h-0 overflow-hidden rounded-md border border-line bg-sunk ${
+            className={`thumb-duotone relative min-h-0 overflow-hidden rounded-md border border-line bg-sunk ${
               i > 1 ? "hidden @min-[22rem]:block" : ""
             }`}
           >
@@ -24,7 +24,7 @@ export default function WorksCard() {
               alt=""
               fill
               sizes="(max-width: 1023px) 24vw, 160px"
-              className="object-cover object-top opacity-90 transition-[opacity,transform] duration-300 group-hover/card:opacity-100 group-hover/card:scale-[1.03]"
+              className="object-cover object-top transition-transform duration-300 group-hover/card:scale-[1.03]"
               priority={i < 2}
             />
           </div>

@@ -23,6 +23,9 @@ export const siteConfig = {
     "content strategist",
     "web development",
     "web developer",
+    "software developer",
+    "ai developer",
+    "creative web developer",
     "web design",
     "web designer",
     "frontend developer",
@@ -640,11 +643,15 @@ export const services = [
 export const identity = {
   greeting: "hi, i'm",
   name: "ron deniele d. paragoso",
+  /** cycled by the typewriter, and listed in full on the identity card */
   roles: [
+    "web developer",
+    "software developer",
+    "ai developer",
     "digital marketer",
-    "web developer & designer",
-    "video editor",
+    "content creator",
     "digital artist",
+    "creative web developer",
   ],
   /** one-line positioning statement shown on the identity card */
   statement: "i build brands and experiences that feel simple and work beautifully.",

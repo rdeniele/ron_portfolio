@@ -399,3 +399,123 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
 .modal-panel-out {
   animation: modal-panel-out 220ms cubic-bezier(0.7, 0, 0.84, 0) both;
 }
+
+/* ---------------------------------------------------------------------------
+ * orange treatments
+ * ------------------------------------------------------------------------- */
+
+/* Project thumbnails are screenshots in a dozen unrelated brand palettes, so
+   they are pushed through an orange duotone to read as one set: the image is
+   flattened to greyscale and the accent supplies the hue. `isolation` keeps
+   the blend inside the thumbnail, so it cannot pick up whatever the card is
+   sitting on as the cards move around. */
+.thumb-duotone {
+  isolation: isolate;
+  background: var(--surface-sunk);
+}
+
+.thumb-duotone img {
+  filter: grayscale(1) contrast(1.08) brightness(1.05);
+}
+
+.thumb-duotone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
+/* a touch of the accent over the top deepens the orange */
+.thumb-duotone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--accent);
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Skills meters.
+   The bar itself is never animated from an invisible state: an entrance that
+   starts at scale 0 renders as *nothing* if it stalls (a tab that was never
+   painted, a stalled compositor), which would silently blank the chart. So
+   the bar is always at full length, and the motion is a highlight sweeping
+   along it — if that never runs, the meter still reads correctly. */
+.skill-bar {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px -2px var(--glow);
+}
+
+.skill-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(255 255 255 / 0.9) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: skill-sweep 3.4s ease-in-out var(--bar-delay, 0ms) infinite;
+}
+
+@keyframes skill-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  45%,
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-bar::after {
+    display: none;
+  }
+}
+
+/* a hairline that carries the accent — used beside the positioning statement */
+.accent-rule {
+  border-left: 2px solid var(--accent);
+}
+
+/* hover warms the card border towards the accent */
+.bento-card:hover {
+  border-color: color-mix(in oklab, var(--accent) 42%, var(--line));
+}
+
+/* The full discipline list only has room on the tall identity card, and only
+   in the full dashboard layout. Scoped by min-width rather than hidden by a
+   max-width override, because a media query adds no specificity and would
+   lose to the [data-rows] selector below it. */
+.about-roles {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .bento-card[data-panel="about"][data-rows="3"] .card-blurb {
+    display: none;
+  }
+  .bento-card[data-rows="3"] .about-roles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.2rem 0.45rem;
+  }
+}
+
+/* compact tiles: keep the skills group labels on one line so four meters fit */
+@media (max-width: 1023px) {
+  .skill-group-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
