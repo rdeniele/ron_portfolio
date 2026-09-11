@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [
-      { url: siteConfig.ogImage, width: 1024, height: 1024, alt: siteConfig.name },
+      { url: siteConfig.ogImage, width: 760, height: 760, alt: siteConfig.name },
     ],
   },
   twitter: {
