@@ -126,18 +126,12 @@ export default function PortfolioDashboard() {
     });
   };
 
-  // sidebar: first press focuses the card, a second press opens it
-  const handleSelect = useCallback(
-    (id: PanelId) => {
-      if (focused === id) {
-        setLastOpen(id);
-        setOpen(id);
-        return;
-      }
-      setFocused(id);
-    },
-    [focused],
-  );
+  // Sidebar controls select a card. Opening its detail modal remains the card's
+  // own action, so a sidebar button can be pressed repeatedly without putting a
+  // modal layer over the rest of the controls.
+  const handleSelect = useCallback((id: PanelId) => {
+    setFocused(id);
+  }, []);
 
   // Escape clears focus mode when no modal is in the way
   useEffect(() => {
