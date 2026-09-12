@@ -81,6 +81,12 @@ export type Work = {
   images?: string[];
   /** blur the thumbnail — for confidential client work */
   blurImage?: boolean;
+  /**
+   * the project's real, reachable production url. set only where a live site
+   * exists — it is what the in-portfolio browser preview loads, so design-only
+   * work deliberately leaves it undefined.
+   */
+  liveUrl?: string;
   links?: { label: string; href: string }[];
 };
 
@@ -138,7 +144,8 @@ export const works: Work[] = [
     description:
       "ai-assisted study platform that turns pdfs, slides, and images into summaries, quizzes, and flashcards for active recall.",
     image: "/works/web development and design/wisker_landingpage.png",
-    links: [{ label: "visit site", href: "https://wisker.app" }],
+    liveUrl: "https://wisker-web.vercel.app",
+    links: [{ label: "visit site", href: "https://wisker-web.vercel.app" }],
   },
   {
     title: "simplabots",
@@ -146,6 +153,7 @@ export const works: Work[] = [
     description:
       "ai platform with multiple agents and bots that help businesses automate and scale.",
     image: "/works/web development and design/simplabots.png",
+    liveUrl: "https://simplabots.com",
     links: [{ label: "visit site", href: "https://simplabots.com" }],
   },
   {
@@ -154,6 +162,7 @@ export const works: Work[] = [
     description:
       "landing page for a nature-friendly hotel and real estate brand.",
     image: "/works/web development and design/artbliss_about_page.png",
+    liveUrl: "https://www.artblisshotel.com",
     links: [{ label: "visit site", href: "https://www.artblisshotel.com" }],
   },
   {
@@ -161,6 +170,7 @@ export const works: Work[] = [
     category: "web development & design",
     description: "landing page for a real estate investing brand.",
     image: "/works/web development and design/home team capital.png",
+    liveUrl: "https://hometeamcapital.vercel.app",
     links: [
       { label: "visit site", href: "https://hometeamcapital.vercel.app" },
     ],
@@ -172,6 +182,7 @@ export const works: Work[] = [
       "landing page showcasing a gallery of designs for real estate projects.",
     image:
       "/works/web development and design/coastalhavendesign_plus_build.png",
+    liveUrl: "https://www.coastalhaven-design-build.com",
     links: [
       {
         label: "visit site",
@@ -184,6 +195,7 @@ export const works: Work[] = [
     category: "web development & design",
     description: "landing page for a luxury rentals real estate brand.",
     image: "/works/web development and design/dwell luxury rentals.png",
+    liveUrl: "https://www.dwelluxuryrentals.com",
     links: [{ label: "visit site", href: "https://www.dwelluxuryrentals.com" }],
   },
   {
@@ -191,6 +203,7 @@ export const works: Work[] = [
     category: "web development & design",
     description: "landing page for a luxury rentals real estate brand.",
     image: "/works/web development and design/hometeamluxuryrentals.png",
+    liveUrl: "https://hometeamluxuryrentals.com",
     links: [{ label: "visit site", href: "https://hometeamluxuryrentals.com" }],
   },
   {

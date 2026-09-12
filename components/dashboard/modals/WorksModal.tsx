@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { workCategories, works, type WorkCategory } from "@/lib/site";
+import LivePreviewModal from "@/components/dashboard/LivePreviewModal";
+import { workCategories, works, type Work, type WorkCategory } from "@/lib/site";
 
 type Lightbox = { src: string; alt: string; blurred: boolean };
 
@@ -10,6 +11,8 @@ export default function WorksModal() {
   const [category, setCategory] = useState<WorkCategory>(workCategories[0]);
   const [index, setIndex] = useState(0);
   const [lightbox, setLightbox] = useState<Lightbox | null>(null);
+  /** the project whose live site is running in the in-portfolio browser */
+  const [preview, setPreview] = useState<Work | null>(null);
   const railRef = useRef<HTMLDivElement>(null);
 
   // Escape has to close the lightbox before the surrounding modal sees it, so
@@ -153,14 +156,22 @@ export default function WorksModal() {
                   <button
                     type="button"
                     onClick={() =>
-                      setLightbox({
-                        src: work.image as string,
-                        alt: `${work.title} — ${work.category}`,
-                        blurred: Boolean(work.blurImage),
-                      })
+                      work.liveUrl
+                        ? setPreview(work)
+                        : setLightbox({
+                            src: work.image as string,
+                            alt: `${work.title} — ${work.category}`,
+                            blurred: Boolean(work.blurImage),
+                          })
                     }
-                    aria-label={`view ${work.title} full size`}
-                    className="group/shot absolute inset-0 cursor-zoom-in"
+                    aria-label={
+                      work.liveUrl
+                        ? `open the live ${work.title} site inside the portfolio`
+                        : `view ${work.title} full size`
+                    }
+                    className={`group/shot absolute inset-0 ${
+                      work.liveUrl ? "cursor-pointer" : "cursor-zoom-in"
+                    }`}
                   >
                     <Image
                       src={work.image}
@@ -172,7 +183,7 @@ export default function WorksModal() {
                       }`}
                     />
                     <span className="label absolute right-2 bottom-2 rounded-md border border-line bg-surface/90 px-2 py-1 text-muted opacity-0 transition-opacity duration-200 group-hover/shot:opacity-100">
-                      view full size
+                      {work.liveUrl ? "open live preview" : "view full size"}
                     </span>
                   </button>
                 ) : (
@@ -197,9 +208,41 @@ export default function WorksModal() {
                 <p className="mt-2 max-w-[62ch] text-fine leading-relaxed text-muted">
                   {work.description}
                 </p>
-                {work.links && work.links.length > 0 && (
+                {(work.liveUrl || (work.links && work.links.length > 0)) && (
                   <div className="mt-3 flex flex-wrap gap-2">
-                    {work.links.map((link) => (
+                    {/* the live site leads, so the default action keeps the
+                        visitor on the portfolio rather than sending them off */}
+                    {work.liveUrl && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => setPreview(work)}
+                          className="label inline-flex items-center gap-1.5 rounded-md border border-accent bg-accent-soft px-3 py-1.5 text-accent-ink transition-transform duration-150 active:scale-[0.97]"
+                        >
+                          <span
+                            className="h-1.5 w-1.5 rounded-full bg-accent"
+                            aria-hidden="true"
+                          />
+                          live preview
+                        </button>
+                        {work.image && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setLightbox({
+                                src: work.image as string,
+                                alt: `${work.title} — ${work.category}`,
+                                blurred: Boolean(work.blurImage),
+                              })
+                            }
+                            className="label rounded-md border border-line px-3 py-1.5 text-ink transition-[border-color,background-color,transform] duration-150 hover:border-line-strong active:scale-[0.97]"
+                          >
+                            screenshot
+                          </button>
+                        )}
+                      </>
+                    )}
+                    {work.links?.map((link) => (
                       <a
                         key={link.href}
                         href={link.href}
@@ -248,6 +291,16 @@ export default function WorksModal() {
           </div>
         </div>
       </div>
+
+      {preview?.liveUrl && (
+        <LivePreviewModal
+          key={preview.liveUrl}
+          title={preview.title}
+          url={preview.liveUrl}
+          description={preview.description}
+          onClose={() => setPreview(null)}
+        />
+      )}
 
       {lightbox && (
         <div
