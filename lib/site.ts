@@ -66,7 +66,6 @@ export type WorkCategory =
 
 export const workCategories: WorkCategory[] = [
   "web development & design",
-  "digital marketing and content creation",
   "video editing",
   "digital art",
 ];
@@ -88,22 +87,14 @@ export type Work = {
    */
   liveUrl?: string;
   links?: { label: string; href: string }[];
-  /** employer or client the project was built for — also drives the company filter */
-  company?: WorkCompany;
   /** what i did on the project */
   role?: string;
   /** stack verified from the live site, never guessed */
   technologies?: string[];
 };
 
-export type WorkCompany = "gintex ai" | "hsd";
-
-/** the order company filters appear in */
-export const workCompanies: WorkCompany[] = ["gintex ai", "hsd"];
-
-/** a live, company-attributed web project — keeps the entries below compact */
+/** a live web project — keeps the entries below compact */
 function webProject(
-  company: WorkCompany,
   title: string,
   description: string,
   image: string,
@@ -113,7 +104,6 @@ function webProject(
   return {
     title,
     category: "web development & design",
-    company,
     role: "web developer",
     description,
     image: `/works/web development and design/${image}.webp`,
@@ -126,52 +116,6 @@ function webProject(
 const STATIC_SITE = ["html", "css", "javascript"];
 
 export const works: Work[] = [
-  // digital marketing
-  {
-    title: "wisker",
-    category: "digital marketing and content creation",
-    description:
-      "social media marketing for an ai-assisted study platform — content and community growth for students using summaries, quizzes, and flashcards.",
-    image: "/works/digital marketing/wisker.png",
-    links: [
-      {
-        label: "view on facebook",
-        href: "https://www.facebook.com/profile.php?id=61577887210771",
-      },
-    ],
-  },
-  {
-    title: "pera stories ph",
-    category: "digital marketing and content creation",
-    description:
-      "a channel that teaches personal finance through storytelling — making money lessons simple and relatable.",
-    image: "/works/digital marketing/perastoriesph.png",
-    links: [
-      {
-        label: "watch on youtube",
-        href: "https://www.youtube.com/@pera_stories_ph",
-      },
-    ],
-  },
-
-  {
-    title: "ronddpixels",
-    category: "digital marketing and content creation",
-    description:
-      "my personal brand about different things in my life — hobbies, interests, and more.",
-    images: [
-      "/works/digital marketing/ronddpixelstiktok.png",
-      "/works/digital marketing/ronddpixelsinstagram.png",
-    ],
-    links: [
-      { label: "tiktok", href: "https://www.tiktok.com/@ronddpixels" },
-      {
-        label: "instagram",
-        href: "https://www.instagram.com/ronddpixels/?hl=en",
-      },
-    ],
-  },
-
   // web development & design
   {
     title: "wisker",
@@ -191,10 +135,7 @@ export const works: Work[] = [
     liveUrl: "https://simplabots.com",
     links: [{ label: "visit site", href: "https://simplabots.com" }],
   },
-
-  // gintex ai
   webProject(
-    "gintex ai",
     "georepute ai",
     "site for a business and marketing intelligence platform that maps how ai engines and search talk about a business — multilingual routes, a theme toggle, and interactive product sections.",
     "gintex-georepute",
@@ -202,17 +143,13 @@ export const works: Work[] = [
     ["next.js", "tailwind css", "vercel"],
   ),
   webProject(
-    "gintex ai",
     "copyup ai",
     "landing page for copyup.ai, an organic marketing operating system — seo, ai search, content, and multi-platform publishing, told through product ui mockups.",
     "gintex-copyup",
     "https://copyup-landing.vercel.app",
     ["next.js", "tailwind css", "vercel"],
   ),
-
-  // hsd
   webProject(
-    "hsd",
     "ai nsfw generator",
     "single-screen gateway landing page with a dark gold theme, animated lightning effects, and login and sign-up calls to action.",
     "hsd-ainsfw-generator",
@@ -220,7 +157,6 @@ export const works: Work[] = [
     ["html", "css", "vercel"],
   ),
   webProject(
-    "hsd",
     "ufabet box b",
     "boxing betting landing page for ufabet — a filterable live match table, fighter stats, betting guides, and long-form content sections.",
     "hsd-ufabet-boxb",
@@ -228,7 +164,6 @@ export const works: Work[] = [
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "hsd",
     "the cabin mental health",
     "long-form landing page for a depression and mental health retreat in thailand, with scrollable section navigation, therapy content, and consultation calls to action.",
     "hsd-the-cabin-mental-health",
@@ -236,7 +171,6 @@ export const works: Work[] = [
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "hsd",
     "mental health thailand",
     "informational hub on mental health in thailand — conditions, treatment approaches, recovery, and how to find professional support.",
     "hsd-mental-health-thailand",
@@ -244,7 +178,6 @@ export const works: Work[] = [
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "hsd",
     "unscramblex — about us",
     "about page for the unscramblex word unscrambler — company story, data sources, and contact details, opened by an interactive letter-tile demo.",
     "hsd-unscramblex-about",
@@ -252,7 +185,6 @@ export const works: Work[] = [
     [...STATIC_SITE, "gsap", "vercel"],
   ),
   webProject(
-    "hsd",
     "wordle answers",
     "daily wordle answer page for unscramblex — a spoiler-sealed reveal, progressive hints, and letter-frequency stats.",
     "hsd-wordle-answers",
@@ -260,7 +192,6 @@ export const works: Work[] = [
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "hsd",
     "nyt crossword answers",
     "daily crossword answers page for unscramblex — tap-to-reveal clue previews, the full clue list, and solver faqs.",
     "hsd-nyt-crossword",
@@ -268,7 +199,6 @@ export const works: Work[] = [
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "hsd",
     "five letter words",
     "five-letter word finder with positional letter inputs, include and exclude filters, playable challenges with stats, and long-form guide content.",
     "hsd-five-letter-words",
@@ -276,7 +206,6 @@ export const works: Work[] = [
     [...STATIC_SITE, "gsap", "vercel"],
   ),
   webProject(
-    "hsd",
     "ufabet football",
     "football betting landing page for ufabet — a live league match table, betting guides, bet types, and odds content.",
     "hsd-ufabet-football",
@@ -284,7 +213,6 @@ export const works: Work[] = [
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "hsd",
     "the cabin rehab amsterdam",
     "dutch-language landing page for the cabin's amsterdam addiction rehab center — trust stats, a callback form, treatment methods, locations, and costs.",
     "hsd-cabin-rehab-amsterdam",
@@ -292,7 +220,6 @@ export const works: Work[] = [
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "hsd",
     "muay thai betting",
     "muay thai betting landing page for ufabox — fight card, live odds, schedule, results, fighter profiles, and tournaments.",
     "hsd-muay-thai",
@@ -300,7 +227,6 @@ export const works: Work[] = [
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "hsd",
     "allergiecheck / anaphylaxis health",
     "clinical reference page on anaphylaxis — an emergency banner, at-a-glance facts, symptoms, treatment, prevention, and an interactive globe visualization.",
     "hsd-anaphylaxis-health",

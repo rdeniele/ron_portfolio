@@ -43,7 +43,7 @@ export const panels: Panel[] = [
     id: "works",
     index: "02",
     label: "works",
-    blurb: "selected projects across four disciplines.",
+    blurb: "selected projects across three disciplines.",
     meta: `${works.length} projects`,
     span: { col: 7, row: 3 },
   },

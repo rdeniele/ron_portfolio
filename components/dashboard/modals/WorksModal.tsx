@@ -3,22 +3,13 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import LivePreviewModal from "@/components/dashboard/LivePreviewModal";
-import {
-  workCategories,
-  workCompanies,
-  works,
-  type Work,
-  type WorkCategory,
-  type WorkCompany,
-} from "@/lib/site";
+import { workCategories, works, type Work, type WorkCategory } from "@/lib/site";
 
 type Lightbox = { src: string; alt: string; blurred: boolean };
 
 export default function WorksModal() {
   const [category, setCategory] = useState<WorkCategory>(workCategories[0]);
   const [index, setIndex] = useState(0);
-  /** narrows the current category to one employer's work; null shows everything */
-  const [company, setCompany] = useState<WorkCompany | null>(null);
   const [lightbox, setLightbox] = useState<Lightbox | null>(null);
   /** the project whose live site is running in the in-portfolio browser */
   const [preview, setPreview] = useState<Work | null>(null);
@@ -38,14 +29,7 @@ export default function WorksModal() {
     return () => document.removeEventListener("keydown", onKey, true);
   }, [lightbox]);
 
-  const inCategory = works.filter((w) => w.category === category);
-  // only offer the filter where company-attributed work actually exists
-  const companies = workCompanies.filter((c) =>
-    inCategory.some((w) => w.company === c),
-  );
-  const items = company
-    ? inCategory.filter((w) => w.company === company)
-    : inCategory;
+  const items = works.filter((w) => w.category === category);
 
   const scrollTo = useCallback((i: number) => {
     const rail = railRef.current;
@@ -59,13 +43,6 @@ export default function WorksModal() {
   // effect so the state change stays in the event that caused it
   const selectCategory = (next: WorkCategory) => {
     setCategory(next);
-    setCompany(null);
-    setIndex(0);
-    railRef.current?.scrollTo({ left: 0, behavior: "auto" });
-  };
-
-  const selectCompany = (next: WorkCompany | null) => {
-    setCompany(next);
     setIndex(0);
     railRef.current?.scrollTo({ left: 0, behavior: "auto" });
   };
@@ -227,11 +204,6 @@ export default function WorksModal() {
                     {work.title}
                   </h3>
                   <span className="label text-faint">{work.category}</span>
-                  {work.company && (
-                    <span className="label rounded-md border border-line px-1.5 py-0.5 text-accent-ink">
-                      {work.company}
-                    </span>
-                  )}
                 </div>
                 <p className="mt-2 max-w-[62ch] text-fine leading-relaxed text-muted">
                   {work.description}
@@ -299,39 +271,12 @@ export default function WorksModal() {
         </div>
 
         {/* carousel controls */}
-        <div className="flex shrink-0 items-center justify-between gap-2 border-t border-line px-5 py-3 sm:gap-4 sm:px-7">
+        <div className="flex shrink-0 items-center justify-between gap-4 border-t border-line px-5 py-3 sm:px-7">
           <span className="label text-faint tabular-nums">
             {String(index + 1).padStart(2, "0")}
             <span className="mx-1 text-line-strong">/</span>
             {String(items.length).padStart(2, "0")}
           </span>
-
-          {companies.length > 0 && (
-            <div
-              role="group"
-              aria-label="filter by company"
-              className="flex min-w-0 justify-center sm:gap-1"
-            >
-              {[null, ...companies].map((c) => {
-                const active = c === company;
-                return (
-                  <button
-                    key={c ?? "all"}
-                    type="button"
-                    aria-pressed={active}
-                    onClick={() => selectCompany(c)}
-                    className={`label min-h-9 whitespace-nowrap rounded-md px-1.5 py-1 transition-[color,background-color] duration-150 active:scale-[0.97] ${
-                      active
-                        ? "bg-accent-soft text-accent-ink"
-                        : "text-faint hover:text-ink"
-                    }`}
-                  >
-                    {c ?? "all"}
-                  </button>
-                );
-              })}
-            </div>
-          )}
 
           <div className="flex shrink-0 gap-2">
             <button
