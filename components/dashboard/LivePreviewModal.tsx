@@ -23,7 +23,7 @@ type Props = {
   onClose: () => void;
 };
 
-/** host + path, without the scheme — the way a browser bar shows it */
+/** host + path, without the scheme - the way a browser bar shows it */
 function displayUrl(url: string) {
   try {
     const parsed = new URL(url);
@@ -37,8 +37,8 @@ function displayUrl(url: string) {
 
 /**
  * The project's real site, running inside the portfolio in a browser-shaped
- * frame. A site that refuses framing cannot be detected from the client — see
- * app/api/embed-check/route.ts — so the verdict is fetched first and the iframe
+ * frame. A site that refuses framing cannot be detected from the client - see
+ * app/api/embed-check/route.ts - so the verdict is fetched first and the iframe
  * only mounts once framing is known to be possible, or unknowable.
  */
 export default function LivePreviewModal({
@@ -85,7 +85,7 @@ export default function LivePreviewModal({
       const last = items[items.length - 1];
       const active = document.activeElement;
 
-      // focus inside the frame belongs to the embedded site — leave it there
+      // focus inside the frame belongs to the embedded site - leave it there
       if (active?.tagName === "IFRAME") return;
 
       if (e.shiftKey && (active === first || !panel.contains(active))) {
@@ -120,7 +120,7 @@ export default function LivePreviewModal({
 
   // ask the server whether this site allows framing at all
   useEffect(() => {
-    // phase is already "checking" here — on first mount from useState, and on a
+    // phase is already "checking" here - on first mount from useState, and on a
     // reload because the button sets it before bumping `attempt`
     let cancelled = false;
     fetch(`/api/embed-check?url=${encodeURIComponent(url)}`)
@@ -131,7 +131,7 @@ export default function LivePreviewModal({
           setReason(check.reason);
           setPhase("blocked");
         } else {
-          // `unknown` still gets a try — the probe can fail where a real
+          // `unknown` still gets a try - the probe can fail where a real
           // browser succeeds, and the load timeout below is the safety net
           setPhase("loading");
         }
@@ -317,7 +317,7 @@ export default function LivePreviewModal({
               <iframe
                 key={attempt}
                 src={url}
-                title={`${title} — live site`}
+                title={`${title} - live site`}
                 onLoad={() => setPhase((p) => (p === "loading" ? "ready" : p))}
                 // the embedded site has to behave like the real thing: its own
                 // scripts, storage, forms, and links that open out of the frame

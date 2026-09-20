@@ -1,12 +1,23 @@
 import Image from "next/image";
-import { workCategories, works } from "@/lib/site";
+import WorkGlyph from "@/components/dashboard/WorkGlyph";
+import { works, type WorkCategory } from "@/lib/site";
 
-/** every project image, in the order the works appear */
-const THUMBS = works.flatMap((work) =>
-  work.images ?? (work.image ? [work.image] : []),
-);
+export default function WorksCard({ category }: { category: WorkCategory }) {
+  const items = works.filter((w) => w.category === category);
+  const live = items.filter((w) => w.liveUrl).length;
 
-export default function WorksCard() {
+  /**
+   * One tile per image, and a gradient glyph for a project that has none, so
+   * link-only work (the video edits) still fills the strip.
+   */
+  type Tile = { key: string; src: string | null; title: string };
+  const tiles = items.flatMap<Tile>((work) => {
+    const images = work.images ?? (work.image ? [work.image] : []);
+    return images.length > 0
+      ? images.map((src) => ({ key: src, src, title: work.title }))
+      : [{ key: work.title, src: null, title: work.title }];
+  });
+
   return (
     <div className="flex h-full flex-col gap-2.5">
       {/* A marquee rather than a static grid: it shows far more of the work in
@@ -16,18 +27,24 @@ export default function WorksCard() {
         <div className="marquee-track">
           {[0, 1].map((copy) => (
             <div className="marquee-run" key={copy} aria-hidden={copy === 1}>
-              {THUMBS.map((src) => (
+              {tiles.map((tile) => (
                 <div
-                  key={`${copy}-${src}`}
-                  className="thumb-duotone relative h-full w-[7.5rem] shrink-0 overflow-hidden rounded-md border border-line bg-sunk @min-[22rem]:w-[9.5rem]"
+                  key={`${copy}-${tile.key}`}
+                  className={`relative h-full w-[7.5rem] shrink-0 overflow-hidden rounded-md border border-line bg-sunk @min-[22rem]:w-[9.5rem] ${
+                    tile.src ? "thumb-duotone" : ""
+                  }`}
                 >
-                  <Image
-                    src={src}
-                    alt=""
-                    fill
-                    sizes="152px"
-                    className="object-cover object-top"
-                  />
+                  {tile.src ? (
+                    <Image
+                      src={tile.src}
+                      alt=""
+                      fill
+                      sizes="152px"
+                      className="object-cover object-top"
+                    />
+                  ) : (
+                    <WorkGlyph title={tile.title} textClassName="text-title" />
+                  )}
                 </div>
               ))}
             </div>
@@ -35,22 +52,14 @@ export default function WorksCard() {
         </div>
       </div>
 
-      {/* the full category breakdown only fits once the card is wide enough */}
-      <ul className="hidden shrink-0 flex-wrap gap-x-4 gap-y-1 @min-[22rem]:flex">
-        {workCategories.map((cat) => (
-          <li key={cat} className="label text-faint">
-            {cat.replace(" and content creation", "").replace(" & design", "")}
-            <span className="ml-1.5 text-accent-ink tabular-nums">
-              {works.filter((w) => w.category === cat).length}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      <p className="label shrink-0 text-faint @min-[22rem]:hidden">
-        {works.length} projects
-        <span className="mx-1.5 text-line-strong">/</span>
-        {workCategories.length} categories
+      <p className="label shrink-0 text-faint">
+        {items.length} projects
+        {live > 0 && (
+          <>
+            <span className="mx-1.5 text-line-strong">/</span>
+            <span className="text-accent-ink">{live} live</span>
+          </>
+        )}
       </p>
     </div>
   );

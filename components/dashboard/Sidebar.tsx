@@ -1,11 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import ThemeToggle from "@/components/dashboard/ThemeToggle";
-import { panels, type PanelId } from "@/lib/dashboard";
+import {
+  disciplines,
+  type Discipline,
+  type Panel,
+  type PanelId,
+} from "@/lib/dashboard";
 import { identity } from "@/lib/site";
 
 type SidebarProps = {
+  panels: Panel[];
+  discipline: Discipline;
   focused: PanelId | null;
   onSelect: (id: PanelId) => void;
   onReset: () => void;
@@ -13,6 +21,8 @@ type SidebarProps = {
 };
 
 export default function Sidebar({
+  panels,
+  discipline,
   focused,
   onSelect,
   onReset,
@@ -48,49 +58,80 @@ export default function Sidebar({
         </div>
       </div>
 
-      {/* controls — these focus a card rather than navigating anywhere */}
-      <nav
-        aria-label="dashboard panels"
-        className="flex min-w-0 flex-1 gap-1 overflow-x-auto lg:mt-6 lg:flex-col lg:gap-0.5 lg:overflow-visible"
-      >
-        {panels.map((panel) => {
-          const active = focused === panel.id;
-          return (
-            <button
-              key={panel.id}
-              type="button"
-              onClick={() => onSelect(panel.id)}
-              aria-pressed={active}
-              className={`group/nav flex shrink-0 items-center gap-2 rounded-md px-2.5 py-2 text-left transition-[background-color,color] duration-150 active:scale-[0.98] lg:w-full lg:shrink ${
-                active
-                  ? "bg-accent-soft text-accent-ink"
-                  : "text-muted hover:bg-sunk hover:text-ink"
-              }`}
-            >
-              <span
-                aria-hidden="true"
-                className={`label hidden tabular-nums transition-colors duration-150 lg:inline ${
-                  active ? "text-accent-ink" : "text-faint"
+      {/* On a short screen this is the part that gives: the navs scroll so the
+          footer, and the theme toggle in it, stay on screen. */}
+      <div className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto lg:mt-5 lg:min-h-0 lg:flex-col lg:items-stretch lg:overflow-x-hidden lg:overflow-y-auto lg:[scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden">
+        {/* the three craft pages: same dashboard, different body of work */}
+        <nav aria-label="disciplines" className="flex shrink-0 gap-1 lg:w-full">
+          {disciplines.map((d) => {
+            const active = d.id === discipline.id;
+            return (
+              <Link
+                key={d.id}
+                href={d.path}
+                aria-current={active ? "page" : undefined}
+                className={`label rounded-md px-2.5 py-1.5 transition-[background-color,color] duration-150 active:scale-[0.97] ${
+                  active
+                    ? "bg-accent-soft text-accent-ink"
+                    : "text-faint hover:bg-sunk hover:text-ink"
                 }`}
               >
-                {panel.index}
-              </span>
-              <span className="label">{panel.label}</span>
-              <span
-                aria-hidden="true"
-                className={`label ml-auto hidden transition-opacity duration-150 lg:inline ${
-                  active ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                &#8594;
-              </span>
-            </button>
-          );
-        })}
-      </nav>
+                {d.nav}
+              </Link>
+            );
+          })}
+        </nav>
 
-      {/* footer strip — no traditional footer, just the essentials */}
-      <div className="hidden lg:mt-auto lg:block lg:pt-4">
+        {/* hairline between the two navs, since they do different things */}
+        <span
+          aria-hidden="true"
+          className="h-5 w-px shrink-0 bg-line lg:my-3 lg:h-px lg:w-full"
+        />
+
+        {/* controls - these focus a card rather than navigating anywhere */}
+        <nav
+          aria-label="dashboard panels"
+          className="flex min-w-0 gap-1 lg:w-full lg:flex-col lg:gap-0.5"
+        >
+          {panels.map((panel) => {
+            const active = focused === panel.id;
+            return (
+              <button
+                key={panel.id}
+                type="button"
+                onClick={() => onSelect(panel.id)}
+                aria-pressed={active}
+                className={`group/nav flex shrink-0 items-center gap-2 rounded-md px-2.5 py-2 text-left transition-[background-color,color] duration-150 active:scale-[0.98] lg:w-full lg:shrink ${
+                  active
+                    ? "bg-accent-soft text-accent-ink"
+                    : "text-muted hover:bg-sunk hover:text-ink"
+                }`}
+              >
+                <span
+                  aria-hidden="true"
+                  className={`label hidden tabular-nums transition-colors duration-150 lg:inline ${
+                    active ? "text-accent-ink" : "text-faint"
+                  }`}
+                >
+                  {panel.index}
+                </span>
+                <span className="label">{panel.label}</span>
+                <span
+                  aria-hidden="true"
+                  className={`label ml-auto hidden transition-opacity duration-150 lg:inline ${
+                    active ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  &#8594;
+                </span>
+              </button>
+            );
+          })}
+        </nav>
+      </div>
+
+      {/* footer strip - no traditional footer, just the essentials */}
+      <div className="hidden lg:mt-auto lg:block lg:shrink-0 lg:pt-4">
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
@@ -105,9 +146,7 @@ export default function Sidebar({
 
         <p className="label mt-3 leading-relaxed text-faint">
           drag cards to rearrange
-          <span className="mt-0.5 block">
-            © 2026 ron deniele d. paragoso
-          </span>
+          <span className="mt-0.5 block">© 2026 ron deniele d. paragoso</span>
         </p>
       </div>
     </aside>

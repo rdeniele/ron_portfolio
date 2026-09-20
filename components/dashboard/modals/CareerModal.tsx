@@ -14,7 +14,10 @@ const track = experience.flatMap((company) =>
 );
 
 export default function CareerModal() {
-  const [selected, setSelected] = useState(track[0].key);
+  // opens on the role held now, so a past role is never the first thing read
+  const [selected, setSelected] = useState(
+    (track.find((r) => r.current) ?? track[0]).key,
+  );
   const active = track.find((r) => r.key === selected) ?? track[0];
 
   return (

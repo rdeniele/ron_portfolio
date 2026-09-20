@@ -14,7 +14,7 @@ type BentoCardProps = {
 
 /**
  * A card in the bento grid. Sortable's built-in transform preview assumes
- * uniform item sizes, so it is deliberately not applied here — the dragged
+ * uniform item sizes, so it is deliberately not applied here - the dragged
  * card is rendered in a DragOverlay while the grid re-packs underneath and
  * motion's layout animation carries the siblings to their new positions.
  */
@@ -34,7 +34,7 @@ export default function BentoCard({
   // Enter opens the modal; Space belongs to the keyboard drag sensor, so the
   // two interactions never compete for the same key. dnd-kit supplies its own
   // onKeyDown through `listeners`, so it has to be called through rather than
-  // replaced — spreading a handler of the same name would silently shadow it.
+  // replaced - spreading a handler of the same name would silently shadow it.
   const { onKeyDown: dndKeyDown, ...dragListeners } = listeners ?? {};
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -67,7 +67,7 @@ export default function BentoCard({
       onKeyDown={handleKeyDown}
       onClick={onOpen}
       onFocus={onFocus}
-      aria-label={`${panel.label} — enter to open, space to pick up and rearrange`}
+      aria-label={`${panel.label} - enter to open, space to pick up and rearrange`}
     >
       <CardContent panel={panel}>{children}</CardContent>
 

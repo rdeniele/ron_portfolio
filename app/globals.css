@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
- * editorial mono workspace — black, white, and orange.
+ * editorial mono workspace - black, white, and orange.
  * neutrals are pure greys so the orange is the only colour in the room;
  * depth comes from type scale + hairlines, not decorative shadow.
  * ------------------------------------------------------------------------- */
@@ -15,7 +15,7 @@
   --ink-faint: #6b6b73;
   --line: #e4e4e7;
   --line-strong: #b8b8bf;
-  /* vivid orange carries graphics — glows, rules, dots, fills */
+  /* vivid orange carries graphics - glows, rules, dots, fills */
   --accent: #ff6a00;
   /* deeper orange carries small text, where AA needs 4.5:1 on white */
   --accent-ink: #c2410c;
@@ -112,6 +112,126 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ---------------------------------------------------------------------------
+ * splash intro
+ * the name on a full-bleed panel that lifts away. Pure CSS, ending on its last
+ * frame, so the panel clears even where the script never runs.
+ * ------------------------------------------------------------------------- */
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  /* never swallows a click, even mid-animation */
+  pointer-events: none;
+  background: var(--paper);
+  animation: splash-lift 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.splash-mark {
+  text-align: center;
+  animation: splash-mark-in 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.splash-name {
+  font-size: clamp(1.5rem, 4.5vw, 2.75rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.splash-label {
+  margin-top: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ink-faint);
+}
+
+.splash-dot {
+  height: 0.3rem;
+  width: 0.3rem;
+  border-radius: 9999px;
+  background: var(--accent);
+}
+
+@keyframes splash-lift {
+  0%,
+  55% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 1;
+    visibility: hidden;
+  }
+}
+
+@keyframes splash-mark-in {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  28%,
+  55% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* the intro plays on every load; reduced motion is the one case it does not */
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * work glyph
+ * the stand-in for a project with no screenshot: a gradient carrying the
+ * project's initials, coloured from its title by WorkGlyph.
+ * ------------------------------------------------------------------------- */
+
+.work-glyph {
+  background-image: linear-gradient(
+    142deg,
+    var(--glyph-from) 0%,
+    var(--glyph-to) 100%
+  );
+}
+
+/* ---------------------------------------------------------------------------
+ * page backdrop
+ * a hairline grid that fades as it falls: enough to stop the page reading as a
+ * flat sheet, quiet enough that the work stays the loudest thing on screen.
+ * ------------------------------------------------------------------------- */
+
+.page-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 76px 76px;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(
+    120% 90% at 50% -10%,
+    #000 0%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(120% 90% at 50% -10%, #000 0%, transparent 72%);
+}
+
 /* mono label treatment used on every card header and sidebar control */
 .label {
   font-family: var(--font-mono);
@@ -151,7 +271,7 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
   display: none;
 }
 
-/* horizontal carousel track — snap, no visible bar */
+/* horizontal carousel track - snap, no visible bar */
 .rail {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -160,6 +280,12 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
 }
 .rail::-webkit-scrollbar {
   display: none;
+}
+/* a rail paged by its own controls. Mandatory snap pins this one to its first
+   tile - it re-snaps every frame of an animated page - so snapping is off and
+   the arrows do the aligning. */
+.rail-free {
+  scroll-snap-type: none;
 }
 
 /* typewriter caret on the identity card */
@@ -219,7 +345,7 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
   }
 }
 
-/* the header meta would clip in a narrow tile — drop it there */
+/* the header meta would clip in a narrow tile - drop it there */
 @media (max-width: 1023px) {
   .card-meta {
     display: none;
@@ -237,7 +363,7 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
   outline-offset: 2px;
 }
 
-/* focus mode — the focused card lights up. nothing else is dimmed: the glow
+/* focus mode - the focused card lights up. nothing else is dimmed: the glow
    does the pointing, so the rest of the dashboard stays fully readable. */
 .bento-card[data-focused] {
   border-color: var(--accent);
@@ -248,7 +374,7 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
   scale: 1.015;
 }
 
-/* the gap left behind while a card is being dragged — this is the drop zone */
+/* the gap left behind while a card is being dragged - this is the drop zone */
 .bento-card[data-placeholder] {
   border-style: dashed;
   border-color: var(--accent);
@@ -319,7 +445,7 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
 }
 
 /* ---------------------------------------------------------------------------
- * theme toggle icon — mirrors the palette rules above so no JS state is needed
+ * theme toggle icon - mirrors the palette rules above so no JS state is needed
  * ------------------------------------------------------------------------- */
 
 .icon-sun {
@@ -346,7 +472,7 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
 }
 
 /* ---------------------------------------------------------------------------
- * modal enter/exit — keyframes rather than transitions, so the animation runs
+ * modal enter/exit - keyframes rather than transitions, so the animation runs
  * from the moment the node mounts without needing a paint frame first
  * ------------------------------------------------------------------------- */
 
@@ -444,7 +570,7 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
    starts at scale 0 renders as *nothing* if it stalls (a tab that was never
    painted, a stalled compositor), which would silently blank the chart. So
    the bar is always at full length, and the motion is a highlight sweeping
-   along it — if that never runs, the meter still reads correctly. */
+   along it - if that never runs, the meter still reads correctly. */
 .skill-bar {
   position: relative;
   overflow: hidden;
@@ -481,7 +607,7 @@ nav[aria-label="dashboard panels"]::-webkit-scrollbar {
   }
 }
 
-/* a hairline that carries the accent — used beside the positioning statement */
+/* a hairline that carries the accent - used beside the positioning statement */
 .accent-rule {
   border-left: 2px solid var(--accent);
 }

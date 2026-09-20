@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import Typewriter from "@/components/dashboard/Typewriter";
 import { identity } from "@/lib/site";
 
-/** doubles as the identity / hero panel — no separate hero section exists */
+/** doubles as the identity / hero panel - no separate hero section exists */
 export default function AboutCard() {
   return (
     <div className="flex h-full flex-col justify-center">

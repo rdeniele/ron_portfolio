@@ -4,9 +4,9 @@ export const siteConfig = {
   name: "ron deniele d. paragoso",
   alternateName: "ronddpixels",
   initials: "rdp",
-  title: "ron deniele d. paragoso — digital marketer, web developer & designer",
+  title: "ron deniele d. paragoso, digital marketer, web developer & designer",
   description:
-    "portfolio of ron deniele d. paragoso — digital marketing specialist and content creator, web developer and designer, video editor, and digital artist. explore projects, services, and creative work.",
+    "portfolio of ron deniele d. paragoso, digital marketing specialist and content creator, web developer and designer, video editor, and digital artist. explore projects, services, and creative work.",
   email: "work.rparagoso@gmail.com",
   ogImage: "/works/ron_hero_image.png",
   keywords: [
@@ -78,11 +78,11 @@ export type Work = {
   image?: string;
   /** two or more images shown side by side instead of a single thumbnail */
   images?: string[];
-  /** blur the thumbnail — for confidential client work */
+  /** blur the thumbnail - for confidential client work */
   blurImage?: boolean;
   /**
    * the project's real, reachable production url. set only where a live site
-   * exists — it is what the in-portfolio browser preview loads, so design-only
+   * exists - it is what the in-portfolio browser preview loads, so design-only
    * work deliberately leaves it undefined.
    */
   liveUrl?: string;
@@ -93,7 +93,7 @@ export type Work = {
   technologies?: string[];
 };
 
-/** a live web project — keeps the entries below compact */
+/** a live web project - keeps the entries below compact */
 function webProject(
   title: string,
   description: string,
@@ -122,7 +122,7 @@ export const works: Work[] = [
     category: "web development & design",
     description:
       "ai-assisted study platform that turns pdfs, slides, and images into summaries, quizzes, and flashcards for active recall.",
-    image: "/works/web development and design/wisker_landingpage.png",
+    image: "/works/web development and design/live-wisker.webp",
     liveUrl: "https://wisker-web.vercel.app",
     links: [{ label: "visit site", href: "https://wisker-web.vercel.app" }],
   },
@@ -131,20 +131,20 @@ export const works: Work[] = [
     category: "web development & design",
     description:
       "ai platform with multiple agents and bots that help businesses automate and scale.",
-    image: "/works/web development and design/simplabots.png",
+    image: "/works/web development and design/live-simplabots.webp",
     liveUrl: "https://simplabots.com",
     links: [{ label: "visit site", href: "https://simplabots.com" }],
   },
   webProject(
     "georepute ai",
-    "site for a business and marketing intelligence platform that maps how ai engines and search talk about a business — multilingual routes, a theme toggle, and interactive product sections.",
+    "site for a business and marketing intelligence platform that maps how ai engines and search talk about a business - multilingual routes, a theme toggle, and interactive product sections.",
     "gintex-georepute",
     "https://geo-repute.vercel.app",
     ["next.js", "tailwind css", "vercel"],
   ),
   webProject(
     "copyup ai",
-    "landing page for copyup.ai, an organic marketing operating system — seo, ai search, content, and multi-platform publishing, told through product ui mockups.",
+    "landing page for copyup.ai, an organic marketing operating system - seo, ai search, content, and multi-platform publishing, told through product ui mockups.",
     "gintex-copyup",
     "https://copyup-landing.vercel.app",
     ["next.js", "tailwind css", "vercel"],
@@ -158,7 +158,7 @@ export const works: Work[] = [
   ),
   webProject(
     "ufabet box b",
-    "boxing betting landing page for ufabet — a filterable live match table, fighter stats, betting guides, and long-form content sections.",
+    "boxing betting landing page for ufabet - a filterable live match table, fighter stats, betting guides, and long-form content sections.",
     "hsd-ufabet-boxb",
     "https://ufabetboxb.vercel.app",
     [...STATIC_SITE, "vercel"],
@@ -172,28 +172,28 @@ export const works: Work[] = [
   ),
   webProject(
     "mental health thailand",
-    "informational hub on mental health in thailand — conditions, treatment approaches, recovery, and how to find professional support.",
+    "informational hub on mental health in thailand - conditions, treatment approaches, recovery, and how to find professional support.",
     "hsd-mental-health-thailand",
     "https://mentalhealththailand.vercel.app",
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "unscramblex — about us",
-    "about page for the unscramblex word unscrambler — company story, data sources, and contact details, opened by an interactive letter-tile demo.",
+    "unscramblex - about us",
+    "about page for the unscramblex word unscrambler - company story, data sources, and contact details, opened by an interactive letter-tile demo.",
     "hsd-unscramblex-about",
     "https://unscramblex-about-page.vercel.app",
     [...STATIC_SITE, "gsap", "vercel"],
   ),
   webProject(
     "wordle answers",
-    "daily wordle answer page for unscramblex — a spoiler-sealed reveal, progressive hints, and letter-frequency stats.",
+    "daily wordle answer page for unscramblex - a spoiler-sealed reveal, progressive hints, and letter-frequency stats.",
     "hsd-wordle-answers",
     "https://wordle-answer-three.vercel.app",
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
     "nyt crossword answers",
-    "daily crossword answers page for unscramblex — tap-to-reveal clue previews, the full clue list, and solver faqs.",
+    "daily crossword answers page for unscramblex - tap-to-reveal clue previews, the full clue list, and solver faqs.",
     "hsd-nyt-crossword",
     "https://nyt-crossword-six.vercel.app",
     [...STATIC_SITE, "vercel"],
@@ -207,28 +207,28 @@ export const works: Work[] = [
   ),
   webProject(
     "ufabet football",
-    "football betting landing page for ufabet — a live league match table, betting guides, bet types, and odds content.",
+    "football betting landing page for ufabet - a live league match table, betting guides, bet types, and odds content.",
     "hsd-ufabet-football",
     "https://ufabetfootball.vercel.app",
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
     "the cabin rehab amsterdam",
-    "dutch-language landing page for the cabin's amsterdam addiction rehab center — trust stats, a callback form, treatment methods, locations, and costs.",
+    "dutch-language landing page for the cabin's amsterdam addiction rehab center - trust stats, a callback form, treatment methods, locations, and costs.",
     "hsd-cabin-rehab-amsterdam",
     "https://thecabin-rehab-amsterdam.vercel.app",
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
     "muay thai betting",
-    "muay thai betting landing page for ufabox — fight card, live odds, schedule, results, fighter profiles, and tournaments.",
+    "muay thai betting landing page for ufabox - fight card, live odds, schedule, results, fighter profiles, and tournaments.",
     "hsd-muay-thai",
     "https://muaythai-page.vercel.app",
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
     "allergiecheck / anaphylaxis health",
-    "clinical reference page on anaphylaxis — an emergency banner, at-a-glance facts, symptoms, treatment, prevention, and an interactive globe visualization.",
+    "clinical reference page on anaphylaxis - an emergency banner, at-a-glance facts, symptoms, treatment, prevention, and an interactive globe visualization.",
     "hsd-anaphylaxis-health",
     "https://anaphylaxishealth.netlify.app",
     [...STATIC_SITE, "globe.gl", "netlify"],
@@ -238,7 +238,7 @@ export const works: Work[] = [
     category: "web development & design",
     description:
       "landing page for a nature-friendly hotel and real estate brand.",
-    image: "/works/web development and design/artbliss_about_page.png",
+    image: "/works/web development and design/live-artbliss-hotel.webp",
     liveUrl: "https://www.artblisshotel.com",
     links: [{ label: "visit site", href: "https://www.artblisshotel.com" }],
   },
@@ -246,7 +246,7 @@ export const works: Work[] = [
     title: "home team capital",
     category: "web development & design",
     description: "landing page for a real estate investing brand.",
-    image: "/works/web development and design/home team capital.png",
+    image: "/works/web development and design/live-home-team-capital.webp",
     liveUrl: "https://hometeamcapital.vercel.app",
     links: [
       { label: "visit site", href: "https://hometeamcapital.vercel.app" },
@@ -258,7 +258,7 @@ export const works: Work[] = [
     description:
       "landing page showcasing a gallery of designs for real estate projects.",
     image:
-      "/works/web development and design/coastalhavendesign_plus_build.png",
+      "/works/web development and design/live-coastal-haven.webp",
     liveUrl: "https://www.coastalhaven-design-build.com",
     links: [
       {
@@ -271,7 +271,7 @@ export const works: Work[] = [
     title: "dwell luxury rentals",
     category: "web development & design",
     description: "landing page for a luxury rentals real estate brand.",
-    image: "/works/web development and design/dwell luxury rentals.png",
+    image: "/works/web development and design/live-dwell-luxury-rentals.webp",
     liveUrl: "https://www.dwelluxuryrentals.com",
     links: [{ label: "visit site", href: "https://www.dwelluxuryrentals.com" }],
   },
@@ -279,7 +279,7 @@ export const works: Work[] = [
     title: "home team luxury rentals",
     category: "web development & design",
     description: "landing page for a luxury rentals real estate brand.",
-    image: "/works/web development and design/hometeamluxuryrentals.png",
+    image: "/works/web development and design/live-home-team-luxury-rentals.webp",
     liveUrl: "https://hometeamluxuryrentals.com",
     links: [{ label: "visit site", href: "https://hometeamluxuryrentals.com" }],
   },
@@ -387,7 +387,7 @@ export const works: Work[] = [
   {
     title: "podcast",
     category: "video editing",
-    description: "podcast episode edit — pacing, cuts, and polish.",
+    description: "podcast episode edit - pacing, cuts, and polish.",
     links: [
       {
         label: "watch",
@@ -418,7 +418,7 @@ export const works: Work[] = [
     ],
   },
   {
-    title: "sticker brand — ai ugc",
+    title: "sticker brand - ai ugc",
     category: "video editing",
     description: "ai-generated ugc-style ad for a sticker brand.",
     links: [
@@ -429,7 +429,7 @@ export const works: Work[] = [
     ],
   },
   {
-    title: "ointment brand — ai ugc",
+    title: "ointment brand - ai ugc",
     category: "video editing",
     description: "ai-generated ugc-style ad for a skincare ointment brand.",
     blurImage: true,
@@ -565,22 +565,6 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    company: "holistic seo digital",
-    location: "remote",
-    roles: [
-      {
-        title: "web developer",
-        period: "jul 2026 - present",
-        type: "full-time",
-        current: true,
-        bullets: [
-          "build landing pages and handle the technical side of web projects, including domains, dns, and nameserver configuration.",
-          "work across figma, figma-to-code, codepen, claude, and website builders to move quickly from design to a finished page.",
-        ],
-      },
-    ],
-  },
-  {
     company: "gintex.ai",
     location: "remote",
     roles: [
@@ -592,6 +576,21 @@ export const experience: Experience[] = [
         bullets: [
           "edit ads, reels, and carousels, and write scripts for video and social content.",
           "plan marketing campaigns, build landing pages and static graphics, and automate marketing workflows using the company's own app.",
+        ],
+      },
+    ],
+  },
+  {
+    company: "holistic seo digital",
+    location: "remote",
+    roles: [
+      {
+        title: "web developer",
+        period: "jul 2026 - sep 2026",
+        type: "part-time",
+        bullets: [
+          "built landing pages and handled the technical side of web projects, including domains, dns, and nameserver configuration.",
+          "worked across figma, figma-to-code, codepen, claude, and website builders to move quickly from design to a finished page.",
         ],
       },
     ],
@@ -712,12 +711,12 @@ export const services = [
   {
     title: "web development & design",
     description:
-      "modern, responsive, and fast websites — designed and built from the ground up.",
+      "modern, responsive, and fast websites, designed and built from the ground up.",
   },
   {
     title: "video editing",
     description:
-      "engaging edits for promos, socials, and events — from raw footage to final cut.",
+      "engaging edits for promos, socials, and events, from raw footage to final cut.",
   },
   {
     title: "digital art",
@@ -734,46 +733,38 @@ export const identity = {
   greeting: "hi, i'm",
   name: "ron deniele d. paragoso",
   /** cycled by the typewriter, and listed in full on the identity card */
-  roles: [
-    "web developer",
-    "software developer",
-    "ai developer",
-    "digital marketer",
-    "content creator",
-    "digital artist",
-    "creative web developer",
-  ],
+  roles: ["web developer", "web designer", "video editor", "marketer"],
   /** one-line positioning statement shown on the identity card */
   statement: "i build brands and experiences that feel simple and work beautifully.",
   /** compact role line used in the sidebar under the portrait */
-  roleLine: "digital marketer · web developer · designer · video editor",
+  roleLine: "web developer · web designer · video editor · marketer",
   portrait: "/works/ron_hero_image.png",
 };
 
 /** the about story, broken into short readable sections rather than one block */
 export const about = {
   lede:
-    "i'm ron — a multidisciplinary creative working across digital marketing and content creation, web development and design, video editing, and digital art.",
+    "i'm ron, a multidisciplinary creative working across digital marketing and content creation, web development and design, video editing, and digital art.",
   sections: [
     {
       label: "origin",
       body:
-        "it started young, with a love for drawing — that grew into painting, digital art, and every creative discipline i could get my hands on.",
+        "it started young, with a love for drawing that grew into painting, digital art, and every creative discipline i could get my hands on.",
     },
     {
       label: "grit",
       body:
-        "i also grew up gaming, especially mmorpgs and strategy games. years of grinding taught me patience and grit, and a mindset of never giving up — something that shows up in how i approach every project today.",
+        "i also grew up gaming, especially mmorpgs and strategy games. years of grinding taught me patience and grit, and a mindset of never giving up, something that shows up in how i approach every project today.",
     },
     {
       label: "craft",
       body:
-        "in college i took up computer science, which let me merge that technical foundation with my creative side — building websites and web designs where art and code work together. from there i expanded into video editing, graphics design, and logo design.",
+        "in college i took up computer science, which let me merge that technical foundation with my creative side, building websites and web designs where art and code work together. from there i expanded into video editing, graphics design, and logo design.",
     },
     {
       label: "ai",
       body:
-        "more recently, i've been learning and working with ai — using it to assist my workflow, increase efficiency, and raise the quality of what i deliver, without losing the human creativity behind it.",
+        "more recently, i've been learning and working with ai, using it to assist my workflow, increase efficiency, and raise the quality of what i deliver, without losing the human creativity behind it.",
     },
     {
       label: "philosophy",

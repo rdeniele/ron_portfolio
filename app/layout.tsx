@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: "%s — ron deniele d. paragoso",
+    template: "%s - ron deniele d. paragoso",
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
@@ -69,7 +69,7 @@ export const viewport: Viewport = {
   ],
   width: "device-width",
   initialScale: 1,
-  // the dashboard is a fixed single screen — let it use the full dynamic viewport
+  // the dashboard is a fixed single screen - let it use the full dynamic viewport
   viewportFit: "cover",
 };
 

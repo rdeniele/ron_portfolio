@@ -15,7 +15,7 @@ type ModalProps = {
   index: string;
   label: string;
   blurb?: string;
-  /** tailwind max-width class — works gets a wider frame than contact */
+  /** tailwind max-width class - works gets a wider frame than contact */
   size?: "md" | "lg" | "xl";
   /** hold a tall frame so media-led content (the works carousel) gets real room */
   tall?: boolean;
@@ -48,7 +48,7 @@ export default function Modal({
   const titleId = useId();
 
   // The modal plays its own exit animation and only then tells the parent to
-  // close, so mounting never has to wait on an animation frame — rAF is paused
+  // close, so mounting never has to wait on an animation frame - rAF is paused
   // whenever the page is hidden, which would otherwise strand it half-open.
   const [closing, setClosing] = useState(false);
 

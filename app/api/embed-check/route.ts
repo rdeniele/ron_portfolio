@@ -6,13 +6,13 @@ import { works } from "@/lib/site";
  * The browser gives no usable signal here: a site that refuses framing still
  * fires `load` on the iframe, it just paints a blank error document we are not
  * allowed to read. So the check happens server-side, by reading the headers the
- * browser would enforce — `X-Frame-Options` and the CSP `frame-ancestors`
- * directive — and the client only has to render the answer.
+ * browser would enforce - `X-Frame-Options` and the CSP `frame-ancestors`
+ * directive - and the client only has to render the answer.
  */
 
 export const dynamic = "force-dynamic";
 
-/** only origins we actually publish as project links — never an open prober */
+/** only origins we actually publish as project links - never an open prober */
 const ALLOWED_ORIGINS = new Set(
   works.flatMap((work) => (work.liveUrl ? [new URL(work.liveUrl).origin] : [])),
 );

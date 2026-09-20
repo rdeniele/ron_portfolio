@@ -37,38 +37,62 @@ import ContactModal from "@/components/dashboard/modals/ContactModal";
 import ServicesModal from "@/components/dashboard/modals/ServicesModal";
 import SkillsModal from "@/components/dashboard/modals/SkillsModal";
 import WorksModal from "@/components/dashboard/modals/WorksModal";
-import { defaultOrder, panelById, type PanelId } from "@/lib/dashboard";
+import SplashIntro from "@/components/dashboard/SplashIntro";
+import {
+  defaultOrder,
+  panelsById,
+  panelsFor,
+  type Discipline,
+  type PanelId,
+} from "@/lib/dashboard";
 
-// WebGL only, and only worth paying for once the page is interactive
-const DashboardBackground = dynamic(
-  () => import("@/components/three/DashboardBackground"),
+// pointer-driven and client-only, so it is not worth any server weight
+const CursorTrail = dynamic(
+  () => import("@/components/dashboard/CursorTrail"),
   { ssr: false },
 );
 
-const CARDS: Record<PanelId, React.ReactNode> = {
+const cardsFor = (
+  discipline: Discipline,
+): Record<PanelId, React.ReactNode> => ({
   about: <AboutCard />,
-  works: <WorksCard />,
+  works: <WorksCard category={discipline.category} />,
   services: <ServicesCard />,
   career: <CareerCard />,
   skills: <SkillsCard />,
   contact: <ContactCard />,
   blog: <BlogCard />,
-};
+});
 
-const MODALS: Record<
+const modalsFor = (
+  discipline: Discipline,
+): Record<
   PanelId,
   { node: React.ReactNode; size: "md" | "lg" | "xl"; tall?: boolean }
-> = {
+> => ({
   about: { node: <AboutModal />, size: "lg" },
-  works: { node: <WorksModal />, size: "xl", tall: true },
+  works: {
+    node: <WorksModal category={discipline.category} />,
+    size: "xl",
+    tall: true,
+  },
   services: { node: <ServicesModal />, size: "lg" },
   career: { node: <CareerModal />, size: "xl" },
   skills: { node: <SkillsModal />, size: "lg" },
   contact: { node: <ContactModal />, size: "md" },
   blog: { node: <BlogModal />, size: "lg" },
-};
+});
 
-export default function PortfolioDashboard() {
+export default function PortfolioDashboard({
+  discipline,
+}: {
+  discipline: Discipline;
+}) {
+  // the panel copy, the cards and the modals all follow the page's discipline
+  const panels = useMemo(() => panelsFor(discipline), [discipline]);
+  const panelById = useMemo(() => panelsById(panels), [panels]);
+  const CARDS = useMemo(() => cardsFor(discipline), [discipline]);
+  const MODALS = useMemo(() => modalsFor(discipline), [discipline]);
   const [order, setOrder] = useState<PanelId[]>(defaultOrder);
   const [focused, setFocused] = useState<PanelId | null>(null);
   const [open, setOpen] = useState<PanelId | null>(null);
@@ -101,7 +125,7 @@ export default function PortfolioDashboard() {
     setFocused(null);
   };
 
-  // reorder live so the grid re-packs under the pointer — that re-pack *is*
+  // reorder live so the grid re-packs under the pointer - that re-pack *is*
   // the drop-zone indication
   const handleDragOver = (event: DragOverEvent) => {
     const { active, over } = event;
@@ -147,16 +171,20 @@ export default function PortfolioDashboard() {
 
   return (
     <>
-      {/* rendered as a sibling, not a child: inside <main> it is a positioned
-          element and would paint over the unpositioned sidebar, swallowing its
-          clicks. Behind <main> it cannot reach anything. */}
-      <DashboardBackground />
+      {/* a quiet hairline grid, fading out as it falls. Rendered as a sibling
+          of <main> rather than a child: inside it, a positioned element would
+          paint over the unpositioned sidebar and swallow its clicks. */}
+      <div aria-hidden="true" className="page-backdrop" />
+      <CursorTrail />
+      <SplashIntro label={discipline.label} />
 
       <main
         data-dashboard
         className="relative z-10 flex h-dvh w-full flex-col gap-3 overflow-hidden p-3 lg:flex-row lg:gap-5 lg:p-5"
       >
         <Sidebar
+          panels={panels}
+          discipline={discipline}
           focused={focused}
           onSelect={handleSelect}
           onReset={() => setOrder(defaultOrder)}
@@ -202,7 +230,7 @@ export default function PortfolioDashboard() {
 
           {/* The overlay is removed the moment the card is dropped rather than
             after a drop animation: the grid has already re-packed live during
-            the drag, so there is nothing left to animate towards — and tying
+            the drag, so there is nothing left to animate towards - and tying
             the overlay's removal to an animation completing risks stranding a
             floating card on top of the dashboard. */}
           <DragOverlay dropAnimation={null}>
@@ -220,7 +248,7 @@ export default function PortfolioDashboard() {
           </DragOverlay>
         </DndContext>
 
-        {/* compact footer strip — the sidebar footer only exists on large screens */}
+        {/* compact footer strip - the sidebar footer only exists on large screens */}
         <div className="flex shrink-0 items-center justify-center gap-3 lg:hidden">
           {rearranged && (
             <button
