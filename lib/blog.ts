@@ -14,6 +14,27 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "how-i-built-tambay",
+    title: "I Built Tambay: 336 Users in 3 Days",
+    shortTitle: "I Built Tambay: 336 Users in 3 Days",
+    description:
+      "How I built Tambay, a community app with chat, voice huts, screen share and watch-together video, after Discord was banned in the Philippines, and got 336 signups in three days.",
+    date: "2026-09-30",
+    image: "/blog/tambay-cover.webp",
+    imageAlt: "the tambay landing page, with the start a tambayan form",
+    keywords: [
+      "tambay app",
+      "discord alternative philippines",
+      "discord ban philippines",
+      "community app for barkada",
+      "next.js community app",
+      "livekit voice chat",
+      "capacitor android app",
+      "tauri desktop app",
+      "indie hacker story",
+    ],
+  },
+  {
     slug: "ai-study-tool",
     title:
       "Wisker: An AI Study Tool for Quizzes, Flashcards, and Smarter Studying",

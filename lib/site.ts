@@ -118,6 +118,30 @@ const STATIC_SITE = ["html", "css", "javascript"];
 export const works: Work[] = [
   // web development & design
   {
+    title: "tambay",
+    category: "web development & design",
+    role: "web developer",
+    description:
+      "community app for filipino barkadas, built when discord was banned: tambayans with text rooms and voice huts, screen share, watch-together video, and a shared music queue. one codebase running on the web, windows, and android. 336 signups in its first three days.",
+    image: "/works/web development and design/live-tambay.webp",
+    liveUrl: "https://www.tambay.site",
+    technologies: [
+      "next.js",
+      "react",
+      "postgresql",
+      "prisma",
+      "supabase",
+      "livekit",
+      "capacitor",
+      "tauri",
+      "vercel",
+    ],
+    links: [
+      { label: "visit site", href: "https://www.tambay.site" },
+      { label: "read the story", href: "/blog/how-i-built-tambay" },
+    ],
+  },
+  {
     title: "wisker",
     category: "web development & design",
     description:
