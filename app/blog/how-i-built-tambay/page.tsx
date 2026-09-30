@@ -109,6 +109,14 @@ function List({ children }: { children: ReactNode }) {
   );
 }
 
+function PostQuote({ children }: { children: ReactNode }) {
+  return (
+    <blockquote className="mt-6 space-y-3 border-l-2 border-line pl-4 leading-relaxed text-muted">
+      {children}
+    </blockquote>
+  );
+}
+
 function Divider() {
   return <hr className="mt-14 border-line" />;
 }
@@ -362,13 +370,42 @@ export default function BlogPostHowIBuiltTambay() {
         <H2>the launch</H2>
         <P>
           i first posted in appbuildersph to get real public users, not just
-          people i already knew.
+          people i already knew. this is the post, word for word:
         </P>
+        <PostQuote>
+          <p>
+            hi guys since some platforms for group/friendly communications is
+            mostly blocked in PH,
+          </p>
+          <p>i built this for friends.</p>
+          <p>but if you wanna try it out, here it is: https://www.tambay.site/</p>
+          <p>
+            <strong className="text-foreground">edit:</strong> email
+            verification is currently limited, so there may be times when the
+            verification email doesn&apos;t arrive. i can manually verify
+            accounts for now.
+          </p>
+          <p>
+            downloadable apps are now available here:
+            https://www.tambay.site/download. there are instructions on the
+            download page for installing the apps.
+          </p>
+          <p>
+            i don&apos;t have the means to officially publish tambay on google
+            play store, app store, microsoft store, etc. yet, so the apps
+            currently need to be installed through the provided instructions.
+          </p>
+          <p>
+            for those looking for a public chat, i tried making one here on
+            tambay. feel free to join and meet new people! just a small reminder
+            to please be respectful and friendly toward each other.
+          </p>
+          <p>still working on it and adding more features along the way.</p>
+        </PostQuote>
         <P>
-          the result was almost 1,000 likes, more than 200 shares and close to
-          100 comments. overall the post reached about 98k engagement. i also
-          posted on my personal feed for close friends, which is where the first
-          users came from.
+          it landed at 986 reactions, 209 shares and 82 comments, reaching about
+          98k engagement. i also posted on my personal feed for close friends,
+          which is where the first users came from.
         </P>
         <P>that gave me 336 users in 3 days.</P>
         <p className="mt-4 leading-relaxed text-muted">
