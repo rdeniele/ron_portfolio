@@ -464,7 +464,7 @@ export const works: Work[] = [
     title: "ai saas company",
     category: "video editing",
     description:
-      "series of video ads for an ai saas company, where i work as a full-stack marketer.",
+      "series of video ads for an ai saas company, where i worked as a full-stack marketer.",
     blurImage: true,
     links: [
       {
@@ -569,13 +569,13 @@ export const experience: Experience[] = [
     location: "remote",
     roles: [
       {
-        title: "video editor, marketing & automations",
-        period: "jun 2026 - present",
+        title: "video editor, web developer & marketing",
+        period: "jun 2026 - sep 2026",
         type: "part-time",
-        current: true,
         bullets: [
-          "edit ads, reels, and carousels, and write scripts for video and social content.",
-          "plan marketing campaigns, build landing pages and static graphics, and automate marketing workflows using the company's own app.",
+          "cut product marketing videos with a mixed toolkit: capcut for the edit, elevenlabs for voice, and higgsfield and claude for generated shots and design.",
+          "built two kinds of web projects: straight marketing landing pages, and landing pages wired to a cms, ai, and a backend that keep publishing on their own, turning a fed list of topics into seo-tuned posts.",
+          "ideated the marketing angles for reaching and holding the audience, and automated the workflows behind them.",
         ],
       },
     ],
@@ -785,4 +785,4 @@ export const contact = {
 };
 
 export const careerBlurb =
-  "the roles that shaped how i work today, from interning on backend systems to building web apps, running marketing analytics, and now working across development and marketing at once.";
+  "the roles that shaped how i work today, from interning on backend systems to building web apps, running marketing analytics, to working across development and marketing at once.";
