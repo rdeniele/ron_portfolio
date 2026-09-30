@@ -296,8 +296,8 @@ export default function BlogPostHowIMadeWisker() {
         <Divider />
         <H2>meet wisky, the orange cat</H2>
         <StoryImage
-          src="/works/digital marketing/wisker.png"
-          alt="wisky, wisker's orange cat study mascot"
+          src="/blog/wisker-study-tools.webp"
+          alt="wisky, wisker's orange cat mascot, across the study tools on the site"
         />
         <P>every study buddy needs a study buddy.</P>
         <P>that is where wisky came in.</P>
@@ -454,6 +454,10 @@ export default function BlogPostHowIMadeWisker() {
 
         <Divider />
         <H2>so, how is wisker doing?</H2>
+        <StoryImage
+          src="/blog/wisker-how-it-works.webp"
+          alt="the four steps wisker takes a file through: upload, read, generate, recall"
+        />
         <P>this is probably the part that is most important to me.</P>
         <P>as of this writing, wisker currently has 20 users.</P>
         <P>that number is not huge.</P>

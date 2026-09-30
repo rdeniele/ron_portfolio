@@ -76,8 +76,8 @@ const toolMedia: Record<number, ToolMedia> = {
     links: [{ label: "visit google calendar", url: "https://calendar.google.com" }],
   },
   3: {
-    image: "/works/web development and design/wisker_landingpage.png",
-    imageAlt: "wisker ai study app landing page",
+    image: "/blog/wisker-hero.webp",
+    imageAlt: "the wisker ai study app landing page",
     links: [{ label: "visit wisker", url: "https://www.wisker.app" }],
   },
   4: {

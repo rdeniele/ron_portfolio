@@ -93,8 +93,8 @@ export const blogPosts: BlogPost[] = [
     description:
       "The story of building Wisker, an AI study app, from a NoteJewel prototype and active recall study technique to a Next.js and React Native product with 20 users.",
     date: "2026-08-10",
-    image: "/works/graphics/wiskerpubmat.png",
-    imageAlt: "wisker ai study buddy product screenshot with the wisky mascot",
+    image: "/blog/wisker-hero.webp",
+    imageAlt: "the wisker landing page, with a quiz generated from a lecture pdf",
     keywords: [
       "how i made wisker",
       "wisker app story",
