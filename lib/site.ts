@@ -150,99 +150,6 @@ export const works: Work[] = [
     liveUrl: "https://wisker-web.vercel.app",
     links: [{ label: "visit site", href: "https://wisker-web.vercel.app" }],
   },
-  {
-    title: "simplabots",
-    category: "web development & design",
-    description:
-      "ai platform with multiple agents and bots that help businesses automate and scale.",
-    image: "/works/web development and design/live-simplabots.webp",
-    liveUrl: "https://simplabots.com",
-    links: [{ label: "visit site", href: "https://simplabots.com" }],
-  },
-  webProject(
-    "georepute ai",
-    "site for a business and marketing intelligence platform that maps how ai engines and search talk about a business - multilingual routes, a theme toggle, and interactive product sections.",
-    "gintex-georepute",
-    "https://geo-repute.vercel.app",
-    ["next.js", "tailwind css", "vercel"],
-  ),
-  webProject(
-    "copyup ai",
-    "landing page for copyup.ai, an organic marketing operating system - seo, ai search, content, and multi-platform publishing, told through product ui mockups.",
-    "gintex-copyup",
-    "https://copyup-landing.vercel.app",
-    ["next.js", "tailwind css", "vercel"],
-  ),
-  webProject(
-    "ai nsfw generator",
-    "single-screen gateway landing page with a dark gold theme, animated lightning effects, and login and sign-up calls to action.",
-    "hsd-ainsfw-generator",
-    "https://ainsfwgenerator.vercel.app",
-    ["html", "css", "vercel"],
-  ),
-  webProject(
-    "ufabet box b",
-    "boxing betting landing page for ufabet - a filterable live match table, fighter stats, betting guides, and long-form content sections.",
-    "hsd-ufabet-boxb",
-    "https://ufabetboxb.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
-  webProject(
-    "the cabin mental health",
-    "long-form landing page for a depression and mental health retreat in thailand, with scrollable section navigation, therapy content, and consultation calls to action.",
-    "hsd-the-cabin-mental-health",
-    "https://thecabinmentalhealth.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
-  webProject(
-    "mental health thailand",
-    "informational hub on mental health in thailand - conditions, treatment approaches, recovery, and how to find professional support.",
-    "hsd-mental-health-thailand",
-    "https://mentalhealththailand.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
-  webProject(
-    "unscramblex - about us",
-    "about page for the unscramblex word unscrambler - company story, data sources, and contact details, opened by an interactive letter-tile demo.",
-    "hsd-unscramblex-about",
-    "https://unscramblex-about-page.vercel.app",
-    [...STATIC_SITE, "gsap", "vercel"],
-  ),
-  webProject(
-    "wordle answers",
-    "daily wordle answer page for unscramblex - a spoiler-sealed reveal, progressive hints, and letter-frequency stats.",
-    "hsd-wordle-answers",
-    "https://wordle-answer-three.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
-  webProject(
-    "nyt crossword answers",
-    "daily crossword answers page for unscramblex - tap-to-reveal clue previews, the full clue list, and solver faqs.",
-    "hsd-nyt-crossword",
-    "https://nyt-crossword-six.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
-  webProject(
-    "five letter words",
-    "five-letter word finder with positional letter inputs, include and exclude filters, playable challenges with stats, and long-form guide content.",
-    "hsd-five-letter-words",
-    "https://five-letter-words.vercel.app",
-    [...STATIC_SITE, "gsap", "vercel"],
-  ),
-  webProject(
-    "ufabet football",
-    "football betting landing page for ufabet - a live league match table, betting guides, bet types, and odds content.",
-    "hsd-ufabet-football",
-    "https://ufabetfootball.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
-  webProject(
-    "the cabin rehab amsterdam",
-    "dutch-language landing page for the cabin's amsterdam addiction rehab center - trust stats, a callback form, treatment methods, locations, and costs.",
-    "hsd-cabin-rehab-amsterdam",
-    "https://thecabin-rehab-amsterdam.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
   webProject(
     "muay thai betting",
     "muay thai betting landing page for ufabox - fight card, live odds, schedule, results, fighter profiles, and tournaments.",
@@ -251,21 +158,12 @@ export const works: Work[] = [
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "allergiecheck / anaphylaxis health",
-    "clinical reference page on anaphylaxis - an emergency banner, at-a-glance facts, symptoms, treatment, prevention, and an interactive globe visualization.",
-    "hsd-anaphylaxis-health",
-    "https://anaphylaxishealth.netlify.app",
-    [...STATIC_SITE, "globe.gl", "netlify"],
+    "georepute ai",
+    "site for a business and marketing intelligence platform that maps how ai engines and search talk about a business - multilingual routes, a theme toggle, and interactive product sections.",
+    "gintex-georepute",
+    "https://geo-repute.vercel.app",
+    ["next.js", "tailwind css", "vercel"],
   ),
-  {
-    title: "artbliss hotel",
-    category: "web development & design",
-    description:
-      "landing page for a nature-friendly hotel and real estate brand.",
-    image: "/works/web development and design/live-artbliss-hotel.webp",
-    liveUrl: "https://www.artblisshotel.com",
-    links: [{ label: "visit site", href: "https://www.artblisshotel.com" }],
-  },
   {
     title: "home team capital",
     category: "web development & design",
@@ -313,23 +211,28 @@ export const works: Work[] = [
     description: "landing page for a vacation rentals real estate brand.",
     image: "/works/web development and design/HTVR-B4hj3Yjo.png",
   },
+  webProject(
+    "ai nsfw generator",
+    "single-screen gateway landing page with a dark gold theme, animated lightning effects, and login and sign-up calls to action.",
+    "hsd-ainsfw-generator",
+    "https://ainsfwgenerator.vercel.app",
+    ["html", "css", "vercel"],
+  ),
+  webProject(
+    "allergiecheck / anaphylaxis health",
+    "clinical reference page on anaphylaxis - an emergency banner, at-a-glance facts, symptoms, treatment, prevention, and an interactive globe visualization.",
+    "hsd-anaphylaxis-health",
+    "https://anaphylaxishealth.netlify.app",
+    [...STATIC_SITE, "globe.gl", "netlify"],
+  ),
   {
-    title: "budyet",
+    title: "artbliss hotel",
     category: "web development & design",
-    description: "design and build for a budgeting web app.",
-    image: "/works/web development and design/BudYet.png",
-  },
-  {
-    title: "haulivo",
-    category: "web development & design",
-    description: "website design and build for haulivo.",
-    image: "/works/web development and design/Haulivo.png",
-  },
-  {
-    title: "signiton",
-    category: "web development & design",
-    description: "design for an e-signature web app.",
-    image: "/works/web development and design/SignItOn.jpg",
+    description:
+      "landing page for a nature-friendly hotel and real estate brand.",
+    image: "/works/web development and design/live-artbliss-hotel.webp",
+    liveUrl: "https://www.artblisshotel.com",
+    links: [{ label: "visit site", href: "https://www.artblisshotel.com" }],
   },
   {
     title: "bean brewing cafe",
@@ -337,6 +240,19 @@ export const works: Work[] = [
     description: "website design for a coffee shop brand.",
     image: "/works/web development and design/bean-brewing-cafe.png",
   },
+  {
+    title: "budyet",
+    category: "web development & design",
+    description: "design and build for a budgeting web app.",
+    image: "/works/web development and design/BudYet.png",
+  },
+  webProject(
+    "copyup ai",
+    "landing page for copyup.ai, an organic marketing operating system - seo, ai search, content, and multi-platform publishing, told through product ui mockups.",
+    "gintex-copyup",
+    "https://copyup-landing.vercel.app",
+    ["next.js", "tailwind css", "vercel"],
+  ),
   {
     title: "donmacc",
     category: "web development & design",
@@ -349,6 +265,26 @@ export const works: Work[] = [
     description: "web app design for an ai finance chat assistant.",
     image: "/works/web development and design/finsenseichatAI.png",
   },
+  webProject(
+    "five letter words",
+    "five-letter word finder with positional letter inputs, include and exclude filters, playable challenges with stats, and long-form guide content.",
+    "hsd-five-letter-words",
+    "https://five-letter-words.vercel.app",
+    [...STATIC_SITE, "gsap", "vercel"],
+  ),
+  {
+    title: "haulivo",
+    category: "web development & design",
+    description: "website design and build for haulivo.",
+    image: "/works/web development and design/Haulivo.png",
+  },
+  webProject(
+    "mental health thailand",
+    "informational hub on mental health in thailand - conditions, treatment approaches, recovery, and how to find professional support.",
+    "hsd-mental-health-thailand",
+    "https://mentalhealththailand.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
   {
     title: "mybot",
     category: "web development & design",
@@ -361,6 +297,13 @@ export const works: Work[] = [
     description: "web app design for an ai note-taking tool.",
     image: "/works/web development and design/noteJewel_AI.png",
   },
+  webProject(
+    "nyt crossword answers",
+    "daily crossword answers page for unscramblex - tap-to-reveal clue previews, the full clue list, and solver faqs.",
+    "hsd-nyt-crossword",
+    "https://nyt-crossword-six.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
   {
     title: "ritwal",
     category: "web development & design",
@@ -368,17 +311,96 @@ export const works: Work[] = [
     image: "/works/web development and design/ritwal.png",
   },
   {
+    title: "signiton",
+    category: "web development & design",
+    description: "design for an e-signature web app.",
+    image: "/works/web development and design/SignItOn.jpg",
+  },
+  {
+    title: "simplabots",
+    category: "web development & design",
+    description:
+      "ai platform with multiple agents and bots that help businesses automate and scale.",
+    image: "/works/web development and design/live-simplabots.webp",
+    liveUrl: "https://simplabots.com",
+    links: [{ label: "visit site", href: "https://simplabots.com" }],
+  },
+  webProject(
+    "the cabin mental health",
+    "long-form landing page for a depression and mental health retreat in thailand, with scrollable section navigation, therapy content, and consultation calls to action.",
+    "hsd-the-cabin-mental-health",
+    "https://thecabinmentalhealth.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
+  webProject(
+    "the cabin rehab amsterdam",
+    "dutch-language landing page for the cabin's amsterdam addiction rehab center - trust stats, a callback form, treatment methods, locations, and costs.",
+    "hsd-cabin-rehab-amsterdam",
+    "https://thecabin-rehab-amsterdam.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
+  {
     title: "thoughts",
     category: "web development & design",
     description: "website design for thoughts.",
     image: "/works/web development and design/thoughts.png",
   },
+  webProject(
+    "ufabet box b",
+    "boxing betting landing page for ufabet - a filterable live match table, fighter stats, betting guides, and long-form content sections.",
+    "hsd-ufabet-boxb",
+    "https://ufabetboxb.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
+  webProject(
+    "ufabet football",
+    "football betting landing page for ufabet - a live league match table, betting guides, bet types, and odds content.",
+    "hsd-ufabet-football",
+    "https://ufabetfootball.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
+  webProject(
+    "unscramblex - about us",
+    "about page for the unscramblex word unscrambler - company story, data sources, and contact details, opened by an interactive letter-tile demo.",
+    "hsd-unscramblex-about",
+    "https://unscramblex-about-page.vercel.app",
+    [...STATIC_SITE, "gsap", "vercel"],
+  ),
+  webProject(
+    "wordle answers",
+    "daily wordle answer page for unscramblex - a spoiler-sealed reveal, progressive hints, and letter-frequency stats.",
+    "hsd-wordle-answers",
+    "https://wordle-answer-three.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
 
   // video editing
+  {
+    title: "georepute ai video ads",
+    category: "video editing",
+    description:
+      "series of video ads for georepute.ai, the platform that maps how ai engines and search talk about a business.",
+    image: "/works/video/georepute-ad-1.webp",
+    links: [
+      {
+        label: "watch 1",
+        href: "https://drive.google.com/file/d/1MYGDACWYMmr-s0XJxbql6ZsS_ZixDNE_/view?usp=sharing",
+      },
+      {
+        label: "watch 2",
+        href: "https://drive.google.com/file/d/1mubGpTKOgaDKl8BcsLsXNj7aDSM5bPNc/view?usp=sharing",
+      },
+      {
+        label: "watch 3",
+        href: "https://drive.google.com/file/d/1gJ6349wgxX34xLVZ9eAsYAAF7C_bBTHI/view?usp=sharing",
+      },
+    ],
+  },
   {
     title: "wisker ad ep. 1",
     category: "video editing",
     description: "promotional ad for the wisker study platform.",
+    image: "/works/video/wisker-ad-1.webp",
     links: [
       {
         label: "watch",
@@ -390,6 +412,7 @@ export const works: Work[] = [
     title: "wisker app demo ad",
     category: "video editing",
     description: "app demo ad walking through the wisker experience.",
+    image: "/works/video/wisker-demo.webp",
     links: [
       {
         label: "watch",
@@ -401,6 +424,7 @@ export const works: Work[] = [
     title: "wisker app demo ad 2",
     category: "video editing",
     description: "follow-up demo ad for the wisker app.",
+    image: "/works/video/wisker-demo-2.webp",
     links: [
       {
         label: "watch",
@@ -412,6 +436,7 @@ export const works: Work[] = [
     title: "podcast",
     category: "video editing",
     description: "podcast episode edit - pacing, cuts, and polish.",
+    image: "/works/video/podcast.webp",
     links: [
       {
         label: "watch",
@@ -423,6 +448,7 @@ export const works: Work[] = [
     title: "real estate marketing ad",
     category: "video editing",
     description: "marketing ad edit for a real estate brand.",
+    image: "/works/video/real-estate.webp",
     links: [
       {
         label: "watch",
@@ -434,6 +460,7 @@ export const works: Work[] = [
     title: "psychology brand",
     category: "video editing",
     description: "video edit for a psychology brand.",
+    image: "/works/video/psychology.webp",
     links: [
       {
         label: "watch",
@@ -445,6 +472,7 @@ export const works: Work[] = [
     title: "sticker brand - ai ugc",
     category: "video editing",
     description: "ai-generated ugc-style ad for a sticker brand.",
+    image: "/works/video/sticker.webp",
     links: [
       {
         label: "watch",
@@ -456,6 +484,7 @@ export const works: Work[] = [
     title: "ointment brand - ai ugc",
     category: "video editing",
     description: "ai-generated ugc-style ad for a skincare ointment brand.",
+    image: "/works/video/ointment.webp",
     blurImage: true,
     links: [
       {
@@ -468,6 +497,7 @@ export const works: Work[] = [
     title: "paint brand",
     category: "video editing",
     description: "series of video ads edited for a paint brand.",
+    image: "/works/video/paint.webp",
     blurImage: true,
     links: [
       {
@@ -489,6 +519,7 @@ export const works: Work[] = [
     category: "video editing",
     description:
       "series of video ads for an ai saas company, where i worked as a full-stack marketer.",
+    image: "/works/video/saas.webp",
     blurImage: true,
     links: [
       {
@@ -523,6 +554,34 @@ export const works: Work[] = [
   },
 
   // digital art
+  {
+    title: "copyup ai carousel",
+    category: "digital art",
+    description:
+      "carousel post for copyup.ai: five slides on why customers trust the business that shows up consistently, closing on a call-to-action slide.",
+    images: [
+      "/works/graphics/carousel/slide-1.webp",
+      "/works/graphics/carousel/slide-2.webp",
+      "/works/graphics/carousel/slide-3.webp",
+      "/works/graphics/carousel/slide-4.webp",
+      "/works/graphics/carousel/slide-5.webp",
+      "/works/graphics/carousel/slide-6.webp",
+    ],
+  },
+  {
+    title: "georepute pre-marketing review",
+    category: "digital art",
+    description:
+      "social post for georepute.ai promoting its pre-marketing review: see what google shows, see what ai says, and know the gap before you spend.",
+    image: "/works/graphics/gintex/banner1.png",
+  },
+  {
+    title: "georepute banner",
+    category: "digital art",
+    description:
+      "wide brand banner for georepute.ai built around its logo mark and the line: see where your business is recognized, recommended and chosen.",
+    image: "/works/graphics/gintex/gintexbanner.png",
+  },
   {
     title: "wisker pubmat",
     category: "digital art",

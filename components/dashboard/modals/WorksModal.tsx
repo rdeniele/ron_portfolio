@@ -134,7 +134,13 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
           <div className="scroll-area flex min-h-0 flex-1 flex-col gap-4 px-5 py-5 sm:px-7">
             <div className="relative min-h-[9rem] flex-1 overflow-hidden rounded-lg border border-line bg-sunk">
               {selected.images ? (
-                <div className="grid h-full grid-cols-2 gap-px bg-line">
+                <div
+                  className={`grid h-full gap-px bg-line ${
+                    selected.images.length > 2
+                      ? "grid-cols-3 grid-rows-2"
+                      : "grid-cols-2"
+                  }`}
+                >
                   {selected.images.map((src) => (
                     <button
                       type="button"
@@ -148,7 +154,12 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
                         alt={`${selected.title} - ${selected.category}`}
                         fill
                         sizes="(max-width: 768px) 50vw, 400px"
-                        className="object-cover object-top transition-transform duration-300 group-hover/shot:scale-[1.02]"
+                        className={`transition-transform duration-300 group-hover/shot:scale-[1.02] ${
+                          // a carousel's slides are whole compositions - never crop them
+                          (selected.images?.length ?? 0) > 2
+                            ? "object-contain"
+                            : "object-cover object-top"
+                        }`}
                       />
                     </button>
                   ))}
