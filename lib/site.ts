@@ -211,6 +211,15 @@ export const works: Work[] = [
     description: "landing page for a vacation rentals real estate brand.",
     image: "/works/web development and design/HTVR-B4hj3Yjo.png",
   },
+  {
+    title: "artbliss hotel",
+    category: "web development & design",
+    description:
+      "landing page for a nature-friendly hotel and real estate brand.",
+    image: "/works/web development and design/live-artbliss-hotel.webp",
+    liveUrl: "https://www.artblisshotel.com",
+    links: [{ label: "visit site", href: "https://www.artblisshotel.com" }],
+  },
   webProject(
     "mental health thailand",
     "informational hub on mental health in thailand - conditions, treatment approaches, recovery, and how to find professional support.",
@@ -262,15 +271,6 @@ export const works: Work[] = [
     "https://anaphylaxishealth.netlify.app",
     [...STATIC_SITE, "globe.gl", "netlify"],
   ),
-  {
-    title: "artbliss hotel",
-    category: "web development & design",
-    description:
-      "landing page for a nature-friendly hotel and real estate brand.",
-    image: "/works/web development and design/live-artbliss-hotel.webp",
-    liveUrl: "https://www.artblisshotel.com",
-    links: [{ label: "visit site", href: "https://www.artblisshotel.com" }],
-  },
   {
     title: "budyet",
     category: "web development & design",
