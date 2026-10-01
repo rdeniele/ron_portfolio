@@ -151,7 +151,7 @@ export const works: Work[] = [
     links: [{ label: "visit site", href: "https://wisker-web.vercel.app" }],
   },
   webProject(
-    "muay thai betting",
+    "ufabox",
     "muay thai betting landing page for ufabox - fight card, live odds, schedule, results, fighter profiles, and tournaments.",
     "hsd-muay-thai",
     "https://muaythai-page.vercel.app",
@@ -220,6 +220,69 @@ export const works: Work[] = [
     liveUrl: "https://www.artblisshotel.com",
     links: [{ label: "visit site", href: "https://www.artblisshotel.com" }],
   },
+  {
+    title: "rise collective",
+    category: "web development & design",
+    description:
+      "site for a fast-growing private real estate brand - investing, tax strategy, lending, and real estate under one roof.",
+    image: "/works/web development and design/live-rise-collective.webp",
+    liveUrl: "https://rise-collective.com",
+    links: [{ label: "visit site", href: "https://rise-collective.com" }],
+  },
+  {
+    title: "bnb turnkey",
+    category: "web development & design",
+    description:
+      "site for a done-for-you short-term rental investing and management service, from sourcing the property to running it.",
+    image: "/works/web development and design/live-bnb-turnkey.webp",
+    liveUrl: "https://bnb-turnkey.com",
+    links: [{ label: "visit site", href: "https://bnb-turnkey.com" }],
+  },
+  {
+    title: "paradiso homes",
+    category: "web development & design",
+    description:
+      "site for an ultra-luxury private homes brand covering second-home acquisition, design, management, and lifestyle experiences, with a built-in stay search.",
+    image: "/works/web development and design/live-paradiso-homes.webp",
+    liveUrl: "https://paradiso-homes.com",
+    links: [{ label: "visit site", href: "https://paradiso-homes.com" }],
+  },
+  {
+    title: "the str report",
+    category: "web development & design",
+    description:
+      "site for a free short-term rental community - newsletter signup, investing tools, and resources for hosts and investors.",
+    image: "/works/web development and design/live-the-str-report.webp",
+    liveUrl: "https://thestrreport.com",
+    links: [{ label: "visit site", href: "https://thestrreport.com" }],
+  },
+  {
+    title: "sand key vacation rentals",
+    category: "web development & design",
+    description:
+      "vacation rentals site for texas gulf coast homes and condos in port aransas, with availability search and owner management inquiries.",
+    image: "/works/web development and design/live-sand-key-vacation-rentals.webp",
+    liveUrl: "https://www.sandkeyvacationrentals.com",
+    links: [{ label: "visit site", href: "https://www.sandkeyvacationrentals.com" }],
+  },
+  {
+    title: "bnb construction",
+    category: "web development & design",
+    description:
+      "site for a short-term rental renovation and new construction company, built around project showcases and a get-started flow.",
+    image: "/works/web development and design/live-bnb-construction.webp",
+    liveUrl: "https://bnbconstruction.co",
+    links: [{ label: "visit site", href: "https://bnbconstruction.co" }],
+  },
+  {
+    title: "cedar run resort",
+    category: "web development & design",
+    description:
+      "booking site for a family-friendly resort condominium near the gulf beaches in bradenton, florida.",
+    image: "/works/web development and design/live-cedar-run-resort.webp",
+    liveUrl: "https://cedarrunresort.com",
+    links: [{ label: "visit site", href: "https://cedarrunresort.com" }],
+  },
   webProject(
     "mental health thailand",
     "informational hub on mental health in thailand - conditions, treatment approaches, recovery, and how to find professional support.",
@@ -228,32 +291,39 @@ export const works: Work[] = [
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "the cabin rehab amsterdam",
+    "the cabin amsterdam",
     "dutch-language landing page for the cabin's amsterdam addiction rehab center - trust stats, a callback form, treatment methods, locations, and costs.",
     "hsd-cabin-rehab-amsterdam",
     "https://thecabin-rehab-amsterdam.vercel.app",
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "five letter words",
+    "5 letter words finder",
     "five-letter word finder with positional letter inputs, include and exclude filters, playable challenges with stats, and long-form guide content.",
     "hsd-five-letter-words",
     "https://five-letter-words.vercel.app",
     [...STATIC_SITE, "gsap", "vercel"],
   ),
   webProject(
-    "nyt crossword answers",
+    "wordarcade",
     "daily crossword answers page for unscramblex - tap-to-reveal clue previews, the full clue list, and solver faqs.",
     "hsd-nyt-crossword",
     "https://nyt-crossword-six.vercel.app",
     [...STATIC_SITE, "vercel"],
   ),
   webProject(
-    "wordle answers",
+    "wordsprint",
     "daily wordle answer page for unscramblex - a spoiler-sealed reveal, progressive hints, and letter-frequency stats.",
     "hsd-wordle-answers",
     "https://wordle-answer-three.vercel.app",
     [...STATIC_SITE, "vercel"],
+  ),
+  webProject(
+    "unscramblex",
+    "about page for the unscramblex word unscrambler - company story, data sources, and contact details, opened by an interactive letter-tile demo.",
+    "live-unscramblex-about",
+    "https://unscramblex-about-page.vercel.app",
+    [...STATIC_SITE, "gsap", "vercel"],
   ),
   {
     title: "simplabots",
@@ -265,7 +335,7 @@ export const works: Work[] = [
     links: [{ label: "visit site", href: "https://simplabots.com" }],
   },
   webProject(
-    "allergiecheck / anaphylaxis health",
+    "anaphylaxis health",
     "clinical reference page on anaphylaxis - an emergency banner, at-a-glance facts, symptoms, treatment, prevention, and an interactive globe visualization.",
     "hsd-anaphylaxis-health",
     "https://anaphylaxishealth.netlify.app",
@@ -309,7 +379,7 @@ export const works: Work[] = [
     image: "/works/web development and design/SignItOn.jpg",
   },
   webProject(
-    "the cabin mental health",
+    "the cabin thailand",
     "long-form landing page for a depression and mental health retreat in thailand, with scrollable section navigation, therapy content, and consultation calls to action.",
     "hsd-the-cabin-mental-health",
     "https://thecabinmentalhealth.vercel.app",
