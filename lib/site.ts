@@ -212,6 +212,50 @@ export const works: Work[] = [
     image: "/works/web development and design/HTVR-B4hj3Yjo.png",
   },
   webProject(
+    "mental health thailand",
+    "informational hub on mental health in thailand - conditions, treatment approaches, recovery, and how to find professional support.",
+    "hsd-mental-health-thailand",
+    "https://mentalhealththailand.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
+  webProject(
+    "the cabin rehab amsterdam",
+    "dutch-language landing page for the cabin's amsterdam addiction rehab center - trust stats, a callback form, treatment methods, locations, and costs.",
+    "hsd-cabin-rehab-amsterdam",
+    "https://thecabin-rehab-amsterdam.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
+  webProject(
+    "five letter words",
+    "five-letter word finder with positional letter inputs, include and exclude filters, playable challenges with stats, and long-form guide content.",
+    "hsd-five-letter-words",
+    "https://five-letter-words.vercel.app",
+    [...STATIC_SITE, "gsap", "vercel"],
+  ),
+  webProject(
+    "nyt crossword answers",
+    "daily crossword answers page for unscramblex - tap-to-reveal clue previews, the full clue list, and solver faqs.",
+    "hsd-nyt-crossword",
+    "https://nyt-crossword-six.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
+  webProject(
+    "wordle answers",
+    "daily wordle answer page for unscramblex - a spoiler-sealed reveal, progressive hints, and letter-frequency stats.",
+    "hsd-wordle-answers",
+    "https://wordle-answer-three.vercel.app",
+    [...STATIC_SITE, "vercel"],
+  ),
+  {
+    title: "simplabots",
+    category: "web development & design",
+    description:
+      "ai platform with multiple agents and bots that help businesses automate and scale.",
+    image: "/works/web development and design/live-simplabots.webp",
+    liveUrl: "https://simplabots.com",
+    links: [{ label: "visit site", href: "https://simplabots.com" }],
+  },
+  webProject(
     "allergiecheck / anaphylaxis health",
     "clinical reference page on anaphylaxis - an emergency banner, at-a-glance facts, symptoms, treatment, prevention, and an interactive globe visualization.",
     "hsd-anaphylaxis-health",
@@ -246,20 +290,6 @@ export const works: Work[] = [
     description: "web app design for an ai finance chat assistant.",
     image: "/works/web development and design/finsenseichatAI.png",
   },
-  webProject(
-    "five letter words",
-    "five-letter word finder with positional letter inputs, include and exclude filters, playable challenges with stats, and long-form guide content.",
-    "hsd-five-letter-words",
-    "https://five-letter-words.vercel.app",
-    [...STATIC_SITE, "gsap", "vercel"],
-  ),
-  webProject(
-    "mental health thailand",
-    "informational hub on mental health in thailand - conditions, treatment approaches, recovery, and how to find professional support.",
-    "hsd-mental-health-thailand",
-    "https://mentalhealththailand.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
   {
     title: "mybot",
     category: "web development & design",
@@ -272,27 +302,11 @@ export const works: Work[] = [
     description: "web app design for an ai note-taking tool.",
     image: "/works/web development and design/noteJewel_AI.png",
   },
-  webProject(
-    "nyt crossword answers",
-    "daily crossword answers page for unscramblex - tap-to-reveal clue previews, the full clue list, and solver faqs.",
-    "hsd-nyt-crossword",
-    "https://nyt-crossword-six.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
   {
     title: "signiton",
     category: "web development & design",
     description: "design for an e-signature web app.",
     image: "/works/web development and design/SignItOn.jpg",
-  },
-  {
-    title: "simplabots",
-    category: "web development & design",
-    description:
-      "ai platform with multiple agents and bots that help businesses automate and scale.",
-    image: "/works/web development and design/live-simplabots.webp",
-    liveUrl: "https://simplabots.com",
-    links: [{ label: "visit site", href: "https://simplabots.com" }],
   },
   webProject(
     "the cabin mental health",
@@ -301,26 +315,12 @@ export const works: Work[] = [
     "https://thecabinmentalhealth.vercel.app",
     [...STATIC_SITE, "vercel"],
   ),
-  webProject(
-    "the cabin rehab amsterdam",
-    "dutch-language landing page for the cabin's amsterdam addiction rehab center - trust stats, a callback form, treatment methods, locations, and costs.",
-    "hsd-cabin-rehab-amsterdam",
-    "https://thecabin-rehab-amsterdam.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
   {
     title: "thoughts",
     category: "web development & design",
     description: "website design for thoughts.",
     image: "/works/web development and design/thoughts.png",
   },
-  webProject(
-    "wordle answers",
-    "daily wordle answer page for unscramblex - a spoiler-sealed reveal, progressive hints, and letter-frequency stats.",
-    "hsd-wordle-answers",
-    "https://wordle-answer-three.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
 
   // video editing
   {
