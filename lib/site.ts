@@ -318,13 +318,6 @@ export const works: Work[] = [
     "https://wordle-answer-three.vercel.app",
     [...STATIC_SITE, "vercel"],
   ),
-  webProject(
-    "unscramblex",
-    "about page for the unscramblex word unscrambler - company story, data sources, and contact details, opened by an interactive letter-tile demo.",
-    "live-unscramblex-about",
-    "https://unscramblex-about-page.vercel.app",
-    [...STATIC_SITE, "gsap", "vercel"],
-  ),
   {
     title: "simplabots",
     category: "web development & design",
