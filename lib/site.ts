@@ -212,13 +212,6 @@ export const works: Work[] = [
     image: "/works/web development and design/HTVR-B4hj3Yjo.png",
   },
   webProject(
-    "ai nsfw generator",
-    "single-screen gateway landing page with a dark gold theme, animated lightning effects, and login and sign-up calls to action.",
-    "hsd-ainsfw-generator",
-    "https://ainsfwgenerator.vercel.app",
-    ["html", "css", "vercel"],
-  ),
-  webProject(
     "allergiecheck / anaphylaxis health",
     "clinical reference page on anaphylaxis - an emergency banner, at-a-glance facts, symptoms, treatment, prevention, and an interactive globe visualization.",
     "hsd-anaphylaxis-health",
@@ -235,12 +228,6 @@ export const works: Work[] = [
     links: [{ label: "visit site", href: "https://www.artblisshotel.com" }],
   },
   {
-    title: "bean brewing cafe",
-    category: "web development & design",
-    description: "website design for a coffee shop brand.",
-    image: "/works/web development and design/bean-brewing-cafe.png",
-  },
-  {
     title: "budyet",
     category: "web development & design",
     description: "design and build for a budgeting web app.",
@@ -254,12 +241,6 @@ export const works: Work[] = [
     ["next.js", "tailwind css", "vercel"],
   ),
   {
-    title: "donmacc",
-    category: "web development & design",
-    description: "website design for donmacc.",
-    image: "/works/web development and design/donmacc.png",
-  },
-  {
     title: "finsensei chat ai",
     category: "web development & design",
     description: "web app design for an ai finance chat assistant.",
@@ -272,12 +253,6 @@ export const works: Work[] = [
     "https://five-letter-words.vercel.app",
     [...STATIC_SITE, "gsap", "vercel"],
   ),
-  {
-    title: "haulivo",
-    category: "web development & design",
-    description: "website design and build for haulivo.",
-    image: "/works/web development and design/Haulivo.png",
-  },
   webProject(
     "mental health thailand",
     "informational hub on mental health in thailand - conditions, treatment approaches, recovery, and how to find professional support.",
@@ -304,12 +279,6 @@ export const works: Work[] = [
     "https://nyt-crossword-six.vercel.app",
     [...STATIC_SITE, "vercel"],
   ),
-  {
-    title: "ritwal",
-    category: "web development & design",
-    description: "website design for ritwal.",
-    image: "/works/web development and design/ritwal.png",
-  },
   {
     title: "signiton",
     category: "web development & design",
@@ -345,27 +314,6 @@ export const works: Work[] = [
     description: "website design for thoughts.",
     image: "/works/web development and design/thoughts.png",
   },
-  webProject(
-    "ufabet box b",
-    "boxing betting landing page for ufabet - a filterable live match table, fighter stats, betting guides, and long-form content sections.",
-    "hsd-ufabet-boxb",
-    "https://ufabetboxb.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
-  webProject(
-    "ufabet football",
-    "football betting landing page for ufabet - a live league match table, betting guides, bet types, and odds content.",
-    "hsd-ufabet-football",
-    "https://ufabetfootball.vercel.app",
-    [...STATIC_SITE, "vercel"],
-  ),
-  webProject(
-    "unscramblex - about us",
-    "about page for the unscramblex word unscrambler - company story, data sources, and contact details, opened by an interactive letter-tile demo.",
-    "hsd-unscramblex-about",
-    "https://unscramblex-about-page.vercel.app",
-    [...STATIC_SITE, "gsap", "vercel"],
-  ),
   webProject(
     "wordle answers",
     "daily wordle answer page for unscramblex - a spoiler-sealed reveal, progressive hints, and letter-frequency stats.",
