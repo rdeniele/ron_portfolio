@@ -517,6 +517,26 @@ export const works: Work[] = [
     ],
   },
   {
+    title: "tambay feature posts",
+    category: "digital art",
+    description:
+      "set of twelve launch posts for tambay, one per feature: apps, themes, meowp3 and its shared queue, mung the cat, profiles, stickers, the soundboard, and voice messages.",
+    images: [
+      "apps-take-tambayan-with-you",
+      "barkada-your-look",
+      "meowp3-1-play-together",
+      "meowp3-2-queue",
+      "mung-1-meet-mung",
+      "mung-2-vibing",
+      "mung-feed-him-or-else",
+      "profile-pick-your-cat",
+      "soundboard-hit-the-air-horn",
+      "stickers-say-it-with-a-cat",
+      "themes-make-it-yours",
+      "voice-messages-say-it-out-loud",
+    ].map((name) => `/works/graphics/tambay/${name}.webp`),
+  },
+  {
     title: "georepute pre-marketing review",
     category: "digital art",
     description:

@@ -136,9 +136,12 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
               {selected.images ? (
                 <div
                   className={`grid h-full gap-px bg-line ${
-                    selected.images.length > 2
-                      ? "grid-cols-3 grid-rows-2"
-                      : "grid-cols-2"
+                    selected.images.length > 6
+                      ? // a big set scrolls as square cells rather than shrinking
+                        "scroll-area grid-cols-3 content-start overflow-y-auto sm:grid-cols-4"
+                      : selected.images.length > 2
+                        ? "grid-cols-3 grid-rows-2"
+                        : "grid-cols-2"
                   }`}
                 >
                   {selected.images.map((src) => (
@@ -147,7 +150,11 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
                       key={src}
                       onClick={() => openImage(selected, src)}
                       aria-label={`view ${selected.title} full size`}
-                      className="group/shot relative cursor-zoom-in bg-sunk"
+                      className={`group/shot relative cursor-zoom-in bg-sunk ${
+                        (selected.images?.length ?? 0) > 6
+                          ? "aspect-square"
+                          : ""
+                      }`}
                     >
                       <Image
                         src={src}
