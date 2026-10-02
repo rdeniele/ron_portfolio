@@ -161,7 +161,7 @@ export const works: Work[] = [
     "georepute ai",
     "site for a business and marketing intelligence platform that maps how ai engines and search talk about a business - multilingual routes, a theme toggle, and interactive product sections.",
     "gintex-georepute",
-    "https://geo-repute.vercel.app",
+    "https://georeputeshowcase.vercel.app",
     ["next.js", "tailwind css", "vercel"],
   ),
   {
