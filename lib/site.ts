@@ -165,6 +165,110 @@ export const works: Work[] = [
     ["next.js", "tailwind css", "vercel"],
   ),
   {
+    title: "animedelta",
+    category: "web development & design",
+    role: "web developer",
+    description:
+      "personal, original anime streaming app: an expo/react native mobile client plus a standalone rest api. a provider layer separates metadata, video and subtitles, and a resolver layer normalizes every source into a consistent shape - no scraping or drm bypass, only media you have the rights to use.",
+    image: "/works/web development and design/screenshot-animedelta.webp",
+    technologies: [
+      "expo",
+      "react native",
+      "nativewind",
+      "zustand",
+      "tanstack query",
+      "express",
+      "prisma",
+      "postgresql",
+      "supabase",
+    ],
+    links: [
+      { label: "view code", href: "https://github.com/rdeniele/AnimeDelta" },
+    ],
+  },
+  {
+    title: "alphadron",
+    category: "web development & design",
+    role: "web developer",
+    description:
+      "offline-first personal ai assistant for android (\"alphadex\"): voice or text goes through on-device whisper for speech-to-text, a local qwen3 model for reasoning and tool calls, sqlite for memory, and kokoro for speech back out. everything runs on the phone after the models are downloaded once.",
+    image: "/works/web development and design/alphadron-today.png",
+    technologies: [
+      "expo",
+      "react native",
+      "llama.rn",
+      "whisper.rn",
+      "sherpa-onnx",
+      "sqlite",
+    ],
+    links: [
+      { label: "view code", href: "https://github.com/rdeniele/Alphadron" },
+    ],
+  },
+  {
+    title: "betacode",
+    category: "web development & design",
+    role: "web developer",
+    description:
+      "open-source, local-first ai coding agent: open a project, describe what you want, and it inspects the code, edits files, runs your tests, reads the failures, and fixes them - every change shown as a diff, every risky action behind an approval. desktop app and cli, talking to any openai-compatible endpoint (local models included, no api key needed).",
+    image: "/works/web development and design/screenshot-betacode.webp",
+    technologies: [
+      "react",
+      "tauri",
+      "vite",
+      "typescript",
+      "prisma",
+      "sqlite",
+    ],
+    links: [
+      { label: "view code", href: "https://github.com/rdeniele/betacode" },
+    ],
+  },
+  {
+    title: "echolite",
+    category: "web development & design",
+    role: "web developer",
+    description:
+      "minimal android launcher and its product website: a clean app list, favorites dock, and custom themes, presented through an interactive theme preview, feature walkthroughs, a user guide, and a purchase flow.",
+    image: "/works/web development and design/screenshot-echolite.webp",
+    liveUrl: "https://echolite-launcher.vercel.app/web",
+    technologies: ["kotlin", "android", "html", "css", "javascript", "vercel"],
+    links: [
+      { label: "visit site", href: "https://echolite-launcher.vercel.app/web" },
+      { label: "view code", href: "https://github.com/rdeniele/Echolite" },
+      { label: "download apk", href: "/downloads/EchoLite.apk" },
+    ],
+  },
+  {
+    title: "foxtrot mind",
+    category: "web development & design",
+    role: "web developer",
+    description:
+      "private, offline ai companion for android, with spaces to read, learn, and talk. runs a qwen3 model on the phone through llama.rn, with streamed replies and companion modes in a calm, dark-first interface.",
+    image: "/works/web development and design/screenshot-foxtrot-mind.webp",
+    technologies: ["expo", "react native", "typescript", "llama.rn"],
+  },
+  {
+    title: "glooblet",
+    category: "web development & design",
+    role: "web developer",
+    description:
+      "product website for a windows mouse customization app: a character-led landing page with feature walkthroughs, practical guides to sensitivity and pointer settings, and a free installer download.",
+    image: "/works/web development and design/screenshot-glooblet.webp",
+    liveUrl: "https://glooblet.vercel.app",
+    technologies: ["html", "css", "vercel"],
+    links: [{ label: "visit site", href: "https://glooblet.vercel.app" }],
+  },
+  {
+    title: "emerald horizons",
+    category: "web development & design",
+    role: "web developer",
+    description:
+      "pokemon-inspired auto-battle rpg prototype: explore a hoenn-style world, catch pokemon, drag your team onto a battle grid, press start, and call skills while the fight plays out in real time. unofficial, non-commercial fan project.",
+    image: "/works/web development and design/pokemon-emerald-horizons-littleroot.png",
+    technologies: ["next.js", "phaser", "tailwind css", "prisma", "supabase"],
+  },
+  {
     title: "home team capital",
     category: "web development & design",
     description: "landing page for a real estate investing brand.",
