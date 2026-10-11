@@ -21,7 +21,7 @@ export default function CareerModal() {
   const active = track.find((r) => r.key === selected) ?? track[0];
 
   return (
-    <div className="grid gap-px bg-line sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+    <div className="forge-career grid gap-px bg-line sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
       {/* timeline rail */}
       <div className="bg-surface px-5 py-5 sm:px-7 sm:py-6">
         <p className="text-fine leading-relaxed text-muted">{careerBlurb}</p>
@@ -76,8 +76,7 @@ export default function CareerModal() {
 
       {/* detail panel */}
       <div className="bg-surface px-5 py-5 sm:px-7 sm:py-6">
-        <p className="label text-accent-ink">{active.period}</p>
-        <h3 className="mt-2 font-serif text-title leading-tight text-ink">
+        <h3 className="font-serif text-title leading-tight text-ink">
           {active.title}
         </h3>
         <p className="mt-1 text-fine text-muted">
@@ -92,6 +91,7 @@ export default function CareerModal() {
           )}
         </p>
 
+        <p className="mt-2 text-fine text-accent-ink">{active.period}</p>
         <ul className="mt-4 space-y-2.5">
           {active.bullets.map((bullet) => (
             <li key={bullet} className="flex gap-2.5">

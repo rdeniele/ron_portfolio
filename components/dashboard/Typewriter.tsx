@@ -1,7 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useReducedMotion } from "motion/react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+
+const subscribeToMotion = (callback: () => void) => {
+  const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+  query.addEventListener("change", callback);
+  return () => query.removeEventListener("change", callback);
+};
+const motionSnapshot = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const serverMotionSnapshot = () => false;
 
 const TYPE_MS = 70;
 const DELETE_MS = 35;
@@ -28,7 +35,7 @@ export default function Typewriter({
   words: string[];
   className?: string;
 }) {
-  const reduce = useReducedMotion();
+  const reduce = useSyncExternalStore(subscribeToMotion, motionSnapshot, serverMotionSnapshot);
   const [index, setIndex] = useState(0);
   const [count, setCount] = useState(0);
   const [phase, setPhase] = useState<Phase>("typing");

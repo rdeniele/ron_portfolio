@@ -20,7 +20,7 @@ import {
 } from "@dnd-kit/sortable";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import BentoCard, { CardContent } from "@/components/dashboard/BentoCard";
+import BentoCard from "@/components/dashboard/BentoCard";
 import Modal from "@/components/dashboard/Modal";
 import Sidebar from "@/components/dashboard/Sidebar";
 import AboutCard from "@/components/dashboard/cards/AboutCard";
@@ -38,6 +38,8 @@ import ServicesModal from "@/components/dashboard/modals/ServicesModal";
 import SkillsModal from "@/components/dashboard/modals/SkillsModal";
 import WorksModal from "@/components/dashboard/modals/WorksModal";
 import SplashIntro from "@/components/dashboard/SplashIntro";
+import WorkshopScene from "@/components/dashboard/WorkshopScene";
+import ForgeItem from "@/components/dashboard/ForgeItem";
 import {
   defaultOrder,
   panelsById,
@@ -168,6 +170,10 @@ export default function PortfolioDashboard({
   }, [open, focused]);
 
   const activePanel = panelById[lastOpen];
+  const openPanel = (id: PanelId) => {
+    setLastOpen(id);
+    setOpen(id);
+  };
 
   return (
     <>
@@ -180,7 +186,7 @@ export default function PortfolioDashboard({
 
       <main
         data-dashboard
-        className="relative z-10 flex h-dvh w-full flex-col gap-3 overflow-hidden p-3 lg:flex-row lg:gap-5 lg:p-5"
+        className="forge-app relative z-10 flex h-dvh w-full flex-col overflow-hidden"
       >
         <Sidebar
           panels={panels}
@@ -190,6 +196,8 @@ export default function PortfolioDashboard({
           onReset={() => setOrder(defaultOrder)}
           rearranged={rearranged}
         />
+
+        <WorkshopScene panels={panels} focused={focused} onOpen={openPanel} />
 
         <DndContext
           // a stable id keeps dnd-kit's generated aria-describedby ids identical
@@ -206,7 +214,7 @@ export default function PortfolioDashboard({
             <section
               aria-label="portfolio panels"
               data-dragging={dragging || undefined}
-              className={`grid min-h-0 flex-1 grid-cols-2 grid-rows-4 gap-2.5 lg:grid-cols-12 lg:grid-rows-6 lg:gap-3 ${
+              className={`forge-dock ${
                 dragging ? "grid-dragging" : ""
               }`}
               style={{ gridAutoFlow: "row dense" }}
@@ -216,10 +224,7 @@ export default function PortfolioDashboard({
                   key={id}
                   panel={panelById[id]}
                   focused={focused === id}
-                  onOpen={() => {
-                    setLastOpen(id);
-                    setOpen(id);
-                  }}
+                  onOpen={() => openPanel(id)}
                   onFocus={() => setFocused(id)}
                 >
                   {CARDS[id]}
@@ -238,18 +243,17 @@ export default function PortfolioDashboard({
               <article
                 data-overlay
                 data-rows={panelById[dragging].span.row}
-                className="bento-card group/card h-full w-full"
+                className="forge-drag-preview"
               >
-                <CardContent panel={panelById[dragging]}>
-                  {CARDS[dragging]}
-                </CardContent>
+                <ForgeItem id={dragging} />
+                <span>{panelById[dragging].label}</span>
               </article>
             ) : null}
           </DragOverlay>
         </DndContext>
 
         {/* compact footer strip - the sidebar footer only exists on large screens */}
-        <div className="flex shrink-0 items-center justify-center gap-3 lg:hidden">
+        <div className="forge-footer">
           {rearranged && (
             <button
               type="button"
@@ -259,7 +263,7 @@ export default function PortfolioDashboard({
               reset layout
             </button>
           )}
-          <p className="label text-faint">© 2026 ron deniele d. paragoso</p>
+          <p>click an object to explore <span aria-hidden="true">·</span> <span className="forge-drag-hint">drag the menu to rearrange <span aria-hidden="true">·</span> </span>© 2026 ron deniele d. paragoso</p>
         </div>
 
         <Modal

@@ -137,7 +137,7 @@ export default function Modal({
       <div
         ref={panelRef}
         tabIndex={-1}
-        className={`relative flex max-h-[92dvh] w-full ${SIZES[size]} ${
+        className={`forge-panel relative flex max-h-[92dvh] w-full ${SIZES[size]} ${
           tall ? "h-[min(92dvh,46rem)]" : ""
         } flex-col overflow-hidden rounded-xl border border-line-strong bg-surface shadow-[var(--lift)] outline-none ${
           closing ? "modal-panel-out" : "modal-panel-in"
@@ -169,7 +169,7 @@ export default function Modal({
           </button>
         </header>
 
-        <div className="scroll-area min-h-0 flex-1">{children}</div>
+        <div className="forge-panel-body scroll-area min-h-0 flex-1">{children}</div>
       </div>
     </div>,
     document.body,

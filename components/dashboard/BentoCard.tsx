@@ -3,6 +3,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { motion, useReducedMotion } from "motion/react";
 import type { Panel } from "@/lib/dashboard";
+import ForgeItem from "@/components/dashboard/ForgeItem";
 
 type BentoCardProps = {
   panel: Panel;
@@ -23,7 +24,6 @@ export default function BentoCard({
   focused,
   onOpen,
   onFocus,
-  children,
 }: BentoCardProps) {
   const { attributes, listeners, setNodeRef, isDragging } = useSortable({
     id: panel.id,
@@ -69,7 +69,10 @@ export default function BentoCard({
       onFocus={onFocus}
       aria-label={`${panel.label} - enter to open, space to pick up and rearrange`}
     >
-      <CardContent panel={panel}>{children}</CardContent>
+      <ForgeItem id={panel.id} />
+      <span className="forge-slot-label">{panel.label}</span>
+      <span className="forge-slot-meta">{panel.meta}</span>
+      <span className="sr-only">{panel.blurb}</span>
 
       <span
         aria-hidden="true"

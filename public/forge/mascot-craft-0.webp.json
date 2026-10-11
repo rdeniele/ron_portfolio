@@ -1,0 +1,13 @@
+{
+  "source": "built-in image_gen",
+  "prompt": "Create a clean professional 3 columns by 2 rows sprite animation atlas, SIX equal square cells read left to right then top to bottom. Reference is character identity only: fluffy orange chibi blacksmith cat, cream shirt, leather apron crossed straps on back, gloves, brown shorts, big fluffy tail. Full body rear three-quarter view facing LEFT toward an anvil outside frame. Cat stands on RIGHT half of every cell, same scale, planted feet same baseline. Cat actively crafts with hammer in left-facing arms extended toward LEFT: frame1 hammer raised high preparing; frame2 hammer raised overhead; frame3 fast descending hammer; frame4 hammer head down at fixed impact point at 22 percent cell width and 60 percent cell height; frame5 hammer head still at impact point with body slight recoil; frame6 hammer lifting to restart. Keep body/feet registered, expressive purposeful cozy anime game art, smooth cohesive six poses. No anvil in image, no workpiece, no sparks, no floor, no text. Leave safe transparent gutters ALL sides of EACH cell, no artwork crossing cells. Transparent background. Clean continuous brown outlined silhouette, no detached fragments or colored fringes. Entire cat and hammer visible.\n\nRefinement:\nEdit ONLY hammer/arms in the bottom-left and bottom-middle poses of this 3x2 atlas. In those two strike poses, raise the forward hands and hammer so the hammer bottom striking face is at chest height, at atlas y=790 rather than y=880. The hammer is hitting an elevated anvil surface outside the image, NOT near the ground. Hammer bottom center for bottom-left should be x80 y790 and bottom-middle x600 y790. Raise forearms naturally. Preserve cat bodies, heads, feet, tails, exact positions, scale, top row and bottom-right pose. Transparent background, no motion swoosh, no anvil, no workpiece, no shadows. Entire atlas unchanged except these two raised hammer strike positions.\n",
+  "atlasFrame": 0,
+  "alignment": {
+    "footCenter": 360,
+    "baseline": 580,
+    "impact": {
+      "x": 120,
+      "y": 380
+    }
+  }
+}

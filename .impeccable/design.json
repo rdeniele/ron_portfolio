@@ -1,0 +1,569 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T14:16:03.964Z",
+  "title": "Design System: The Forge",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15% 0.0456 84.56)",
+          "oklch(26% 0.0456 84.56)",
+          "oklch(38% 0.0456 84.56)",
+          "oklch(49% 0.0456 84.56)",
+          "oklch(61% 0.0456 84.56)",
+          "oklch(72% 0.0456 84.56)",
+          "oklch(84% 0.0456 84.56)",
+          "oklch(95% 0.0456 84.56)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "oklch(15% 0.0308 86.46)",
+          "oklch(26% 0.0308 86.46)",
+          "oklch(38% 0.0308 86.46)",
+          "oklch(49% 0.0308 86.46)",
+          "oklch(61% 0.0308 86.46)",
+          "oklch(72% 0.0308 86.46)",
+          "oklch(84% 0.0308 86.46)",
+          "oklch(95% 0.0308 86.46)"
+        ]
+      },
+      "surface-sunk": {
+        "role": "neutral",
+        "displayName": "Surface Sunk",
+        "tonalRamp": [
+          "oklch(15% 0.0520 86.24)",
+          "oklch(26% 0.0520 86.24)",
+          "oklch(38% 0.0520 86.24)",
+          "oklch(49% 0.0520 86.24)",
+          "oklch(61% 0.0520 86.24)",
+          "oklch(72% 0.0520 86.24)",
+          "oklch(84% 0.0520 86.24)",
+          "oklch(95% 0.0520 86.24)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0483 56.97)",
+          "oklch(26% 0.0483 56.97)",
+          "oklch(38% 0.0483 56.97)",
+          "oklch(49% 0.0483 56.97)",
+          "oklch(61% 0.0483 56.97)",
+          "oklch(72% 0.0483 56.97)",
+          "oklch(84% 0.0483 56.97)",
+          "oklch(95% 0.0483 56.97)"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "tonalRamp": [
+          "oklch(15% 0.0550 60.66)",
+          "oklch(26% 0.0550 60.66)",
+          "oklch(38% 0.0550 60.66)",
+          "oklch(49% 0.0550 60.66)",
+          "oklch(61% 0.0550 60.66)",
+          "oklch(72% 0.0550 60.66)",
+          "oklch(84% 0.0550 60.66)",
+          "oklch(95% 0.0550 60.66)"
+        ]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Ink Faint",
+        "tonalRamp": [
+          "oklch(15% 0.0532 64.01)",
+          "oklch(26% 0.0532 64.01)",
+          "oklch(38% 0.0532 64.01)",
+          "oklch(49% 0.0532 64.01)",
+          "oklch(61% 0.0532 64.01)",
+          "oklch(72% 0.0532 64.01)",
+          "oklch(84% 0.0532 64.01)",
+          "oklch(95% 0.0532 64.01)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "tonalRamp": [
+          "oklch(15% 0.0731 81.76)",
+          "oklch(26% 0.0731 81.76)",
+          "oklch(38% 0.0731 81.76)",
+          "oklch(49% 0.0731 81.76)",
+          "oklch(61% 0.0731 81.76)",
+          "oklch(72% 0.0731 81.76)",
+          "oklch(84% 0.0731 81.76)",
+          "oklch(95% 0.0731 81.76)"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Line Strong",
+        "tonalRamp": [
+          "oklch(15% 0.0792 71.33)",
+          "oklch(26% 0.0792 71.33)",
+          "oklch(38% 0.0792 71.33)",
+          "oklch(49% 0.0792 71.33)",
+          "oklch(61% 0.0792 71.33)",
+          "oklch(72% 0.0792 71.33)",
+          "oklch(84% 0.0792 71.33)",
+          "oklch(95% 0.0792 71.33)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Accent",
+        "tonalRamp": [
+          "oklch(15% 0.1444 54.83)",
+          "oklch(26% 0.1444 54.83)",
+          "oklch(38% 0.1444 54.83)",
+          "oklch(49% 0.1444 54.83)",
+          "oklch(61% 0.1444 54.83)",
+          "oklch(72% 0.1444 54.83)",
+          "oklch(84% 0.1444 54.83)",
+          "oklch(95% 0.1444 54.83)"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Accent Ink",
+        "tonalRamp": [
+          "oklch(15% 0.1286 42.45)",
+          "oklch(26% 0.1286 42.45)",
+          "oklch(38% 0.1286 42.45)",
+          "oklch(49% 0.1286 42.45)",
+          "oklch(61% 0.1286 42.45)",
+          "oklch(72% 0.1286 42.45)",
+          "oklch(84% 0.1286 42.45)",
+          "oklch(95% 0.1286 42.45)"
+        ]
+      },
+      "accent-soft": {
+        "role": "primary",
+        "displayName": "Accent Soft",
+        "tonalRamp": [
+          "oklch(15% 0.0680 83.56)",
+          "oklch(26% 0.0680 83.56)",
+          "oklch(38% 0.0680 83.56)",
+          "oklch(49% 0.0680 83.56)",
+          "oklch(61% 0.0680 83.56)",
+          "oklch(72% 0.0680 83.56)",
+          "oklch(84% 0.0680 83.56)",
+          "oklch(95% 0.0680 83.56)"
+        ]
+      },
+      "wood": {
+        "role": "neutral",
+        "displayName": "Wood",
+        "tonalRamp": [
+          "oklch(15% 0.0544 51.65)",
+          "oklch(26% 0.0544 51.65)",
+          "oklch(38% 0.0544 51.65)",
+          "oklch(49% 0.0544 51.65)",
+          "oklch(61% 0.0544 51.65)",
+          "oklch(72% 0.0544 51.65)",
+          "oklch(84% 0.0544 51.65)",
+          "oklch(95% 0.0544 51.65)"
+        ]
+      },
+      "wood-deep": {
+        "role": "neutral",
+        "displayName": "Wood Deep",
+        "tonalRamp": [
+          "oklch(15% 0.0315 42.06)",
+          "oklch(26% 0.0315 42.06)",
+          "oklch(38% 0.0315 42.06)",
+          "oklch(49% 0.0315 42.06)",
+          "oklch(61% 0.0315 42.06)",
+          "oklch(72% 0.0315 42.06)",
+          "oklch(84% 0.0315 42.06)",
+          "oklch(95% 0.0315 42.06)"
+        ]
+      },
+      "gold": {
+        "role": "primary",
+        "displayName": "Gold",
+        "tonalRamp": [
+          "oklch(15% 0.1167 79.47)",
+          "oklch(26% 0.1167 79.47)",
+          "oklch(38% 0.1167 79.47)",
+          "oklch(49% 0.1167 79.47)",
+          "oklch(61% 0.1167 79.47)",
+          "oklch(72% 0.1167 79.47)",
+          "oklch(84% 0.1167 79.47)",
+          "oklch(95% 0.1167 79.47)"
+        ]
+      },
+      "sage": {
+        "role": "secondary",
+        "displayName": "Sage",
+        "tonalRamp": [
+          "oklch(15% 0.0694 124.19)",
+          "oklch(26% 0.0694 124.19)",
+          "oklch(38% 0.0694 124.19)",
+          "oklch(49% 0.0694 124.19)",
+          "oklch(61% 0.0694 124.19)",
+          "oklch(72% 0.0694 124.19)",
+          "oklch(84% 0.0694 124.19)",
+          "oklch(95% 0.0694 124.19)"
+        ]
+      },
+      "dark-paper": {
+        "role": "neutral",
+        "displayName": "Dark Paper",
+        "tonalRamp": [
+          "oklch(15% 0.0133 61.88)",
+          "oklch(26% 0.0133 61.88)",
+          "oklch(38% 0.0133 61.88)",
+          "oklch(49% 0.0133 61.88)",
+          "oklch(61% 0.0133 61.88)",
+          "oklch(72% 0.0133 61.88)",
+          "oklch(84% 0.0133 61.88)",
+          "oklch(95% 0.0133 61.88)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark Surface",
+        "tonalRamp": [
+          "oklch(15% 0.0239 63.94)",
+          "oklch(26% 0.0239 63.94)",
+          "oklch(38% 0.0239 63.94)",
+          "oklch(49% 0.0239 63.94)",
+          "oklch(61% 0.0239 63.94)",
+          "oklch(72% 0.0239 63.94)",
+          "oklch(84% 0.0239 63.94)",
+          "oklch(95% 0.0239 63.94)"
+        ]
+      },
+      "dark-surface-sunk": {
+        "role": "neutral",
+        "displayName": "Dark Surface Sunk",
+        "tonalRamp": [
+          "oklch(15% 0.0185 77.80)",
+          "oklch(26% 0.0185 77.80)",
+          "oklch(38% 0.0185 77.80)",
+          "oklch(49% 0.0185 77.80)",
+          "oklch(61% 0.0185 77.80)",
+          "oklch(72% 0.0185 77.80)",
+          "oklch(84% 0.0185 77.80)",
+          "oklch(95% 0.0185 77.80)"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Dark Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0424 84.58)",
+          "oklch(26% 0.0424 84.58)",
+          "oklch(38% 0.0424 84.58)",
+          "oklch(49% 0.0424 84.58)",
+          "oklch(61% 0.0424 84.58)",
+          "oklch(72% 0.0424 84.58)",
+          "oklch(84% 0.0424 84.58)",
+          "oklch(95% 0.0424 84.58)"
+        ]
+      },
+      "dark-ink-muted": {
+        "role": "neutral",
+        "displayName": "Dark Ink Muted",
+        "tonalRamp": [
+          "oklch(15% 0.0507 77.94)",
+          "oklch(26% 0.0507 77.94)",
+          "oklch(38% 0.0507 77.94)",
+          "oklch(49% 0.0507 77.94)",
+          "oklch(61% 0.0507 77.94)",
+          "oklch(72% 0.0507 77.94)",
+          "oklch(84% 0.0507 77.94)",
+          "oklch(95% 0.0507 77.94)"
+        ]
+      },
+      "dark-ink-faint": {
+        "role": "neutral",
+        "displayName": "Dark Ink Faint",
+        "tonalRamp": [
+          "oklch(15% 0.0560 80.58)",
+          "oklch(26% 0.0560 80.58)",
+          "oklch(38% 0.0560 80.58)",
+          "oklch(49% 0.0560 80.58)",
+          "oklch(61% 0.0560 80.58)",
+          "oklch(72% 0.0560 80.58)",
+          "oklch(84% 0.0560 80.58)",
+          "oklch(95% 0.0560 80.58)"
+        ]
+      },
+      "dark-line": {
+        "role": "neutral",
+        "displayName": "Dark Line",
+        "tonalRamp": [
+          "oklch(15% 0.0446 70.05)",
+          "oklch(26% 0.0446 70.05)",
+          "oklch(38% 0.0446 70.05)",
+          "oklch(49% 0.0446 70.05)",
+          "oklch(61% 0.0446 70.05)",
+          "oklch(72% 0.0446 70.05)",
+          "oklch(84% 0.0446 70.05)",
+          "oklch(95% 0.0446 70.05)"
+        ]
+      },
+      "dark-line-strong": {
+        "role": "neutral",
+        "displayName": "Dark Line Strong",
+        "tonalRamp": [
+          "oklch(15% 0.0745 70.46)",
+          "oklch(26% 0.0745 70.46)",
+          "oklch(38% 0.0745 70.46)",
+          "oklch(49% 0.0745 70.46)",
+          "oklch(61% 0.0745 70.46)",
+          "oklch(72% 0.0745 70.46)",
+          "oklch(84% 0.0745 70.46)",
+          "oklch(95% 0.0745 70.46)"
+        ]
+      },
+      "dark-accent": {
+        "role": "primary",
+        "displayName": "Dark Accent",
+        "tonalRamp": [
+          "oklch(15% 0.1239 68.78)",
+          "oklch(26% 0.1239 68.78)",
+          "oklch(38% 0.1239 68.78)",
+          "oklch(49% 0.1239 68.78)",
+          "oklch(61% 0.1239 68.78)",
+          "oklch(72% 0.1239 68.78)",
+          "oklch(84% 0.1239 68.78)",
+          "oklch(95% 0.1239 68.78)"
+        ]
+      },
+      "dark-accent-ink": {
+        "role": "primary",
+        "displayName": "Dark Accent Ink",
+        "tonalRamp": [
+          "oklch(15% 0.1164 67.16)",
+          "oklch(26% 0.1164 67.16)",
+          "oklch(38% 0.1164 67.16)",
+          "oklch(49% 0.1164 67.16)",
+          "oklch(61% 0.1164 67.16)",
+          "oklch(72% 0.1164 67.16)",
+          "oklch(84% 0.1164 67.16)",
+          "oklch(95% 0.1164 67.16)"
+        ]
+      },
+      "dark-accent-soft": {
+        "role": "primary",
+        "displayName": "Dark Accent Soft",
+        "tonalRamp": [
+          "oklch(15% 0.0473 71.88)",
+          "oklch(26% 0.0473 71.88)",
+          "oklch(38% 0.0473 71.88)",
+          "oklch(49% 0.0473 71.88)",
+          "oklch(61% 0.0473 71.88)",
+          "oklch(72% 0.0473 71.88)",
+          "oklch(84% 0.0473 71.88)",
+          "oklch(95% 0.0473 71.88)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Welcome Plaque",
+        "purpose": "Responsive identity heading."
+      },
+      "headline": {
+        "displayName": "Panel Heading",
+        "purpose": "Portfolio panel titles."
+      },
+      "body": {
+        "displayName": "Reading Text",
+        "purpose": "Portfolio detail prose."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel-lift",
+        "value": "0 4px 10px rgb(58 29 11 / .15), 0 24px 65px rgb(35 17 7 / .34)",
+        "purpose": "Light parchment panel elevation."
+      },
+      {
+        "name": "panel-lift-dark",
+        "value": "0 5px 15px rgb(0 0 0 / .35), 0 24px 70px rgb(0 0 0 / .6)",
+        "purpose": "Dark leather panel elevation."
+      },
+      {
+        "name": "inventory-rest",
+        "value": "inset 0 1px #fff8e3, 0 4px 9px #1e120b55",
+        "purpose": "Tactile inventory tile."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control-response",
+        "value": "150ms ease-out",
+        "purpose": "Panel controls and discipline links."
+      },
+      {
+        "name": "inventory-response",
+        "value": "180ms ease-out",
+        "purpose": "Inventory lift and border feedback."
+      },
+      {
+        "name": "inventory-reorder",
+        "value": "320ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Sibling position animation."
+      },
+      {
+        "name": "modal-enter",
+        "value": "260ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Opacity, 12px rise, scale .96 to 1."
+      },
+      {
+        "name": "modal-exit",
+        "value": "220ms cubic-bezier(0.7, 0, 0.84, 0)",
+        "purpose": "Panel exit."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "CSS transitions suppressed; embers hidden and decorative animations disabled."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-max",
+        "value": "640px"
+      },
+      {
+        "name": "tablet-max",
+        "value": "1023px"
+      },
+      {
+        "name": "tall-tablet-min-height",
+        "value": "800px"
+      },
+      {
+        "name": "short-viewport-max-height",
+        "value": "650px"
+      }
+    ],
+    "sceneArtwork": {
+      "desktopFit": "contain, no image cropping",
+      "standard": "/forge/workshop-complete.webp",
+      "panoramic": "/forge/workshop-panorama.webp",
+      "panoramicStageRatio": 2.45,
+      "coordinates": "lib/forge-scene.ts",
+      "mobile": "portrait crop with inventory navigation"
+    },
+    "workshopMotion": {
+      "mascotFrames": 6,
+      "mascotLoopMs": 2400,
+      "orientation": "rear three-quarter, facing left and crafting at the anvil",
+      "assets": "/forge/mascot-craft-{0..5}.webp",
+      "fire": "aligned flame, glow, smoke and ember SVG effects",
+      "panelBehavior": "pause decorative animations",
+      "reducedMotion": "static first crafting frame and workpiece; static flame and glow; no impact sparks, smoke or embers",
+      "crafting": "foot-registered hammer raises, strike and recovery; glowing workpiece and synchronized impact sparks"
+    }
+  },
+  "components": [
+    {
+      "name": "Section Selector",
+      "kind": "button",
+      "refersTo": "button-section",
+      "description": "Chapter, service, or skill category selector.",
+      "html": "<button class=\"ds-section\" aria-pressed=\"false\">development</button>",
+      "css": ".ds-section{font-family:var(--font-sans,Nunito,sans-serif);padding:10px 14px;min-height:44px;font-size:12px;font-weight:800;border:1px solid var(--line-strong,#a17b4c);border-radius:11px;color:var(--ink-muted,#705239);background:var(--surface-sunk,#f0dfba);transition:transform 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out}.ds-section[aria-pressed=\"true\"]{color:var(--ink,#422916);background:var(--accent-soft,#f8dfaf);box-shadow:inset 0 2px 3px #65481e1a;border-color:var(--accent-ink,#9b431b)}.ds-section:active{transform:scale(.98)}.ds-section:focus-visible,.ds-close:focus-visible,.ds-inventory:focus-visible,.ds-nav a:focus-visible{outline:3px solid #cc842d;outline-offset:4px}"
+    },
+    {
+      "name": "Selected Section Selector",
+      "kind": "button",
+      "refersTo": "button-section-selected",
+      "description": "The current content category.",
+      "html": "<button class=\"ds-section\" aria-pressed=\"true\">development</button>",
+      "css": ".ds-section{font-family:var(--font-sans,Nunito,sans-serif);padding:10px 14px;min-height:44px;font-size:12px;font-weight:800;border:1px solid var(--line-strong,#a17b4c);border-radius:11px;color:var(--ink-muted,#705239);background:var(--surface-sunk,#f0dfba);transition:transform 150ms ease-out,background-color 150ms ease-out,color 150ms ease-out}.ds-section[aria-pressed=\"true\"]{color:var(--ink,#422916);background:var(--accent-soft,#f8dfaf);box-shadow:inset 0 2px 3px #65481e1a;border-color:var(--accent-ink,#9b431b)}.ds-section:active{transform:scale(.98)}.ds-section:focus-visible,.ds-close:focus-visible,.ds-inventory:focus-visible,.ds-nav a:focus-visible{outline:3px solid #cc842d;outline-offset:4px}"
+    },
+    {
+      "name": "Close Control",
+      "kind": "button",
+      "description": "Dismiss a portfolio panel.",
+      "html": "<button class=\"ds-close\" aria-label=\"close panel\"><svg viewBox=\"0 0 16 16\" width=\"14\" height=\"14\" aria-hidden=\"true\"><path d=\"M2 2l12 12M14 2L2 14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg></button>",
+      "css": ".ds-close{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line,#d9bd8b);border-radius:12px;background:var(--surface,#fff5df);color:var(--ink-muted,#705239);transition:transform 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out}.ds-close:hover{border-color:var(--line-strong,#a17b4c);color:var(--ink,#422916)}.ds-close:active{transform:scale(.98)}.ds-section:focus-visible,.ds-close:focus-visible,.ds-inventory:focus-visible,.ds-nav a:focus-visible{outline:3px solid #cc842d;outline-offset:4px}"
+    },
+    {
+      "name": "Discipline Navigation",
+      "kind": "nav",
+      "description": "Timber inset strip with the current route lit in amber.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"disciplines\"><a href=\"#web\" aria-current=\"page\">web</a><a href=\"#video\">video</a><a href=\"#art\">art</a></nav>",
+      "css": ".ds-nav{display:flex;gap:4px;padding:5px;border:1px solid #a88150;border-radius:15px;background:#281c1580;box-shadow:inset 0 2px 5px #21140f55}.ds-nav a{display:grid;place-items:center;min-height:44px;min-width:68px;padding:8px 18px;color:#f5ddb6;font-family:var(--font-sans,Nunito,sans-serif);font-size:14px;font-weight:800;text-decoration:none;border-radius:10px;transition:transform 150ms ease-out,background-color 150ms ease-out}.ds-nav a[aria-current]{background:linear-gradient(#f8d58b,#e7af54);color:#51301b;box-shadow:inset 0 1px #fff4d8,0 2px 4px #20150a55}.ds-nav a:hover{transform:translateY(-2px);background-color:#b2763d}.ds-nav a:active{transform:scale(.97)}.ds-section:focus-visible,.ds-close:focus-visible,.ds-inventory:focus-visible,.ds-nav a:focus-visible{outline:3px solid #cc842d;outline-offset:4px}"
+    },
+    {
+      "name": "Skill Chip",
+      "kind": "chip",
+      "refersTo": "chip-skill",
+      "description": "Noninteractive skill item with a CSS sage diamond.",
+      "html": "<span class=\"ds-skill\">frontend development</span>",
+      "css": ".ds-skill{display:inline-block;position:relative;padding:10px 13px 10px 30px;border:1px solid var(--line,#d9bd8b);border-radius:10px;background:var(--accent-soft,#f8dfaf);color:var(--ink,#422916);font-family:var(--font-sans,Nunito,sans-serif);font-size:13px;line-height:1.65;box-shadow:inset 0 1px 2px #4d321114,0 2px 3px #4d32110a}.ds-skill:before{content:\"\";position:absolute;left:12px;top:50%;width:9px;height:9px;border:2px solid #6e7d4f;background:#a9b884;border-radius:3px;transform:translateY(-50%) rotate(45deg)}"
+    },
+    {
+      "name": "Journal Surface",
+      "kind": "card",
+      "refersTo": "card-journal",
+      "description": "Settled reading surface inside a portfolio panel.",
+      "html": "<section class=\"ds-journal\"><h3>development</h3><p>Frontend development and web design.</p></section>",
+      "css": ".ds-journal{min-height:150px;padding:20px;border:1px solid var(--line,#d9bd8b);border-radius:14px;background:var(--surface,#fff5df);color:var(--ink,#422916);box-shadow:0 3px 8px #4f2b160d}.ds-journal h3{font-family:var(--font-serif,\"Baloo 2\",serif);font-size:1.375rem;font-weight:600;margin:0}.ds-journal p{font-family:var(--font-sans,Nunito,sans-serif);font-size:.875rem;line-height:1.625;color:var(--ink-muted,#705239)}"
+    },
+    {
+      "name": "Inventory Tile Frame",
+      "kind": "custom",
+      "refersTo": "card-inventory",
+      "description": "Actual inventory frame and label; raster object artwork is intentionally omitted from the shadow DOM sample.",
+      "html": "<button class=\"ds-inventory\"><span>About</span></button>",
+      "css": ".ds-inventory{display:flex;flex-direction:column;align-items:center;justify-content:center;width:126px;height:100px;padding:4px 10px 8px;border:1px solid #b48b55;border-radius:15px;outline:1px solid #deba7e55;outline-offset:-5px;background:linear-gradient(135deg,#fff0cf,#e8ca94);color:#4b2e1b;box-shadow:inset 0 1px #fff8e3,0 4px 9px #1e120b55;cursor:pointer;transition:transform 180ms ease-out,border-color 180ms ease-out}.ds-inventory span{font-family:var(--font-serif,\"Baloo 2\",serif);font-size:18px;font-weight:700;line-height:1.05}.ds-inventory:hover{transform:translateY(-5px);border-color:#ffdda0;box-shadow:inset 0 1px #fff8e3,0 8px 15px #21120866}.ds-inventory:active{transform:scale(.97)}.ds-section:focus-visible,.ds-close:focus-visible,.ds-inventory:focus-visible,.ds-nav a:focus-visible{outline:3px solid #cc842d;outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Forge",
+    "overview": "A cozy anime blacksmith workshop gives the portfolio its material language: painted timber, amber firelight, cream parchment, brass edging, and the user's orange cat blacksmith. Illustrated objects and the supplied mascot are identity assets; the mascot is preserved as the actual character rather than replaced with a generic illustration.\n\nControls feel like small inventory objects, while readable detail panels feel like pages opened inside the workshop. The dark theme changes those panels to warm leather without recoloring the room artwork or timber navigation. Rounded letters and restrained lift reinforce the friendly, tactile world.",
+    "keyCharacteristics": [
+      "Painted workshop and supplied orange cat mascot.",
+      "Timber framing, brass edging, parchment and leather panels.",
+      "Baloo 2 headings paired with Nunito reading text.",
+      "Illustrated inventory controls with visible labels.",
+      "Brief tactile feedback and reduced motion support."
+    ],
+    "rules": [
+      {
+        "name": "The Warm Materials Rule",
+        "body": "Theme changes preserve warm brown undertones and amber emphasis.",
+        "section": "colors"
+      },
+      {
+        "name": "The Rounded Voice Rule",
+        "body": "Use Baloo 2 for forge headings and Nunito for reading and controls.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tactile Lift Rule",
+        "body": "Interactive objects lift briefly on hover and compress on press; reading surfaces stay settled.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the supplied orange cat mascot and the illustrated workshop's warm material character.",
+      "Do pair Baloo 2 headings with Nunito reading text and controls.",
+      "Do use parchment or leather panels with brass edging and diffuse brown depth.",
+      "Do keep inventory labels available when responsive cropping hides scene objects.",
+      "Do preserve visible focus, internal panel scrolling, and reduced motion behavior."
+    ],
+    "donts": [
+      "Don't apply the old orange duotone treatment to project screenshots; the forge explicitly disables it.",
+      "Don't replace the supplied mascot with a generic character or font icon.",
+      "Don't shrink scene hotspots to serve as the only mobile navigation.",
+      "Don't inherit tiny metadata, decorative kickers, or text-glyph arrows as reusable design primitives."
+    ]
+  }
+}

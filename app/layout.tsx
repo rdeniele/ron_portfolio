@@ -1,18 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Nunito, Baloo_2, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
+import "./forge.css";
 
-const instrumentSans = Instrument_Sans({
+const instrumentSans = Nunito({
   variable: "--font-instrument-sans",
   subsets: ["latin"],
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
+const instrumentSerif = Baloo_2({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
-  weight: "400",
   display: "swap",
 });
 
