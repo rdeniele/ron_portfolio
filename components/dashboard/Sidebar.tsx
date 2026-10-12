@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import ThemeToggle from "@/components/dashboard/ThemeToggle";
+import ForgeAudio from "@/components/dashboard/ForgeAudio";
 import { disciplines, type Discipline, type Panel, type PanelId } from "@/lib/dashboard";
 type SidebarProps = { panels: Panel[]; discipline: Discipline; focused: PanelId | null; onSelect: (id: PanelId) => void; onReset: () => void; rearranged: boolean; };
 export default function Sidebar({discipline, onReset, rearranged}: SidebarProps) {
@@ -13,6 +14,7 @@ export default function Sidebar({discipline, onReset, rearranged}: SidebarProps)
       {disciplines.map(d=><Link key={d.id} href={d.path} aria-current={d.id === discipline.id ? "page" : undefined}>{d.nav}</Link>)}
     </nav>
     <div className="forge-toolbar">
+      <ForgeAudio />
       <button type="button" onClick={onReset} disabled={!rearranged} className="forge-reset" aria-label="reset layout" title="Reset object menu order"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 8a8 8 0 1 1-1 8M5 3v5h5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
       <ThemeToggle />
     </div>
