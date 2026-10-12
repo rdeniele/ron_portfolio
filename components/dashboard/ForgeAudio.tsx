@@ -43,7 +43,7 @@ export default function ForgeAudio(){
     }} title="Forge music & fireplace">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4Z" />{silent?<path d="m16 9 5 6m0-6-5 6" />:<><path d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14" /></>}</svg>
     </button>
-    <details className="forge-volume-menu"><summary aria-label="Audio volume settings" title="Volume">♫</summary><div className="forge-volume-panel">
+    <details className="forge-volume-menu"><summary aria-label="Audio volume settings" title="Volume"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13M9 9l12-2" /><ellipse cx="6" cy="18" rx="3" ry="3" /><ellipse cx="18" cy="16" rx="3" ry="3" /></svg></summary><div className="forge-volume-panel">
       <label htmlFor="forge-volume">Forge ambience <output>{settings.volume}%</output></label>
       <input id="forge-volume" type="range" min="0" max="100" value={settings.volume} onChange={event=>{const volume=Number(event.target.value);const next={muted:volume===0,volume};settingsRef.current=next;save(next);if(volume>0)startRef.current();}} />
       <p>Music & crackling fire</p><a href="/audio/CREDITS.txt" target="_blank" rel="noreferrer">Free-to-use audio credits ↗</a>
