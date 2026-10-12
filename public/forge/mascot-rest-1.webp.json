@@ -1,0 +1,12 @@
+{
+  "source": "built-in image_gen",
+  "prompt": "Asset type: game character idle animation sprite atlas, transparent background. Using the supplied orange cat blacksmith as the exact character/art-style reference, create FOUR frames in a precise 2 by 2 grid, square 2048x2048 canvas, four equal 1024x1024 cells. Each cell has exactly one FULL BODY same cat, same scale and foot baseline, generous transparent padding, no overlap between cells. Cat has fluffy orange tabby fur, cream ear tufts, leather blacksmith apron over cream shirt, brown gloves, tool pockets, hammer. IMPORTANT ORIENTATION: rear three-quarter view, the cat's BACK is toward viewer and chest/face point diagonally toward UPPER LEFT, toward a forge behind/left of it. Show apron crossed back straps and fluffy tail, a small left-facing cheek/profile at most; never face the viewer or look right. Hammer held calmly at its left-facing side. Warm polished chibi anime painterly rendering matching reference. Four consecutive gentle IDLE loop frames: frame1 resting neutral, frame2 small inhale/shoulder lift and tail slightly left, frame3 relaxed tiny ear twitch and tail slightly right, frame4 settles to neutral ready to loop to frame1. Motion subtle, planted feet, stable proportions and position, no action swing, no big pose change. SAME rear-left-facing orientation across every frame. No text, numbers, borders, background, fire, floor, shadows on floor, or UI. Real transparent alpha.\n",
+  "reference": "mascot.webp",
+  "atlasFrame": 1,
+  "alignment": {
+    "footCenter": 360,
+    "baseline": 580
+  },
+  "derivedFrom": "mascot-idle-1.webp",
+  "processing": "resize and sprite canvas registration"
+}

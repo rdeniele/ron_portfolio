@@ -1,0 +1,6 @@
+{
+  "source": "built-in image_gen",
+  "prompt": "Reference character identity only. Generate professional game sprite atlas SIX full body orange fluffy chibi blacksmith cats in 3 columns 2 rows, equal square cells, clean transparent background. Cream shirt, brown leather apron crossed back straps, gloves, shorts, big fluffy tail. All same character, size, feet baseline and facing LEFT rear three-quarter, eyes visible left profile. Top row THREE walking cycle poses, hammer tucked safely by side, left leg forward, passing, right leg forward, gentle tail sway. Bottom row THREE funny mildly startled struggling poses while picked up by invisible hand: shoulders lifted, dangling feet kicking alternating, ears slightly tilted, wide surprised friendly eyes, tiny open mouth; NOT distressed or hurt, cute playful dangling. Keep entire character safely within each cell with generous empty padding, no overlap across cells, no hand, no floor, no shadows, no particles, no background. Clean connected silhouettes and true transparent alpha, no colored edge artifacts.\n",
+  "atlasFrame": 0,
+  "animation": "struggle"
+}

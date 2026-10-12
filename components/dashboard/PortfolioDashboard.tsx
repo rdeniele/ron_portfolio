@@ -19,7 +19,7 @@ import {
   sortableKeyboardCoordinates,
 } from "@dnd-kit/sortable";
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import BentoCard from "@/components/dashboard/BentoCard";
 import Modal from "@/components/dashboard/Modal";
 import Sidebar from "@/components/dashboard/Sidebar";
@@ -37,7 +37,7 @@ import ContactModal from "@/components/dashboard/modals/ContactModal";
 import ServicesModal from "@/components/dashboard/modals/ServicesModal";
 import SkillsModal from "@/components/dashboard/modals/SkillsModal";
 import WorksModal from "@/components/dashboard/modals/WorksModal";
-import SplashIntro from "@/components/dashboard/SplashIntro";
+import ForgeWelcome, { subscribeWelcome, welcomeSnapshot, welcomeServerSnapshot } from "@/components/dashboard/ForgeWelcome";
 import WorkshopScene from "@/components/dashboard/WorkshopScene";
 import ForgeItem from "@/components/dashboard/ForgeItem";
 import {
@@ -175,6 +175,7 @@ export default function PortfolioDashboard({
     setOpen(id);
   };
 
+  const welcoming=useSyncExternalStore(subscribeWelcome,welcomeSnapshot,welcomeServerSnapshot);
   return (
     <>
       {/* a quiet hairline grid, fading out as it falls. Rendered as a sibling
@@ -182,10 +183,11 @@ export default function PortfolioDashboard({
           paint over the unpositioned sidebar and swallow its clicks. */}
       <div aria-hidden="true" className="page-backdrop" />
       <CursorTrail />
-      <SplashIntro label={discipline.label} />
+      {welcoming && <ForgeWelcome />}
 
       <main
         data-dashboard
+        inert={welcoming}
         className="forge-app relative z-10 flex h-dvh w-full flex-col overflow-hidden"
       >
         <Sidebar
@@ -197,7 +199,7 @@ export default function PortfolioDashboard({
           rearranged={rearranged}
         />
 
-        <WorkshopScene panels={panels} focused={focused} onOpen={openPanel} />
+        <WorkshopScene panels={panels} focused={focused} onOpen={openPanel} paused={welcoming || open!==null} />
 
         <DndContext
           // a stable id keeps dnd-kit's generated aria-describedby ids identical

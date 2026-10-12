@@ -203,7 +203,15 @@ Rounded rectangles dominate: broad panel corners, smaller journal and inventory 
 
 ## Components
 
+Interactive workshop objects use a subtle warm-gold halo instead of the former thick cream sticker border. Hover, keyboard focus, and the blacksmith's nearby target strengthen the glow and add a faint golden wash. Keep the traced hit regions and star pins unchanged so the painted objects remain interactive and discoverable.
+
 ### Crafting Mascot
+
+On desktop with a fine pointer (1024px and wider), WASD takes manual control from wandering. Movement follows held keys immediately, normalizes diagonals, and stays inside the scene. The closest item in reach gets a silhouette highlight and an Enter prompt; Enter opens its existing panel. Escape returns the cat to work. A compact control strip stays at the bottom of the scene. Modals, editable controls, browser shortcuts, and lost window focus suspend game input. Tablet/mobile keep pointer interaction and omit keyboard controls.
+
+The blacksmith alternates between crafting, resting, walking, being held, and returning. Pointer capture keeps a drag attached to the visitor's pointer; a 6px threshold preserves a normal click for About. Holding uses three generated dangling poses. Releasing gives him a short rest before a slow, interruptible walk home. Random walks stay inside the visible floor and return to the registered anvil anchor. Modal panels and hidden tabs suspend travel and timers; reduced motion disables roaming and holds sprites still. Enter opens About and Escape sends the cat home.
+
+Light mode shows the existing sunlit morning room. Dark mode crossfades to a separately generated night version of each composition, with blue moonlight at the same windows and warm forge/lantern pools. Explicit theme selection overrides the system preference and persists through reload. Furniture geometry and clickable outlines remain registered.
 
 Six generated transparent poses form a 2.4-second hammering loop. Frames share a fixed foot baseline; the striking hammer is anchored to each room composition's anvil surface. A small glowing metal workpiece and brief impact sparks complete the action. The mascot scales to 65% of scene height on desktop, 52% on tablet, and 43% on mobile, preserving the hammer anchor and full tail. Decorative motion pauses while a panel is open. Reduced motion holds the first pose and hides impact sparks, smoke, and embers.
 

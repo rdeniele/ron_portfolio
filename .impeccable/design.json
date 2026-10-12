@@ -467,6 +467,38 @@
       "panelBehavior": "pause decorative animations",
       "reducedMotion": "static first crafting frame and workpiece; static flame and glow; no impact sparks, smoke or embers",
       "crafting": "foot-registered hammer raises, strike and recovery; glowing workpiece and synchronized impact sparks"
+    },
+    "workshopLife": {
+      "states": [
+        "crafting",
+        "idle",
+        "walking",
+        "grabbed",
+        "returning"
+      ],
+      "interaction": "pointer-captured drag; 6px threshold; click or Enter opens About; Escape sends the cat home",
+      "roaming": "random bounded floor destinations with 12–22 seconds crafting and short idle breaks",
+      "return": "slow interruptible walk to the fixed anvil anchor",
+      "pause": "modal open and hidden tab suspend scheduling and travel",
+      "reducedMotion": "no autonomous wandering, static sprite and immediate return",
+      "scenes": {
+        "light": "sunlit morning workshop",
+        "dark": "generated moonlit workshop with glowing forge and lanterns"
+      },
+      "theme": "persisted explicit choice takes precedence over system preference"
+    },
+    "keyboardExploration": {
+      "availability": "min-width1024, hover and fine pointer",
+      "movement": "WASD, normalized diagonal movement, 190px/s, immediate response and bounded position",
+      "interaction": "nearest item highlight and Enter prompt; existing panel opens",
+      "exit": "Escape returns to crafting",
+      "guards": "modal open, editable fields, modifiers, hidden tab, window blur"
+    },
+    "objectHighlight": {
+      "rest": "subtle 2px translucent gold edge with diffused halo",
+      "active": "brighter 2.5px warm gold edge, broader glow and faint fill",
+      "activation": "hover, keyboard focus or nearby WASD interaction target",
+      "hitRegions": "unchanged traced object geometry"
     }
   },
   "components": [

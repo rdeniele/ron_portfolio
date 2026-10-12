@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -134,6 +135,11 @@ export default function Modal({
         }`}
       />
 
+      <div className={`forge-modal-party ${closing ? "modal-panel-out" : "modal-panel-in"}`}>
+        <div className="forge-modal-companion" aria-hidden="true">
+          <Image src="/forge/mascot.webp" alt="" width={800} height={800} sizes="240px" />
+          <span>Ron Paragoso <span>your guide to The Forge</span></span>
+        </div>
       <div
         ref={panelRef}
         tabIndex={-1}
@@ -144,6 +150,7 @@ export default function Modal({
         }`}
       >
         <header className="flex shrink-0 items-start justify-between gap-4 border-b border-line px-5 py-4 sm:px-7 sm:py-5">
+          <div className="forge-modal-avatar" aria-hidden="true"><Image src="/forge/mascot.webp" alt="" width={800} height={800} sizes="64px" /></div>
           <div className="min-w-0">
             <p className="label text-faint">
               <span className="text-accent-ink">{index}</span>
@@ -170,6 +177,7 @@ export default function Modal({
         </header>
 
         <div className="forge-panel-body scroll-area min-h-0 flex-1">{children}</div>
+      </div>
       </div>
     </div>,
     document.body,

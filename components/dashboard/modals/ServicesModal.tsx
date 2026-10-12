@@ -1,12 +1,11 @@
-"use client";
-import { useState } from "react";
 import { services } from "@/lib/site";
-import ChapterPager from "@/components/dashboard/ChapterPager";
 export default function ServicesModal() {
-  const [selected,setSelected] = useState(0);
-  const active = services[selected];
   return <div className="px-5 py-6 sm:px-7">
-    <ChapterPager index={selected} count={services.length} label="services" controls="service-details" onChange={setSelected} />
-    <section id="service-details" className="forge-journal-page"><h3 className="font-serif text-title text-ink">{active.title}</h3><p className="mt-3 text-body leading-relaxed text-muted">{active.description}</p></section>
+    <ul className="forge-services">
+      {services.map((service,index)=><li key={service.title}>
+        <span className="forge-service-number" aria-hidden="true">{String(index+1).padStart(2,"0")}</span>
+        <div><h3 className="font-serif text-body font-bold text-ink">{service.title}</h3><p className="mt-2 text-fine leading-relaxed text-muted">{service.description}</p></div>
+      </li>)}
+    </ul>
   </div>;
 }

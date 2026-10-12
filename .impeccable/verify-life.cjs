@@ -1,0 +1,54 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+const {chromium}=require('C:/Users/ronde/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('node:assert/strict');
+(async()=>{
+ const browser=await chromium.launch({channel:'msedge',headless:true});
+ for(const [width,height]of [[1850,887],[1440,960],[768,1024],[390,844]]){
+  const page=await browser.newPage({viewport:{width,height},reducedMotion:'no-preference',colorScheme:'light'});
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('http://localhost:3011/web',{waitUntil:'domcontentloaded'});
+  if(width===1850)await page.locator('[data-composition="panoramic"]').waitFor();
+  await page.waitForTimeout(200);
+  const cat=page.locator('.forge-mascot');await page.locator('.forge-mascot[data-ready="true"]').waitFor();
+  await cat.locator('img').evaluateAll(img=>Promise.all(img.map(i=>i.decode())));
+  const before=await cat.boundingBox();
+  const x=before.x+before.width*.6,y=before.y+before.height*.5;
+  await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x-80,y-45,{steps:8});
+  await page.waitForFunction(()=>document.querySelector('.forge-mascot').dataset.activity==='grabbed');
+  await cat.locator('img').evaluateAll(img=>Promise.all(img.map(i=>i.decode())));
+  const held=await cat.boundingBox();assert.ok(Math.abs(held.x-before.x+80)<1 && Math.abs(held.y-before.y+45)<1);
+  assert.equal(await page.getByRole('dialog').count(),0);
+  await page.screenshot({path:`.impeccable/review/grabbed-${width}.png`,style:'nextjs-portal,.splash{display:none!important}'});
+  await page.mouse.up();
+  await page.waitForFunction(()=>document.querySelector('.forge-mascot').dataset.activity==='returning',{},{timeout:3000});
+  await page.waitForFunction(()=>document.querySelector('.forge-mascot').dataset.activity==='crafting',{},{timeout:9000});
+  const home=await cat.boundingBox();assert.ok(Math.abs(home.x-before.x)<2 && Math.abs(home.y-before.y)<2,JSON.stringify({before,home}));
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.waitForTimeout(100);
+  assert.equal(await cat.locator('.forge-mascot-idle').evaluate(e=>getComputedStyle(e).animationName),'none');
+  await page.screenshot({path:`.impeccable/review/morning-${width}.png`,style:'nextjs-portal,.splash{display:none!important}'});
+  await page.getByRole('button',{name:'switch between light and dark theme'}).click();
+  await page.locator('.workshop-art-night').evaluate(i=>i.decode());await page.waitForTimeout(150);
+  assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
+  assert.equal(await page.locator('.workshop-art-night').evaluate(e=>getComputedStyle(e).opacity),'1');
+  await page.screenshot({path:`.impeccable/review/night-${width}.png`,style:'nextjs-portal,.splash{display:none!important}'});
+  await cat.focus();await page.keyboard.press('Enter');await page.getByRole('dialog').waitFor();
+  assert.equal(await cat.locator('img').first().evaluate(e=>getComputedStyle(e).animationPlayState),'paused');
+  await page.keyboard.press('Escape');await page.getByRole('dialog').waitFor({state:'detached'});
+  await page.reload({waitUntil:'domcontentloaded'});assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollHeight<=innerHeight),true);
+  assert.deepEqual(errors,[]);console.log(width,'drag/struggle, slow return, About keyboard access, reduced motion and persisted night theme passed');
+  await page.close();
+ }
+ const page=await browser.newPage({viewport:{width:1440,height:960},colorScheme:'light',reducedMotion:'no-preference'});
+ await page.goto('http://localhost:3011/web',{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.querySelector('.forge-mascot')?.dataset.activity==='idle',{},{timeout:30000});
+ await page.screenshot({path:'.impeccable/review/mascot-idle.png',style:'nextjs-portal,.splash{display:none!important}'});
+ await page.waitForFunction(()=>document.querySelector('.forge-mascot')?.dataset.activity==='walking',{},{timeout:10000});
+ await page.waitForTimeout(1600);
+ await page.screenshot({path:'.impeccable/review/mascot-wandering.png',style:'nextjs-portal,.splash{display:none!important}'});
+ await page.waitForFunction(()=>document.querySelector('.forge-mascot')?.dataset.activity==='returning',{},{timeout:16000});
+ await page.waitForFunction(()=>document.querySelector('.forge-mascot')?.dataset.activity==='crafting',{},{timeout:10000});
+ console.log('Autonomous crafting → idle → random walk → idle → return → crafting passed');
+ await browser.close();
+})();

@@ -932,6 +932,22 @@ export const services = [
       "modern, responsive, and fast websites, designed and built from the ground up.",
   },
   {
+    title: "web apps & dashboards",
+    description: "custom web applications, admin dashboards, and tools that make everyday workflows easier.",
+  },
+  {
+    title: "mobile & desktop apps",
+    description: "cross-platform applications for android, windows, and the web, built around your product and its users.",
+  },
+  {
+    title: "backend & api development",
+    description: "databases, authentication, custom apis, and third-party integrations that connect your product together.",
+  },
+  {
+    title: "website improvements & maintenance",
+    description: "responsive fixes, performance improvements, accessibility updates, and ongoing care for existing websites.",
+  },
+  {
     title: "video editing",
     description:
       "engaging edits for promos, socials, and events, from raw footage to final cut.",
