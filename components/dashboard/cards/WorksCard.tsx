@@ -6,6 +6,21 @@ export default function WorksCard({ category }: { category: WorkCategory }) {
   const items = works.filter((w) => w.category === category);
   const live = items.filter((w) => w.liveUrl).length;
 
+  if (category === "video editing") {
+    return (
+      <div className="flex h-full min-h-0 flex-col gap-2.5">
+        <ul className="scroll-area min-h-0 flex-1 overflow-y-auto divide-y divide-line" aria-label="video projects">
+          {items.map((work) => (
+            <li key={work.title} className="py-2 text-fine text-ink">
+              {work.title}
+            </li>
+          ))}
+        </ul>
+        <p className="label shrink-0 text-faint">{items.length} video projects</p>
+      </div>
+    );
+  }
+
   /**
    * One tile per image, and a gradient glyph for a project that has none, so
    * link-only work (the video edits) still fills the strip.

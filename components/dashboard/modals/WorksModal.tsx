@@ -120,6 +120,37 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
       blurred: Boolean(work.blurImage),
     });
 
+  if (category === "video editing") {
+    return (
+      <div className="scroll-area min-h-0 flex-1 overflow-y-auto px-5 py-2 sm:px-7">
+        <ul className="divide-y divide-line" aria-label="video projects">
+          {items.map((work) => (
+            <li key={work.title} className="flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+              <div className="min-w-0">
+                <h3 className="font-serif text-title text-ink">{work.title}</h3>
+                <p className="mt-1 max-w-[62ch] text-fine leading-relaxed text-muted">{work.description}</p>
+              </div>
+              <div className="flex shrink-0 flex-wrap gap-2">
+                {work.links?.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${work.title}: ${link.label} (opens in a new tab)`}
+                    className="label inline-flex min-h-11 items-center rounded-md border border-line px-3 text-accent-ink transition-transform duration-150 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.97] motion-reduce:transform-none motion-reduce:transition-none"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-full flex-col">
       <div
