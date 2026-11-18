@@ -14,6 +14,27 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "trading-code-for-a-free-gym-membership",
+    title: "I Tried Trading Code for a Lifetime Free Gym Membership",
+    shortTitle: "Trading Code for a Free Gym Membership",
+    description:
+      "How I built a membership system for Daryl Fitness Gym, replacing a paper sign-in sheet and a whiteboard, and offered it in exchange for a lifetime free membership.",
+    date: "2026-11-18",
+    image: "/blog/daryl-fitness-gym-cover.webp",
+    imageAlt:
+      "the daryl fitness gym app on three phones: welcome, register, and log in screens",
+    keywords: [
+      "gym membership system",
+      "gym management app philippines",
+      "trading code for a gym membership",
+      "qr code gym check in",
+      "next.js supabase app",
+      "pwa android app",
+      "freelance developer story",
+      "daryl fitness gym",
+    ],
+  },
+  {
     slug: "how-i-built-tambay",
     title: "I Built Tambay: 336 Users in 3 Days",
     shortTitle: "I Built Tambay: 336 Users in 3 Days",

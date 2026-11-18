@@ -150,6 +150,22 @@ export const works: Work[] = [
     liveUrl: "https://wisker-web.vercel.app",
     links: [{ label: "visit site", href: "https://wisker-web.vercel.app" }],
   },
+  {
+    ...webProject(
+      "daryl fitness gym",
+      "membership system that replaced a gym's paper sign-in sheet and whiteboard, built in exchange for a lifetime free membership. members register with their phone number and a pin, check whether they're active, expiring, or expired, and clock in with a qr code; the front desk renews plans, logs walk-ins, and can clock in members who have no phone or data.",
+      "live-daryl-fitness-gym",
+      "https://darylfitnessgym.vercel.app",
+      ["next.js", "typescript", "tailwind css", "supabase", "vercel"],
+    ),
+    links: [
+      { label: "visit site", href: "https://darylfitnessgym.vercel.app" },
+      {
+        label: "read the story",
+        href: "/blog/trading-code-for-a-free-gym-membership",
+      },
+    ],
+  },
   webProject(
     "ufabox",
     "muay thai betting landing page for ufabox - fight card, live odds, schedule, results, fighter profiles, and tournaments.",
