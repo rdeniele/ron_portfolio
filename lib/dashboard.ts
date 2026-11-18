@@ -62,8 +62,9 @@ export type Discipline = {
 export const disciplines: Discipline[] = [
   {
     id: "web",
+    // the route stays /web - it is the link already shared with employers
     path: "/web",
-    nav: "web",
+    nav: "dev",
     label: "web development & design",
     category: "web development & design",
     blurb: "sites and web apps, designed and built end to end.",

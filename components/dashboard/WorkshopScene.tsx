@@ -55,6 +55,11 @@ export default function WorkshopScene({ panels, focused, onOpen, paused=false }:
           <h1>Ron Paragoso</h1>
           <p className="forge-role">{identity.greeting} a <Typewriter words={identity.roles} /></p>
           <p className="forge-statement">{identity.statement}</p>
+          {/* the shortcut past the scene, for visitors who just want the work */}
+          <div className="forge-greeting-actions">
+            <button type="button" data-primary onClick={()=>onOpen("works")}>See my work <span aria-hidden="true">▸</span></button>
+            <button type="button" onClick={()=>onOpen("contact")}>Contact me</button>
+          </div>
         </div>
       </div>
     </div>

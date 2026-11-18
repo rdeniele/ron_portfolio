@@ -491,6 +491,51 @@ export const works: Work[] = [
 
   // video editing
   {
+    title: "airi chwan - tiktok edits",
+    category: "video editing",
+    description:
+      "short-form vertical edits for the tiktok creator @airi_chwan - hooks, captions, and pacing built for the feed.",
+    links: [
+      {
+        label: "watch 1",
+        href: "https://www.tiktok.com/@airi_chwan/video/7709127359441489173",
+      },
+      {
+        label: "watch 2",
+        href: "https://www.tiktok.com/@airi_chwan/video/7708549320890486017",
+      },
+      {
+        label: "watch 3",
+        href: "https://www.tiktok.com/@airi_chwan/video/7708092786272177428",
+      },
+    ],
+  },
+  {
+    title: "aniwhatda - anime shorts",
+    category: "video editing",
+    description:
+      "anime edits for aniwhatda on tiktok and youtube shorts: toji's aura in jujutsu kaisen, the maquia scene that hits different, and a ranking of the most insane fight animation.",
+    image: "https://i.ytimg.com/vi/8zG1o03a9aE/hqdefault.jpg",
+    links: [
+      {
+        label: "watch 1",
+        href: "https://www.tiktok.com/@aniwhatda/video/7705011739812793608",
+      },
+      {
+        label: "watch 2",
+        href: "https://www.youtube.com/shorts/8zG1o03a9aE",
+      },
+      {
+        label: "watch 3",
+        href: "https://www.youtube.com/shorts/Lpf0Ajr0RSs",
+      },
+      {
+        label: "watch 4",
+        href: "https://www.youtube.com/shorts/794j14rn3xc",
+      },
+    ],
+  },
+  {
     title: "georepute ai video ads",
     category: "video editing",
     description:

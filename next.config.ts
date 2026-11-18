@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        // youtube shorts thumbnails for the video list
+        protocol: "https",
+        hostname: "i.ytimg.com",
+      },
     ],
   },
 };

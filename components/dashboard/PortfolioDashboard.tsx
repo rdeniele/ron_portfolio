@@ -183,7 +183,7 @@ export default function PortfolioDashboard({
           paint over the unpositioned sidebar and swallow its clicks. */}
       <div aria-hidden="true" className="page-backdrop" />
       <CursorTrail />
-      {welcoming && <ForgeWelcome />}
+      {welcoming && <ForgeWelcome onSeeWork={() => openPanel("works")} />}
 
       <main
         data-dashboard
