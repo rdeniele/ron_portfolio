@@ -1,39 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import LivePreviewModal from "@/components/dashboard/LivePreviewModal";
 import WorkGlyph from "@/components/dashboard/WorkGlyph";
 import { works, type Work, type WorkCategory } from "@/lib/site";
 
 type Lightbox = { src: string; alt: string; blurred: boolean };
-
-/** matches the entrance curve used elsewhere - fast start, slow settle */
-const PAGE_MS = 320;
-
-/**
- * Pages the rail by hand, because a native smooth `scrollTo` is dropped in
- * some browsers while an instant one is not - animating it here keeps the
- * paging identical everywhere and respects reduced motion.
- */
-function scrollRailTo(rail: HTMLElement, left: number) {
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const from = rail.scrollLeft;
-  const distance = left - from;
-  // a hidden page runs no animation frames, so there is nothing to animate
-  if (reduced || document.hidden || distance === 0) {
-    rail.scrollLeft = left;
-    return;
-  }
-  const started = performance.now();
-  const step = (now: number) => {
-    const t = Math.min((now - started) / PAGE_MS, 1);
-    rail.scrollLeft = from + distance * (1 - Math.pow(1 - t, 3));
-    if (t < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
 
 /** the tile image - the first of a pair where a project has two */
 function thumbOf(work: Work) {
@@ -100,9 +74,6 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
   const [preview, setPreview] = useState<Work | null>(null);
   /** the video playing in the in-portfolio player */
   const [playing, setPlaying] = useState<Player | null>(null);
-  const railRef = useRef<HTMLDivElement>(null);
-  /** how far the rail has been paged, so the arrows can retire at the ends */
-  const [edges, setEdges] = useState({ start: true, end: false });
 
   const items = works.filter((w) => w.category === category);
 
@@ -124,41 +95,16 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
     return () => document.removeEventListener("keydown", onKey, true);
   }, [lightbox, selected, preview, playing]);
 
-  /**
-   * In the grid the arrows page the rail by a full view; in the detail view
-   * they step through the projects of the current category.
-   */
+  /** in the detail view the arrows step through the category's projects */
   const go = (delta: number) => {
-    if (selected) {
-      const at = items.indexOf(selected);
-      const next = items[Math.min(Math.max(at + delta, 0), items.length - 1)];
-      if (next) setSelected(next);
-      return;
-    }
-    const rail = railRef.current;
-    if (!rail) return;
-    // scroll-snap swallows a plain scrollBy, so page to the nearest tile edge
-    const target = rail.scrollLeft + delta * rail.clientWidth;
-    const tiles = Array.from(rail.children) as HTMLElement[];
-    const nearest = tiles.reduce((best, tile) =>
-      Math.abs(tile.offsetLeft - rail.offsetLeft - target) <
-      Math.abs(best.offsetLeft - rail.offsetLeft - target)
-        ? tile
-        : best,
-    );
-    scrollRailTo(rail, nearest.offsetLeft - rail.offsetLeft);
-  };
-
-  const syncEdges = () => {
-    const rail = railRef.current;
-    if (!rail) return;
-    setEdges({
-      start: rail.scrollLeft < 8,
-      end: rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 8,
-    });
+    if (!selected) return;
+    const at = items.indexOf(selected);
+    const next = items[Math.min(Math.max(at + delta, 0), items.length - 1)];
+    if (next) setSelected(next);
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
+    if (!selected) return;
     if (e.key === "ArrowRight") {
       e.preventDefault();
       go(1);
@@ -178,7 +124,7 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
 
   if (category === "video editing") {
     return (
-      <div className="scroll-area min-h-0 flex-1 overflow-y-auto px-5 py-2 sm:px-7">
+      <div className="scroll-area h-full overflow-y-auto px-5 py-2 sm:px-7">
         <p className="label pt-3 text-faint">
           press play to watch right here - no need to leave the page.
         </p>
@@ -384,7 +330,6 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
         className="relative flex min-h-0 flex-1 flex-col"
         onKeyDown={onKeyDown}
         role="group"
-        aria-roledescription="carousel"
         aria-label={`${category} projects`}
       >
         {selected ? (
@@ -539,14 +484,12 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
             </div>
           </div>
         ) : (
-          /* the grid: two rows of tiles that scroll sideways as a set */
+          /* the grid scrolls down like a page, so a mouse wheel, trackpad
+             or swipe all just work */
           <div
-            ref={railRef}
-            onScroll={syncEdges}
-            /* snapping is off here on purpose: mandatory snap fights every
-               paged scroll and pins the rail to the first tile */
-            className="rail rail-free grid min-h-0 flex-1 grid-flow-col grid-rows-2 auto-cols-[70%] gap-3 px-5 py-5 sm:auto-cols-[calc((100%-1.5rem)/3)] sm:px-7"
+            className="scroll-area grid min-h-0 flex-1 auto-rows-max grid-cols-2 content-start gap-3 overflow-y-auto px-5 py-5 sm:grid-cols-3 sm:px-7"
             tabIndex={0}
+            aria-label={`${items.length} projects, scrollable`}
           >
             {items.map((work) => {
               const thumb = thumbOf(work);
@@ -557,15 +500,15 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
                   onClick={() => setSelected(work)}
                   data-autofocus={items[0] === work || undefined}
                   aria-label={`${work.title} - open project`}
-                  className="group/tile flex min-h-0 flex-col overflow-hidden rounded-lg border border-line bg-sunk text-left transition-[border-color,transform] duration-200 hover:border-line-strong active:scale-[0.99]"
+                  className="group/tile flex flex-col overflow-hidden rounded-lg border border-line bg-sunk text-left transition-[border-color,transform] duration-200 hover:border-line-strong active:scale-[0.99]"
                 >
-                  <div className="relative min-h-0 flex-1 overflow-hidden">
+                  <div className="relative aspect-[16/10] shrink-0 overflow-hidden">
                     {thumb ? (
                       <Image
                         src={thumb}
                         alt=""
                         fill
-                        sizes="(max-width: 640px) 70vw, 30vw"
+                        sizes="(max-width: 640px) 45vw, 30vw"
                         className={`object-cover object-top transition-transform duration-300 group-hover/tile:scale-[1.03] ${
                           work.blurImage ? "blur-md scale-105" : ""
                         }`}
@@ -615,12 +558,13 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
             </span>
           )}
 
+          {selected && (
           <div className="flex shrink-0 gap-2">
             <button
               type="button"
               onClick={() => go(-1)}
-              disabled={selected ? at <= 0 : edges.start}
-              aria-label={selected ? "previous project" : "previous projects"}
+              disabled={at <= 0}
+              aria-label="previous project"
               className="grid h-9 w-9 place-items-center rounded-md border border-line text-ink transition-[border-color,opacity,transform] duration-150 hover:border-line-strong active:scale-95 disabled:pointer-events-none disabled:opacity-30"
             >
               <span aria-hidden="true">&#8592;</span>
@@ -628,13 +572,14 @@ export default function WorksModal({ category }: { category: WorkCategory }) {
             <button
               type="button"
               onClick={() => go(1)}
-              disabled={selected ? at >= items.length - 1 : edges.end}
-              aria-label={selected ? "next project" : "next projects"}
+              disabled={at >= items.length - 1}
+              aria-label="next project"
               className="grid h-9 w-9 place-items-center rounded-md border border-line text-ink transition-[border-color,opacity,transform] duration-150 hover:border-line-strong active:scale-95 disabled:pointer-events-none disabled:opacity-30"
             >
               <span aria-hidden="true">&#8594;</span>
             </button>
           </div>
+          )}
         </div>
       </div>
 
