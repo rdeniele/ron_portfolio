@@ -507,6 +507,26 @@ export const works: Work[] = [
 
   // video editing
   {
+    title: "ronddpixels - my tiktok",
+    category: "video editing",
+    description:
+      "short-form videos i shoot and edit for my own tiktok, @ronddpixels_, including the daryl fitness gym build series.",
+    links: [
+      {
+        label: "watch 1",
+        href: "https://www.tiktok.com/@ronddpixels_/video/7709349721466244372",
+      },
+      {
+        label: "watch 2",
+        href: "https://www.tiktok.com/@ronddpixels_/video/7709448963807530261",
+      },
+      {
+        label: "watch 3",
+        href: "https://www.tiktok.com/@ronddpixels_/video/7708809663436918022",
+      },
+    ],
+  },
+  {
     title: "airi chwan - tiktok edits",
     category: "video editing",
     description:
