@@ -573,18 +573,6 @@ export const works: Work[] = [
     ],
   },
   {
-    title: "wisker ad ep. 1",
-    category: "video editing",
-    description: "promotional ad for the wisker study platform.",
-    image: "/works/video/wisker-ad-1.webp",
-    links: [
-      {
-        label: "watch",
-        href: "https://drive.google.com/file/d/1zw_E0bOUEipmycTOei9tcehHQAknlxyF/view?usp=sharing",
-      },
-    ],
-  },
-  {
     title: "wisker app demo ad",
     category: "video editing",
     description: "app demo ad walking through the wisker experience.",
